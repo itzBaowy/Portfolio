@@ -6,5 +6,14 @@ import { Skills } from "@/components/sections/skills";
 import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
-  return <main id="main"><Hero /><About /><Journey /><Work /><Skills /><Contact /></main>;
+  return (
+    <main id="main">
+      <Hero />
+      <About />
+      <Journey />
+      <Work />
+      <Skills />
+      <Contact />
+    </main>
+  );
 }

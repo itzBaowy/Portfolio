@@ -8,5 +8,9 @@ export function getResumeUrl(): string | null {
   const publicRoot = resolve(process.cwd(), "public");
   const file = resolve(publicRoot, profile.resumeUrl.slice(1));
   if (!file.startsWith(publicRoot + sep) || !existsSync(file)) return null;
-  try { return readFileSync(file).subarray(0, 5).toString() === "%PDF-" ? profile.resumeUrl : null; } catch { return null; }
+  try {
+    return readFileSync(file).subarray(0, 5).toString() === "%PDF-" ? profile.resumeUrl : null;
+  } catch {
+    return null;
+  }
 }

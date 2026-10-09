@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+.git
+.stitch
+test-results
+playwright-report
+.env*
+README.md
+Requirements.md
+docs

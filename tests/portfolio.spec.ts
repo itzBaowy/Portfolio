@@ -5,12 +5,22 @@ for (const width of [375, 430, 768, 1440, 1920]) {
   test(`homepage at ${width}px is readable without overflow`, async ({ page }) => {
     await page.setViewportSize({ width, height: 950 });
     const errors: string[] = [];
-    page.on("pageerror", error => errors.push(error.message));
+    page.on("pageerror", (error) => errors.push(error.message));
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(page.getByRole("link", { name: "Explore My Work" })).toBeVisible();
-    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-    await page.evaluate(async () => { await document.fonts.ready; await Promise.all(document.getAnimations().filter(animation => animation.effect?.getTiming().iterations !== Infinity).map(animation => animation.finished)); });
+    await expect
+      .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth))
+      .toBe(true);
+    await page.evaluate(async () => {
+      await document.fonts.ready;
+      await Promise.all(
+        document
+          .getAnimations()
+          .filter((animation) => animation.effect?.getTiming().iterations !== Infinity)
+          .map((animation) => animation.finished),
+      );
+    });
     await page.screenshot({ path: `test-results/home-${width}.png`, fullPage: true });
     expect(errors).toEqual([]);
   });
@@ -18,7 +28,9 @@ for (const width of [375, 430, 768, 1440, 1920]) {
 
 test("work CTA navigates in-page and production has no fake download", async ({ page }) => {
   await page.goto("/");
-  await page.evaluate(() => { document.body.dataset.navigationMarker = "kept"; });
+  await page.evaluate(() => {
+    document.body.dataset.navigationMarker = "kept";
+  });
   await page.getByRole("link", { name: "Explore My Work" }).click();
   await expect(page).toHaveURL(/#work$/);
   await expect(page.locator("#work")).toBeInViewport();
@@ -36,7 +48,10 @@ test("mobile navigation supports keyboard, closes and restores focus", async ({ 
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(trigger).toBeFocused();
   await trigger.click();
-  await page.getByRole("navigation", { name: "Mobile navigation" }).getByRole("link", { name: /Work/ }).click();
+  await page
+    .getByRole("navigation", { name: "Mobile navigation" })
+    .getByRole("link", { name: /Work/ })
+    .click();
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await expect(page.locator("#work")).toBeInViewport();
 });
@@ -47,20 +62,26 @@ test("reduced motion keeps content and static 3D fallback", async ({ page }) => 
   await page.goto("/");
   await expect(page.locator(".orbital-visual")).toHaveAttribute("data-renderer", "static");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("auto");
+  expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe(
+    "auto",
+  );
 });
 
 test("homepage has no serious accessibility violations", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  const result = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
-  expect(result.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) }))).toEqual([]);
+  const result = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+    .analyze();
+  expect(result.violations.map((v) => ({ id: v.id, nodes: v.nodes.map((n) => n.target) }))).toEqual(
+    [],
+  );
 });
 
 for (const slug of ["dineflow", "flowsync", "project-03", "project-04"]) {
   test(`${slug} brief renders on desktop and mobile with its own metadata`, async ({ page }) => {
     const errors: string[] = [];
-    page.on("pageerror", error => errors.push(error.message));
+    page.on("pageerror", (error) => errors.push(error.message));
     await page.emulateMedia({ reducedMotion: "reduce" });
     for (const width of [1440, 375]) {
       await page.setViewportSize({ width, height: 950 });
@@ -68,11 +89,20 @@ for (const slug of ["dineflow", "flowsync", "project-03", "project-04"]) {
       expect(response?.status()).toBe(200);
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
       await expect(page.getByRole("heading", { name: "Overview", exact: true })).toBeVisible();
-      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", `https://khuugiabao.com/work/${slug}/`);
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        "href",
+        `https://khuugiabao.com/work/${slug}/`,
+      );
       await expect(page).toHaveTitle(/Project Brief/);
-      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-      const a11y = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
-      expect(a11y.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) }))).toEqual([]);
+      expect(
+        await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+      ).toBe(true);
+      const a11y = await new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+        .analyze();
+      expect(
+        a11y.violations.map((v) => ({ id: v.id, nodes: v.nodes.map((n) => n.target) })),
+      ).toEqual([]);
       await page.screenshot({ path: `test-results/${slug}-${width}.png`, fullPage: true });
     }
     expect(errors).toEqual([]);
@@ -90,7 +120,9 @@ test("project cards and back navigation work", async ({ page }) => {
   await expect(page.locator("#work")).toBeInViewport();
 });
 
-test("all 27 technologies are available and category filtering is keyboard accessible", async ({ page }) => {
+test("all 27 technologies are available and category filtering is keyboard accessible", async ({
+  page,
+}) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/#skills");
   await expect(page.locator(".technology-list li")).toHaveCount(27);
@@ -117,25 +149,37 @@ test("SEO assets exist and reserved projects are excluded from sitemap", async (
   expect(image.headers()["content-type"]).toContain("image/png");
 });
 
-test("real contact channels and Person structured data use supplied information", async ({ page }) => {
+test("real contact channels and Person structured data use supplied information", async ({
+  page,
+}) => {
   await page.goto("/");
-  await expect(page.getByRole("link", { name: "Get In Touch" })).toHaveAttribute("href", "mailto:notbao.js@gmail.com");
+  await expect(page.getByRole("link", { name: "Get In Touch" })).toHaveAttribute(
+    "href",
+    "mailto:notbao.js@gmail.com",
+  );
   await expect(page.locator('#contact a[href="https://github.com/itzBaowy"]')).toBeAttached();
   await expect(page.locator('#contact a[href="https://www.linkedin.com/in/kgbao"]')).toBeAttached();
   const schemas = await page.locator('script[type="application/ld+json"]').textContent();
-  expect(JSON.parse(schemas!)).toContainEqual(expect.objectContaining({ "@type": "Person", name: "Khuu Gia Bao" }));
+  expect(JSON.parse(schemas!)).toContainEqual(
+    expect.objectContaining({ "@type": "Person", name: "Khuu Gia Bao" }),
+  );
 });
 
 test("blocked WebGL keeps the static visual without runtime errors", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 950 });
   const errors: string[] = [];
-  page.on("pageerror", error => errors.push(error.message));
+  page.on("pageerror", (error) => errors.push(error.message));
   await page.addInitScript(() => {
     const original = HTMLCanvasElement.prototype.getContext;
-    Object.defineProperty(HTMLCanvasElement.prototype, "getContext", { value: function (kind: string, ...args: unknown[]) {
-      if (kind === "webgl2") { document.body.dataset.webglAttempted = "true"; return null; }
-      return Reflect.apply(original, this, [kind, ...args]);
-    } });
+    Object.defineProperty(HTMLCanvasElement.prototype, "getContext", {
+      value: function (kind: string, ...args: unknown[]) {
+        if (kind === "webgl2") {
+          document.body.dataset.webglAttempted = "true";
+          return null;
+        }
+        return Reflect.apply(original, this, [kind, ...args]);
+      },
+    });
   });
   await page.goto("/");
   await expect(page.locator("body")).toHaveAttribute("data-webgl-attempted", "true");

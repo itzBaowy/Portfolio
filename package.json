@@ -8,7 +8,10 @@
     "preview": "serve out -l 3000",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "format": "prettier --write src tests scripts",
+    "audit:perf": "node scripts/lighthouse.mjs",
+    "og": "node scripts/build-og.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.2.0",
@@ -30,13 +33,15 @@
     "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.64.0",
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/node": "^26.6.4",
+    "@types/node": "^22.20.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/three": "^0.186.0",
+    "chrome-launcher": "^1.2.2",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.0",
     "lighthouse": "^13.5.0",
+    "prettier": "^3.9.9",
     "serve": "^14.2.6",
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
@@ -44,5 +49,8 @@
   },
   "overrides": {
     "compression": "1.8.2"
+  },
+  "engines": {
+    "node": ">=22 <23"
   }
 }
