@@ -51,6 +51,8 @@ Four project slots and routes are ready:
 
 DineFlow and FlowSync retain the requirement’s **planned** status. Their covers are explicitly labeled concept illustrations. `plannedUrl` is stored for future deployment and is never rendered as a live link. Populate `liveUrl` and `repositoryUrl` only after verifying them. Add actual roles, dates, architecture, engineering challenges and results before presenting them as completed case studies. Reserved slots are `noindex` and excluded from the sitemap.
 
+Selected work uses one compact bordered card grid for all four slots: two columns above 700px, one below. Each card includes an index/status, a wide preview, category, title, short description, technology tags and a corner arrow. The whole card opens its project brief and supports keyboard focus; verified external links remain separate. Empty roles/dates stay on the detail pages rather than cluttering cards. Concept covers remain labeled, and reserved slots show “Preview coming soon.” Detailed project pages keep their larger cover layout.
+
 ## Design and motion
 
 See `DESIGN.md` for art direction and tokens. Stitch references and metadata are in `.stitch/`; generated content is visual reference, not authoritative project data.
@@ -60,7 +62,7 @@ See `DESIGN.md` for art direction and tokens. Stitch references and metadata are
 - CSS: native smooth scrolling, button/card hover and Hero line reveal.
 - Ambient background: fixed fine grid, blue/violet/cyan light trails and soft glows across all routes, inspired by [Vu Le Bao Long's portfolio](https://www.vulebaolong.com/). Eight CSS transform/opacity trails on desktop, four on mobile; pauses in hidden tabs. Reduced motion keeps only the static grid and glows. Tune lanes, timing and colors in `src/components/layout/ambient-background.tsx` and `src/styles/globals.css`.
 - Hero: supplied full-color portrait with a subtle entrance and hover; reduced motion disables these effects. The former orbital model, fallback illustration and Three.js dependencies have been removed.
-- Native cursor stays available. The project hover label is decorative, desktop-only and disabled for reduced motion.
+- Project cards use a small arrow and subtle cover/background hover with visible keyboard focus. Native cursor stays available; no floating cursor label is used.
 
 Navigation, project routes, skill filters and content remain accessible with a keyboard. CV and contact actions use real assets/channels only. JavaScript-disabled visitors can still read server-rendered content and navigate anchors and project links.
 

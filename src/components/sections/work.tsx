@@ -11,26 +11,11 @@ export function Work() {
         <SectionHeading id="work-heading" {...copy.work} />
       </Reveal>
       <div className="project-showcase">
-        {projects
-          .filter((p) => p.status !== "reserved")
-          .map((project, index) => (
-            <Reveal
-              key={project.slug}
-              className={`project-row project-row-${index}`}
-              delay={index * 0.08}
-            >
-              <ProjectCard project={project} />
-            </Reveal>
-          ))}
-      </div>
-      <div className="reserved-projects">
-        {projects
-          .filter((p) => p.status === "reserved")
-          .map((project, index) => (
-            <Reveal key={project.slug} delay={index * 0.08}>
-              <ProjectCard project={project} />
-            </Reveal>
-          ))}
+        {projects.map((project, index) => (
+          <Reveal key={project.slug} className="project-cell" delay={(index % 2) * 0.08}>
+            <ProjectCard project={project} total={projects.length} />
+          </Reveal>
+        ))}
       </div>
     </section>
   );

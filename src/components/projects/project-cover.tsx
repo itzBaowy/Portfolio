@@ -12,7 +12,13 @@ import type { Project } from "@/types/content";
 import { copy } from "@/data/site-copy";
 
 // These are decorative concept illustrations, never represented as shipped UI.
-export function ProjectCover({ project }: { project: Project }) {
+export function ProjectCover({
+  project,
+  compact = false,
+}: {
+  project: Project;
+  compact?: boolean;
+}) {
   if (project.cover)
     return (
       <div className="project-cover">
@@ -20,7 +26,7 @@ export function ProjectCover({ project }: { project: Project }) {
           src={project.cover}
           alt={`${project.name} project cover`}
           fill
-          sizes="(max-width: 850px) 100vw, 70vw"
+          sizes={compact ? "(max-width: 700px) 100vw, 50vw" : "(max-width: 850px) 100vw, 70vw"}
           className="cover-image"
         />
       </div>
@@ -28,7 +34,8 @@ export function ProjectCover({ project }: { project: Project }) {
   return (
     <div className={`project-cover cover-${project.slug}`}>
       <span className="concept-label mono">
-        {copy.work.preview} / {project.number}
+        {project.status === "reserved" ? copy.work.previewPending : copy.work.preview} /{" "}
+        {project.number}
       </span>
       <div className="concept-art" aria-hidden="true">
         {project.slug === "dineflow" ? (

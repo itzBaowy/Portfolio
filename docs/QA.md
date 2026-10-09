@@ -5,7 +5,8 @@ Date: 2026-10-09 (Asia/Bangkok).
 ## Checked
 
 - Strict TypeScript, ESLint and Next.js production static export passed.
-- The last full suite, after replacing the 3D model, passed all 20 Playwright tests: five homepage sizes (375, 430, 768, 1440, 1920px), mobile keyboard menu/focus restoration, same-document Work navigation, four project routes on desktop/mobile, category filters with all 27 technologies, ambient animation/hidden-tab pause/route continuity, mobile trail limits, reduced motion, full-color Hero portrait loading, supplied contact channels, structured data and SEO assets.
+- The latest full suite, after the compact project-card redesign, passed all 20 Playwright tests: five homepage sizes (375, 430, 768, 1440, 1920px), mobile keyboard menu/focus restoration, same-document Work navigation, four project routes on desktop/mobile, category filters with all 27 technologies, ambient animation/hidden-tab pause/route continuity, mobile trail limits, reduced motion, full-color Hero portrait loading, supplied contact channels, structured data and SEO assets.
+- The four project slots now share a compact card grid. Browser geometry checks confirmed two equal-width columns at 1440px/768px and a single column at 375px; desktop cards are about 483px high, mobile cards about 401–432px. Final preview screenshots were inspected. Keyboard Enter opens the DineFlow brief, and all existing project links/back navigation passed. Concept/planned/coming-soon states remain explicit; detail-page cover sizing is preserved.
 - Axe WCAG checks reported no violations on the tested homepage and four project pages. This does not replace manual screen-reader testing.
 - The Hero now uses the owner's large 4:5 portrait in the desktop right column and beneath the text on mobile. The orbital components, SVG fallback and Three.js/R3F/Drei dependencies were removed.
 - The background was visually inspected at 1440px and 375px and after scrolling to Contact. The fixed grid, light trails and glows remain behind content without intercepting clicks; reduced motion retains only the static background. Reference: https://www.vulebaolong.com/.
@@ -17,7 +18,7 @@ Date: 2026-10-09 (Asia/Bangkok).
 
 ## Lighthouse mobile lab measurements
 
-Production static export served locally, Chromium, Lighthouse default mobile throttling. Latest run after replacing the orbital model with the prior Hero portrait, before the `baodeptrai1` image replacement:
+Production static export served locally, Chromium, Lighthouse default mobile throttling. Latest run after replacing the orbital model with the prior Hero portrait, before the `baodeptrai1` image replacement and compact project-card redesign:
 
 | Page     | Performance | Accessibility | Best practices | SEO |   LCP | CLS |   TBT |
 | -------- | ----------: | ------------: | -------------: | --: | ----: | --: | ----: |
