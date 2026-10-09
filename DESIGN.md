@@ -2,13 +2,13 @@
 
 ## Direction
 
-A personal engineering studio: editorial typography, open composition, carefully framed work and a signature orbital sculpture. No invented achievements or stock portrait.
+A personal engineering studio: editorial typography, open composition, carefully framed work and the owner's full-color portrait. No invented achievements or stock portrait.
 
 ## Tokens
 
 - Canvas: #08090D; surface: #111318.
 - Text: #F5F5F7; secondary: #A1A1AA.
-- Accent: #5B8CFF; sculpture secondary: #8B5CF6.
+- Accent: #5B8CFF; ambient secondary: #8B5CF6.
 - Borders: white at 12% opacity. Radius: 8px for controls, 20px for project imagery.
 - Geist body and Space Grotesk display, self-hosted through next/font.
 - Desktop grid: 12 columns, maximum 1440px, 64px gutters. Mobile: 24px gutters.
@@ -16,18 +16,18 @@ A personal engineering studio: editorial typography, open composition, carefully
 
 ## Composition
 
-Hero: near-viewport height; left-aligned oversized three-line headline; orbital sculpture in the right column with a restrained portrait placeholder. Fine rule and section index below. Project showcase: large alternating product concept covers with descriptive captions; label concept previews honestly.
+Hero: near-viewport height; left-aligned oversized three-line headline; a large 4:5 personal portrait in the right column, capped at 440px wide with a fine border, corner marks and soft shadow. Keep the photo's natural colors. On mobile, stack the portrait below the copy and controls with breathing room. Fine rule and section index below. Project showcase: large alternating product concept covers with descriptive captions; label concept previews honestly.
 
 ## Motion
 
-Motion handles reveal and page entry. GSAP ScrollTrigger handles timeline progress only. CSS handles hover and native smooth scrolling. No Lenis or scroll hijacking. 3D is lazy loaded only for desktop, pauses outside viewport and when hidden, DPR capped at 1.5; mobile, reduced motion and unavailable WebGL use a static SVG sculpture. Native cursor stays intact; pointer-fine project hover indicator is decorative.
+Motion handles reveal and page entry. GSAP ScrollTrigger handles timeline progress only. CSS handles portrait entrance/hover and native smooth scrolling, respecting reduced motion. No Lenis or scroll hijacking. The Hero uses the supplied portrait; no WebGL renderer or 3D library is loaded. Native cursor stays intact; pointer-fine project hover indicator is decorative.
 
-The full-site background uses a fixed 72px grid with blue, violet and restrained cyan light trails traveling along its lines, inspired by https://www.vulebaolong.com/. Soft static glows support the existing dark palette. Trails animate only transform and opacity, never capture input, and pause when the document is hidden. Mobile uses a 48px grid and four trails instead of eight; reduced motion removes all trails while preserving the static atmosphere. The background lives in the root layout so it remains fixed and continuous across project navigation. The desktop 3D canvas is transparent to this layer.
+The full-site background uses a fixed 72px grid with blue, violet and restrained cyan light trails traveling along its lines, inspired by https://www.vulebaolong.com/. Soft static glows support the existing dark palette. Trails animate only transform and opacity, never capture input, and pause when the document is hidden. Mobile uses a 48px grid and four trails instead of eight; reduced motion removes all trails while preserving the static atmosphere. The background lives in the root layout so it remains fixed and continuous across project navigation.
 
 ## Implementation sequence
 
 1. Next.js static foundation, strict types, editable data, navigation and tokens.
-2. Responsive Hero, honest asset states, animated orbital sculpture and fallback.
+2. Responsive Hero with the owner's portrait and honest asset states.
 3. Personal sections and all project detail routes, categorized skills and contact.
 4. Metadata, static deployment, lint/type/build, browser and accessibility validation.
 

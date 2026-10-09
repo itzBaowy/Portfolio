@@ -5,27 +5,28 @@ Date: 2026-10-09 (Asia/Bangkok).
 ## Checked
 
 - Strict TypeScript, ESLint and Next.js production static export passed.
-- 20 Playwright tests passed: five homepage sizes (375, 430, 768, 1440, 1920px), mobile keyboard menu/focus restoration, same-document Work navigation, four project routes on desktop/mobile, category filters with all 27 technologies, ambient animation/hidden-tab pause/route continuity, mobile trail limits, reduced motion, unavailable WebGL fallback, supplied contact channels, structured data and SEO assets.
+- 20 Playwright tests passed: five homepage sizes (375, 430, 768, 1440, 1920px), mobile keyboard menu/focus restoration, same-document Work navigation, four project routes on desktop/mobile, category filters with all 27 technologies, ambient animation/hidden-tab pause/route continuity, mobile trail limits, reduced motion, full-color Hero portrait loading, supplied contact channels, structured data and SEO assets.
 - Axe WCAG checks reported no violations on the tested homepage and four project pages. This does not replace manual screen-reader testing.
-- Desktop/mobile screenshots were inspected. The Hero adapts to a stacked composition and static sculpture on mobile; no horizontal overflow was found.
-- The new background was visually inspected at 1440px and 375px and after scrolling to Contact. The fixed grid, light trails and glows remain behind content without intercepting clicks. The desktop canvas is transparent; reduced motion retains only the static background. Reference: https://www.vulebaolong.com/.
+- The Hero now uses the owner's large 4:5 portrait in the desktop right column and beneath the text on mobile. The orbital components, SVG fallback and Three.js/R3F/Drei dependencies were removed.
+- The background was visually inspected at 1440px and 375px and after scrolling to Contact. The fixed grid, light trails and glows remain behind content without intercepting clicks; reduced motion retains only the static background. Reference: https://www.vulebaolong.com/.
 - The owner-supplied `baodeptrai.png` is now configured in Hero and About. A WebP derivative preserves the original framing at 800 × 1000 and 51,468 bytes, compared with the 2,030,744-byte PNG. The original is preserved. Real portraits display the owner's name instead of pending-photo copy.
-- After adding the portrait, typecheck, lint, build and all 20 browser tests passed again. Both image placements decoded successfully at desktop 1440px and mobile 375px; screenshots were inspected, placeholder copy was absent, and no horizontal overflow was found.
-- Docker image built successfully. Nginx configuration passed; runtime UID is 101. Home, DineFlow, FlowSync, robots, sitemap and OG image returned HTTP 200; an unknown route returned HTTP 404. Security headers were present.
+- Both portrait placements preserve their original colors; no grayscale filter is applied. Hero preloads the optimized image.
+- Updated desktop 1440px and mobile 375px Hero screenshots were inspected. The photo loads successfully, no horizontal overflow was found across the five tested widths, and the page renders without a canvas.
+- The earlier Docker validation passed: image build, Nginx configuration, UID 101, expected HTTP 200/404 routes and security headers. Container configuration is unchanged by the portrait update.
 
 ## Lighthouse mobile lab measurements
 
-Production static export served locally, Chromium, Lighthouse default mobile throttling. Latest run after adding the animated background, before adding the supplied portrait:
+Production static export served locally, Chromium, Lighthouse default mobile throttling. Latest run after replacing the orbital model with the supplied Hero portrait:
 
 | Page     | Performance | Accessibility | Best practices | SEO |   LCP | CLS |   TBT |
 | -------- | ----------: | ------------: | -------------: | --: | ----: | --: | ----: |
-| Home     |          93 |           100 |            100 | 100 | 3.1 s |   0 | 90 ms |
-| DineFlow |          94 |           100 |            100 | 100 | 3.0 s |   0 | 70 ms |
-| FlowSync |          95 |           100 |            100 | 100 | 3.0 s |   0 | 50 ms |
+| Home     |          93 |           100 |            100 | 100 | 3.2 s |   0 | 30 ms |
+| DineFlow |          95 |           100 |            100 | 100 | 3.0 s |   0 | 40 ms |
+| FlowSync |          95 |           100 |            100 | 100 | 3.0 s |   0 | 30 ms |
 
-Initial homepage performance was 89. Deferring GSAP until the timeline approaches the viewport, giving the Hero fallback image high fetch priority and removing its mobile entrance animation improved the previous measurement to 94. The latest run with the ambient background measured 93; these single-run lab scores vary with machine load.
+These single-run lab scores vary with machine load.
 
-LCP remains above the requested 2.5 s target in this lab run. INP and production field Core Web Vitals have not been measured. Results may change with device load, hosting, CDN caching, final portrait/CV assets and real content. Run `npm run audit:perf` with the production preview active to regenerate HTML/JSON reports under `test-results/lighthouse/`.
+LCP remains above the requested 2.5 s target in this lab run. INP and production field Core Web Vitals have not been measured. Results may change with device load, hosting, CDN caching, portrait/CV changes and real content. Run `npm run audit:perf` with the production preview active to regenerate HTML/JSON reports under `test-results/lighthouse/`.
 
 ## Dependency audit
 

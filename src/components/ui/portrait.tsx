@@ -4,31 +4,26 @@ import { profile, displayName } from "@/data/profile";
 import { copy } from "@/data/site-copy";
 import { cn } from "@/lib/utils";
 
-export function Portrait({ compact = false }: { compact?: boolean }) {
+export function Portrait({ preload = false }: { preload?: boolean }) {
   return (
-    <figure
-      className={cn(
-        "portrait",
-        compact && "portrait-compact",
-        profile.avatar && "portrait-with-image",
-      )}
-    >
+    <figure className={cn("portrait", profile.avatar && "portrait-with-image")}>
       {profile.avatar ? (
         <Image
           src={profile.avatar}
           alt={`${profile.avatarAlt} — ${displayName}`}
           fill
-          sizes={compact ? "120px" : "(max-width: 850px) 100vw, 35vw"}
+          sizes="(max-width: 480px) calc(100vw - 48px), (max-width: 850px) 400px, 35vw"
+          preload={preload}
           className="portrait-image"
         />
       ) : (
         <div className="portrait-placeholder">
-          <ScanFace size={compact ? 24 : 48} strokeWidth={1} aria-hidden="true" />
+          <ScanFace size={48} strokeWidth={1} aria-hidden="true" />
           <span>{copy.portrait.label}</span>
-          {!compact && <p>{copy.portrait.detail}</p>}
+          <p>{copy.portrait.detail}</p>
         </div>
       )}
-      {!compact && <figcaption>{profile.avatar ? displayName : copy.portrait.note}</figcaption>}
+      <figcaption>{profile.avatar ? displayName : copy.portrait.note}</figcaption>
     </figure>
   );
 }

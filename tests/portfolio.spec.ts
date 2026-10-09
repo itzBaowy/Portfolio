@@ -115,11 +115,11 @@ test("mobile navigation supports keyboard, closes and restores focus", async ({ 
   await expect(page.locator("#work")).toBeInViewport();
 });
 
-test("reduced motion keeps content and static 3D fallback", async ({ page }) => {
+test("reduced motion keeps content and the hero portrait", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.setViewportSize({ width: 1440, height: 950 });
   await page.goto("/");
-  await expect(page.locator(".orbital-visual")).toHaveAttribute("data-renderer", "static");
+  await expect(page.locator("#home .portrait-image")).toBeVisible();
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe(
     "auto",
@@ -224,25 +224,20 @@ test("real contact channels and Person structured data use supplied information"
   );
 });
 
-test("blocked WebGL keeps the static visual without runtime errors", async ({ page }) => {
+test("hero displays the supplied full-color portrait without 3D rendering", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 950 });
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
-  await page.addInitScript(() => {
-    const original = HTMLCanvasElement.prototype.getContext;
-    Object.defineProperty(HTMLCanvasElement.prototype, "getContext", {
-      value: function (kind: string, ...args: unknown[]) {
-        if (kind === "webgl2") {
-          document.body.dataset.webglAttempted = "true";
-          return null;
-        }
-        return Reflect.apply(original, this, [kind, ...args]);
-      },
-    });
-  });
   await page.goto("/");
-  await expect(page.locator("body")).toHaveAttribute("data-webgl-attempted", "true");
-  await expect(page.locator(".orbital-visual")).toHaveAttribute("data-renderer", "static");
-  await expect(page.locator(".orbital-fallback")).toBeVisible();
+  const portrait = page.locator("#home").getByRole("img", { name: "Portrait — Khuu Gia Bao" });
+  await expect(portrait).toBeVisible();
+  await expect(portrait).toHaveCSS("filter", "none");
+  await expect
+    .poll(() =>
+      portrait.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0),
+    )
+    .toBe(true);
+  await expect(page.locator("canvas")).toHaveCount(0);
+  await expect(page.locator(".portrait-placeholder")).toHaveCount(0);
   expect(errors).toEqual([]);
 });

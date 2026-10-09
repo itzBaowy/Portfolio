@@ -1,5 +1,4 @@
-import { ArrowDown, ArrowDownRight, ArrowUpRight, Download } from "lucide-react";
-import { OrbitalVisual } from "@/components/three/orbital-visual";
+import { ArrowDown, ArrowUpRight, Download } from "lucide-react";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Button } from "@/components/ui/button";
 import { Portrait } from "@/components/ui/portrait";
@@ -56,14 +55,8 @@ export function Hero() {
           </div>
         </div>
         <div className="hero-art">
-          <OrbitalVisual />
           <div className="hero-portrait">
-            <Portrait compact />
-            <div>
-              <span className="eyebrow">THE HUMAN SIDE</span>
-              <p>{profile.avatar ? displayName : copy.portrait.detail}</p>
-            </div>
-            <ArrowDownRight size={18} aria-hidden="true" />
+            <Portrait preload />
           </div>
         </div>
       </div>

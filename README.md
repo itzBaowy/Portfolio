@@ -1,6 +1,6 @@
 # Khuu Gia Bao — Digital Atelier
 
-A responsive Fullstack Developer portfolio for `https://khuugiabao.com`. Built with Next.js App Router, strict TypeScript, Tailwind CSS, shadcn-style owned UI primitives, Lucide, Motion, GSAP ScrollTrigger, Three.js, React Three Fiber and Drei.
+A responsive Fullstack Developer portfolio for `https://khuugiabao.com`. Built with Next.js App Router, strict TypeScript, Tailwind CSS, shadcn-style owned UI primitives, Lucide, Motion and GSAP ScrollTrigger.
 
 ## Run locally
 
@@ -34,7 +34,7 @@ Personal content is separated from presentation. Add a Vietnamese copy dictionar
 
 ### Portrait
 
-The supplied `public/images/baodeptrai.png` is displayed in Hero and About through an optimized `public/images/portrait.webp` (800 × 1000, about 50 KB). The original PNG is preserved. Both placements use `profile.avatar` and `avatarAlt`; About keeps the portrait's 4:5 framing. To replace it, update the WebP or configure a new path in `src/data/profile.ts`. Setting `avatar` to `null` restores the labeled placeholder. No stock or generated portrait is used.
+The supplied `public/images/baodeptrai.png` is displayed in Hero and About through an optimized `public/images/portrait.webp` (800 × 1000, about 50 KB). The original PNG is preserved. Both placements use `profile.avatar` and `avatarAlt`, preserve the photo's colors and keep its 4:5 framing. Hero uses a large portrait in the right column, stacked beneath the text on mobile, with image preload for early loading. To replace it, update the WebP or configure a new path in `src/data/profile.ts`. Setting `avatar` to `null` restores the labeled placeholder. No stock or generated portrait is used.
 
 ### CV
 
@@ -59,8 +59,7 @@ See `DESIGN.md` for art direction and tokens. Stitch references and metadata are
 - GSAP ScrollTrigger: timeline progress only; loaded when timelines approach the viewport.
 - CSS: native smooth scrolling, button/card hover and Hero line reveal.
 - Ambient background: fixed fine grid, blue/violet/cyan light trails and soft glows across all routes, inspired by [Vu Le Bao Long's portfolio](https://www.vulebaolong.com/). Eight CSS transform/opacity trails on desktop, four on mobile; pauses in hidden tabs. Reduced motion keeps only the static grid and glows. Tune lanes, timing and colors in `src/components/layout/ambient-background.tsx` and `src/styles/globals.css`.
-- Three.js: lazy desktop orbital sculpture, capped DPR 1.5 and paused rendering outside the viewport or when the document is hidden.
-- Static SVG: mobile, reduced motion, blocked/unavailable WebGL and render-error fallback.
+- Hero: supplied full-color portrait with a subtle entrance and hover; reduced motion disables these effects. The former orbital model, fallback illustration and Three.js dependencies have been removed.
 - Native cursor stays available. The project hover label is decorative, desktop-only and disabled for reduced motion.
 
 Navigation, project routes, skill filters and content remain accessible with a keyboard. CV and contact actions use real assets/channels only. JavaScript-disabled visitors can still read server-rendered content and navigate anchors and project links.
@@ -75,7 +74,7 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-The browser suite covers 375, 430, 768, 1440 and 1920px, mobile menu focus, in-page navigation, all project routes, category filters, ambient motion/visibility/navigation behavior, reduced motion, blocked WebGL, real contact links, metadata, SEO assets and axe accessibility. Screenshots and failure traces are saved under `test-results/`.
+The browser suite covers 375, 430, 768, 1440 and 1920px, mobile menu focus, in-page navigation, all project routes, category filters, ambient motion/visibility/navigation behavior, reduced motion, full-color portrait loading, real contact links, metadata, SEO assets and axe accessibility. Screenshots and failure traces are saved under `test-results/`.
 
 With the production preview running:
 

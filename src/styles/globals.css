@@ -567,69 +567,14 @@ svg {
   justify-content: center;
   min-width: 0;
 }
-.orbital-visual {
-  position: relative;
-  width: 115%;
-  margin-left: -8%;
-  aspect-ratio: 1;
-  animation: enter 1.4s ease both;
-}
-.orbital-aura {
-  position: absolute;
-  width: 65%;
-  height: 65%;
-  left: 17%;
-  top: 15%;
-  background: radial-gradient(ellipse, #3762f015, transparent 70%);
-}
-.orbital-fallback {
-  object-fit: contain;
-}
-.orbital-visual:has(.scene-layer canvas) .orbital-fallback {
-  visibility: hidden;
-}
-.scene-layer {
-  position: absolute;
-  inset: 0;
-}
-.orbital-canvas {
-  width: 100%;
-  height: 100%;
-}
-.orbital-coordinate {
-  position: absolute;
-  color: #a1a1aa;
-  font-size: 8px;
-  letter-spacing: 0.12em;
-}
-.coordinate-top {
-  top: 8%;
-  left: 19%;
-}
-.coordinate-bottom {
-  right: 14%;
-  bottom: 12%;
-}
 .hero-portrait {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: fit-content;
-  margin: -20px 0 0 30px;
+  width: min(calc(100% - 24px), 440px);
+  margin: 0 24px 0 auto;
   position: relative;
-  animation: enter 1s 0.4s both;
+  animation: enter 1s 0.2s both;
 }
-.hero-portrait > div > .eyebrow {
-  font-size: 8px;
-}
-.hero-portrait > div > p {
-  font-size: 10px;
-  color: var(--muted);
-  margin-top: 6px;
-}
-.hero-portrait > svg {
-  color: var(--accent);
-  margin-left: 10px;
+.hero-portrait .portrait {
+  box-shadow: 0 24px 80px #0005;
 }
 .portrait {
   position: relative;
@@ -691,7 +636,7 @@ svg {
   object-fit: cover;
   transition: transform 0.7s;
 }
-.portrait.portrait-with-image:not(.portrait-compact) {
+.portrait.portrait-with-image {
   aspect-ratio: 4 / 5;
   min-height: 0;
 }
@@ -705,22 +650,6 @@ svg {
 }
 .portrait:hover .portrait-image {
   transform: scale(1.025);
-}
-.portrait-compact {
-  width: 66px;
-  height: 78px;
-  min-height: 0;
-  border-radius: 7px;
-}
-.portrait-compact::before,
-.portrait-compact::after {
-  display: none;
-}
-.portrait-compact .portrait-placeholder {
-  gap: 8px;
-}
-.portrait-compact .portrait-placeholder span {
-  font-size: 6px;
 }
 .hero-bottom {
   border-top: 1px solid var(--border);
@@ -1033,16 +962,13 @@ svg {
     font-size: 14px;
   }
   .hero-art {
-    margin: 12px auto 0;
-    width: min(100%, 450px);
-  }
-  .orbital-visual {
-    width: 100%;
-    margin-left: 0;
-    animation: none;
+    margin: 44px auto 0;
+    width: min(100%, 400px);
   }
   .hero-portrait {
-    margin: -50px 0 10px 15px;
+    width: 100%;
+    margin: 0;
+    animation: none;
   }
   .hero-bottom {
     padding-block: 19px;
@@ -1079,19 +1005,13 @@ svg {
     flex-direction: column;
   }
   .hero-art {
-    margin-top: 8px;
-  }
-  .hero-portrait {
-    margin-top: -36px;
+    margin-top: 36px;
   }
   .hero-index {
     font-size: 8px;
   }
   .portrait {
     min-height: 350px;
-  }
-  .portrait-compact {
-    min-height: 0;
   }
 }
 @media (max-width: 1100px) {
@@ -1114,7 +1034,7 @@ svg {
   .about-image {
     max-width: 460px;
   }
-  .portrait:not(.portrait-compact) {
+  .portrait {
     min-height: 400px;
   }
   .about-text > p.about-lead {
@@ -1148,7 +1068,7 @@ svg {
   .principles svg {
     display: none;
   }
-  .portrait:not(.portrait-compact) {
+  .portrait {
     min-height: 350px;
   }
 }
