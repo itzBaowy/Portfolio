@@ -34,7 +34,7 @@ Personal content is separated from presentation. Add a Vietnamese copy dictionar
 
 ### Portrait
 
-The supplied `public/images/baodeptrai.png` is displayed in Hero and About through an optimized `public/images/portrait.webp` (800 × 1000, about 50 KB). The original PNG is preserved. Both placements use `profile.avatar` and `avatarAlt`, preserve the photo's colors and keep its 4:5 framing. Hero uses a large portrait in the right column, stacked beneath the text on mobile, with image preload for early loading. To replace it, update the WebP or configure a new path in `src/data/profile.ts`. Setting `avatar` to `null` restores the labeled placeholder. No stock or generated portrait is used.
+The latest supplied `public/images/baodeptrai1.png` is displayed in Hero and About through an optimized `public/images/baodeptrai1.webp` (800 × 1000). The original PNG is preserved. Both placements use `profile.avatar` and `avatarAlt`, preserve the photo's colors and keep its 4:5 framing. Hero uses a large portrait in the right column, stacked beneath the text on mobile, with image preload for early loading. To replace it, generate a WebP under a new filename and update `profile.avatar` in `src/data/profile.ts` so visitors receive the new photo without waiting for an old cached image to expire. Setting `avatar` to `null` restores the labeled placeholder. No stock or generated portrait is used.
 
 ### CV
 

@@ -5,18 +5,19 @@ Date: 2026-10-09 (Asia/Bangkok).
 ## Checked
 
 - Strict TypeScript, ESLint and Next.js production static export passed.
-- 20 Playwright tests passed: five homepage sizes (375, 430, 768, 1440, 1920px), mobile keyboard menu/focus restoration, same-document Work navigation, four project routes on desktop/mobile, category filters with all 27 technologies, ambient animation/hidden-tab pause/route continuity, mobile trail limits, reduced motion, full-color Hero portrait loading, supplied contact channels, structured data and SEO assets.
+- The last full suite, after replacing the 3D model, passed all 20 Playwright tests: five homepage sizes (375, 430, 768, 1440, 1920px), mobile keyboard menu/focus restoration, same-document Work navigation, four project routes on desktop/mobile, category filters with all 27 technologies, ambient animation/hidden-tab pause/route continuity, mobile trail limits, reduced motion, full-color Hero portrait loading, supplied contact channels, structured data and SEO assets.
 - Axe WCAG checks reported no violations on the tested homepage and four project pages. This does not replace manual screen-reader testing.
 - The Hero now uses the owner's large 4:5 portrait in the desktop right column and beneath the text on mobile. The orbital components, SVG fallback and Three.js/R3F/Drei dependencies were removed.
 - The background was visually inspected at 1440px and 375px and after scrolling to Contact. The fixed grid, light trails and glows remain behind content without intercepting clicks; reduced motion retains only the static background. Reference: https://www.vulebaolong.com/.
-- The owner-supplied `baodeptrai.png` is now configured in Hero and About. A WebP derivative preserves the original framing at 800 × 1000 and 51,468 bytes, compared with the 2,030,744-byte PNG. The original is preserved. Real portraits display the owner's name instead of pending-photo copy.
+- The latest owner-supplied `baodeptrai1.png` is now configured in Hero and About. Its `baodeptrai1.webp` derivative preserves the original framing at 800 × 1000 and 46,794 bytes, compared with the 1,997,340-byte PNG. The original is preserved. A new asset URL avoids stale cached copies of the previous photo. Real portraits display the owner's name instead of pending-photo copy.
+- After this image replacement, the production build and eight focused browser checks passed: five homepage widths, reduced motion, accessibility and portrait loading. Both Hero and About decoded the new asset at 1440px and 375px with no CSS filter; portrait screenshots were inspected.
 - Both portrait placements preserve their original colors; no grayscale filter is applied. Hero preloads the optimized image.
 - Updated desktop 1440px and mobile 375px Hero screenshots were inspected. The photo loads successfully, no horizontal overflow was found across the five tested widths, and the page renders without a canvas.
 - The earlier Docker validation passed: image build, Nginx configuration, UID 101, expected HTTP 200/404 routes and security headers. Container configuration is unchanged by the portrait update.
 
 ## Lighthouse mobile lab measurements
 
-Production static export served locally, Chromium, Lighthouse default mobile throttling. Latest run after replacing the orbital model with the supplied Hero portrait:
+Production static export served locally, Chromium, Lighthouse default mobile throttling. Latest run after replacing the orbital model with the prior Hero portrait, before the `baodeptrai1` image replacement:
 
 | Page     | Performance | Accessibility | Best practices | SEO |   LCP | CLS |   TBT |
 | -------- | ----------: | ------------: | -------------: | --: | ----: | --: | ----: |
