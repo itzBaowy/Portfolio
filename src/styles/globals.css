@@ -25,10 +25,131 @@ html {
 }
 body {
   margin: 0;
+  isolation: isolate;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist), sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+.ambient-background {
+  --grid-step: 72px;
+  --trail-length: 180px;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 8% 16%, #5b8cff12, transparent 48%),
+    radial-gradient(ellipse at 88% 12%, #8b5cf61c, transparent 46%),
+    radial-gradient(ellipse at 65% 95%, #5b8cff0c, transparent 42%);
+}
+.ambient-grid,
+.ambient-trails {
+  position: absolute;
+  inset: 0;
+  mask-image: linear-gradient(to bottom, #000 8%, #000b 65%, #0005);
+}
+.ambient-grid {
+  background-image:
+    linear-gradient(to right, #a3b1df14 1px, transparent 1px),
+    linear-gradient(to bottom, #a3b1df14 1px, transparent 1px);
+  background-size: var(--grid-step) var(--grid-step);
+}
+.ambient-trail {
+  position: absolute;
+  opacity: 0;
+  color: var(--accent);
+  animation-duration: var(--duration);
+  animation-delay: var(--delay);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.ambient-trail--violet {
+  color: var(--violet);
+}
+.ambient-trail--cyan {
+  color: #67c9df;
+}
+.ambient-trail::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #e2eaff;
+  box-shadow: 0 0 10px 2px currentColor;
+}
+.ambient-trail--horizontal {
+  top: calc(var(--grid-step) * var(--lane));
+  left: calc(-1 * var(--trail-length));
+  width: var(--trail-length);
+  height: 1px;
+  background: linear-gradient(to right, transparent, currentColor 85%, #e2eaff);
+  animation-name: ambient-horizontal;
+}
+.ambient-trail--horizontal::after {
+  right: 0;
+  top: -1px;
+}
+.ambient-trail--vertical {
+  left: calc(var(--grid-step) * var(--lane));
+  top: calc(-1 * var(--trail-length));
+  width: 1px;
+  height: var(--trail-length);
+  background: linear-gradient(to bottom, transparent, currentColor 85%, #e2eaff);
+  animation-name: ambient-vertical;
+}
+.ambient-trail--vertical::after {
+  bottom: 0;
+  left: -1px;
+}
+.ambient-background[data-paused="true"] .ambient-trail {
+  animation-play-state: paused;
+}
+@keyframes ambient-horizontal {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  8%,
+  88% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translateX(calc(100vw + var(--trail-length)));
+    opacity: 0;
+  }
+}
+@keyframes ambient-vertical {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  8%,
+  88% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(calc(100vh + var(--trail-length)));
+    opacity: 0;
+  }
+}
+@media (max-width: 767px) {
+  .ambient-background {
+    --grid-step: 48px;
+    --trail-length: 120px;
+  }
+  .ambient-trail[data-mobile="false"] {
+    display: none;
+    animation: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-trail {
+    display: none;
+    animation: none !important;
+  }
 }
 ::selection {
   background: #5b8cff55;
@@ -464,10 +585,12 @@ svg {
 .orbital-fallback {
   object-fit: contain;
 }
+.orbital-visual:has(.scene-layer canvas) .orbital-fallback {
+  visibility: hidden;
+}
 .scene-layer {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, #0b0e19 0%, #08090d 68%, transparent 72%);
 }
 .orbital-canvas {
   width: 100%;

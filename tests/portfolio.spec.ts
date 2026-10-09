@@ -1,6 +1,65 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+test("ambient background moves, stays fixed across navigation and pauses in a hidden tab", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 950 });
+  await page.goto("/");
+  const background = page.locator(".ambient-background");
+  const trail = background.locator(".ambient-trail").first();
+  await expect(background).toHaveAttribute("aria-hidden", "true");
+  await expect(background).toHaveCSS("pointer-events", "none");
+  await expect(background).toHaveCSS("position", "fixed");
+  const initialTransform = await trail.evaluate((node) => getComputedStyle(node).transform);
+  await expect
+    .poll(() => trail.evaluate((node) => getComputedStyle(node).transform))
+    .not.toBe(initialTransform);
+
+  await page.evaluate(() => {
+    Object.defineProperty(document, "hidden", { configurable: true, get: () => true });
+    document.dispatchEvent(new Event("visibilitychange"));
+  });
+  await expect(trail).toHaveCSS("animation-play-state", "paused");
+  const pausedTransforms = await trail.evaluate(async (node) => {
+    const first = getComputedStyle(node).transform;
+    await new Promise<void>((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+    );
+    return [first, getComputedStyle(node).transform];
+  });
+  expect(pausedTransforms[0]).toBe(pausedTransforms[1]);
+  await page.evaluate(() => {
+    Reflect.deleteProperty(document, "hidden");
+    document.dispatchEvent(new Event("visibilitychange"));
+    document.querySelector<HTMLElement>(".ambient-background")!.dataset.navigationMarker = "kept";
+  });
+  await expect(trail).toHaveCSS("animation-play-state", "running");
+  await page.getByRole("link", { name: "Explore My Work" }).click();
+  expect((await background.boundingBox())?.y).toBe(0);
+  await page.locator('a.project-link[href="/work/dineflow/"]').click();
+  await expect(page).toHaveURL(/\/work\/dineflow\/$/);
+  await expect(background).toHaveCount(1);
+  await expect(background).toHaveAttribute("data-navigation-marker", "kept");
+});
+
+test("mobile limits ambient animation and reduced motion keeps a static grid", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/");
+  const trails = page.locator(".ambient-trail");
+  await expect(page.locator(".ambient-trail:visible")).toHaveCount(4);
+  await expect
+    .poll(() => trails.evaluateAll((nodes) => nodes.flatMap((node) => node.getAnimations()).length))
+    .toBe(4);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator(".ambient-trail:visible")).toHaveCount(0);
+  await expect
+    .poll(() => trails.evaluateAll((nodes) => nodes.flatMap((node) => node.getAnimations()).length))
+    .toBe(0);
+  await expect(page.locator(".ambient-grid")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Explore My Work" })).toBeVisible();
+});
+
 for (const width of [375, 430, 768, 1440, 1920]) {
   test(`homepage at ${width}px is readable without overflow`, async ({ page }) => {
     await page.setViewportSize({ width, height: 950 });

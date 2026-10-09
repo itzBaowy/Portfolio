@@ -22,6 +22,8 @@ Hero: near-viewport height; left-aligned oversized three-line headline; orbital 
 
 Motion handles reveal and page entry. GSAP ScrollTrigger handles timeline progress only. CSS handles hover and native smooth scrolling. No Lenis or scroll hijacking. 3D is lazy loaded only for desktop, pauses outside viewport and when hidden, DPR capped at 1.5; mobile, reduced motion and unavailable WebGL use a static SVG sculpture. Native cursor stays intact; pointer-fine project hover indicator is decorative.
 
+The full-site background uses a fixed 72px grid with blue, violet and restrained cyan light trails traveling along its lines, inspired by https://www.vulebaolong.com/. Soft static glows support the existing dark palette. Trails animate only transform and opacity, never capture input, and pause when the document is hidden. Mobile uses a 48px grid and four trails instead of eight; reduced motion removes all trails while preserving the static atmosphere. The background lives in the root layout so it remains fixed and continuous across project navigation. The desktop 3D canvas is transparent to this layer.
+
 ## Implementation sequence
 
 1. Next.js static foundation, strict types, editable data, navigation and tokens.
@@ -31,4 +33,4 @@ Motion handles reveal and page entry. GSAP ScrollTrigger handles timeline progre
 
 ## Pending owner content
 
-Name, portrait, email, CV, social URLs, experience, education, dates, roles, verified deployment status and measured project results. Empty fields never create fabricated links or claims.
+Portrait, CV, experience, education, dates, roles, verified deployment status and measured project results. Name, email and social URLs use the owner's supplied information. Empty fields never create fabricated links or claims.

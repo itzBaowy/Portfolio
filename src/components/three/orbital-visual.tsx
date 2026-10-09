@@ -2,22 +2,11 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import {
-  Component,
-  useEffect,
-  useRef,
-  useState,
-  useSyncExternalStore,
-  type ReactNode,
-} from "react";
+import { Component, useEffect, useRef, useState, type ReactNode } from "react";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { useDocumentVisible } from "@/hooks/use-document-visible";
 
 const OrbitalScene = dynamic(() => import("./orbital-scene"), { ssr: false });
-
-function subscribeVisibility(callback: () => void) {
-  document.addEventListener("visibilitychange", callback);
-  return () => document.removeEventListener("visibilitychange", callback);
-}
 
 class SceneBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
   state = { failed: false };
@@ -35,11 +24,7 @@ export function OrbitalVisual() {
   const reduced = useMediaQuery("(prefers-reduced-motion: reduce)");
   const [ready, setReady] = useState(false);
   const [visible, setVisible] = useState(true);
-  const pageVisible = useSyncExternalStore(
-    subscribeVisibility,
-    () => !document.hidden,
-    () => true,
-  );
+  const pageVisible = useDocumentVisible();
 
   useEffect(() => {
     if (!desktop || reduced) return;

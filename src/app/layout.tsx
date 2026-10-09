@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import { Navigation } from "@/components/layout/navigation";
 import { Footer } from "@/components/layout/footer";
+import { AmbientBackground } from "@/components/layout/ambient-background";
 import { profile } from "@/data/profile";
 import { socials } from "@/data/socials";
 import "@/styles/globals.css";
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${geist.variable} ${mono.variable} ${display.variable}`}>
+        <AmbientBackground />
         <div id="top" />
         <a href="#main" className="skip-link">
           Skip to content
