@@ -25,6 +25,7 @@ export interface Project {
 
 export interface Experience {
   position: string;
+  product: string;
   company: string;
   startDate: string | null;
   endDate: string | null;

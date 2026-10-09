@@ -36,6 +36,7 @@ export const copy = {
     emptyDescription:
       "Personal projects and learning are the starting point. Professional experience will be added here when available.",
     link: "Explore the project briefs",
+    datesPending: "Dates to be added",
   },
   education: {
     eyebrow: "03 / ALWAYS LEARNING",

@@ -9,41 +9,50 @@ import { copy } from "@/data/site-copy";
 export function Journey() {
   return (
     <div className="container journey-grid">
-      <section id="experience" className="section" aria-labelledby="experience-heading">
+      <section
+        id="experience"
+        className="section experience-section"
+        aria-labelledby="experience-heading"
+      >
         <Reveal>
           <SectionHeading id="experience-heading" {...copy.experience} />
         </Reveal>
         <Timeline>
           {experience.length ? (
-            <ol className="timeline-list">
+            <ol className="timeline-list experience-list">
               {experience.map((item, index) => (
                 <li key={`${item.company}-${item.startDate}`}>
-                  <Reveal delay={index * 0.06}>
-                    {item.startDate && (
-                      <p className="eyebrow">
-                        {item.startDate} — {item.endDate ?? "Present"}
+                  <Reveal className="experience-row" delay={index * 0.06}>
+                    <div className="experience-meta">
+                      <p className={`eyebrow ${!item.startDate ? "experience-date-pending" : ""}`}>
+                        {item.startDate
+                          ? `${item.startDate} — ${item.endDate ?? "Present"}`
+                          : copy.experience.datesPending}
                       </p>
-                    )}
-                    <h3>{item.position}</h3>
-                    <p className="timeline-company">
-                      {item.company}
-                      {item.location && ` · ${item.location}`}
-                    </p>
-                    <p>{item.description}</p>
-                    {item.responsibilities.length > 0 && (
-                      <ul className="responsibilities">
-                        {item.responsibilities.map((r) => (
-                          <li key={r}>{r}</li>
-                        ))}
-                      </ul>
-                    )}
-                    {item.technologies.length > 0 && (
-                      <div className="tags">
-                        {item.technologies.map((t) => (
-                          <span key={t}>{t}</span>
-                        ))}
-                      </div>
-                    )}
+                      <h3>{item.product}</h3>
+                      <p className="timeline-company">
+                        {item.company}
+                        {item.location && ` · ${item.location}`}
+                      </p>
+                    </div>
+                    <div className="experience-detail">
+                      <p className="eyebrow experience-role">{item.position}</p>
+                      <p className="experience-description">{item.description}</p>
+                      {item.responsibilities.length > 0 && (
+                        <ul className="responsibilities">
+                          {item.responsibilities.map((r) => (
+                            <li key={r}>{r}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {item.technologies.length > 0 && (
+                        <div className="tags">
+                          {item.technologies.map((t) => (
+                            <span key={t}>{t}</span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </Reveal>
                 </li>
               ))}
@@ -61,7 +70,11 @@ export function Journey() {
           )}
         </Timeline>
       </section>
-      <section id="education" className="section" aria-labelledby="education-heading">
+      <section
+        id="education"
+        className="section education-section"
+        aria-labelledby="education-heading"
+      >
         <Reveal>
           <SectionHeading id="education-heading" {...copy.education} />
         </Reveal>

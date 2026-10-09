@@ -22,6 +22,8 @@ Selected work: one compact two-column card grid with fine shared borders and dar
 
 Skills: an original toolbox composition rather than the reference's horizontal badge rows. Six category cards form a two-column bento grid above 850px. Each card has a small category mark, index, description and technology tiles with colored icon wells. Languages/Backend use larger marks on desktop; other groups use compact tiles. Category washes stay faint and technology names stay neutral/high contrast. Mobile stacks the groups and uses two columns of compact tiles. A segmented filter bar displays real counts; the heading pairs with totals of 27 technologies and six layers, derived from the data. No proficiency percentages or unverified experience claims.
 
+Experience: a full-width timeline with two columns above 850px. The narrower left column contains dates, product name and company; the right column contains the role, a prominent project description and concise contribution bullets. Use blue date/role labels, fine horizontal rules and the existing scroll-progress rail. Stack metadata before the role and description on mobile. Education follows in its own section, with the heading and academic record sharing the same desktop column proportions; certifications remain a separate responsive card grid.
+
 ## Motion
 
 Motion handles reveal and page entry. GSAP ScrollTrigger handles timeline progress only. CSS handles portrait/card hover and native smooth scrolling, respecting reduced motion. No Lenis or scroll hijacking. The Hero uses the supplied portrait; no WebGL renderer or 3D library is loaded. Native cursor stays intact. Project links provide a visible focus outline and small corner-arrow feedback instead of a floating cursor label.
@@ -37,4 +39,4 @@ The full-site background uses a fixed 72px grid with blue, violet and restrained
 
 ## Pending owner content
 
-CV, experience, education, dates, roles, verified deployment status and measured project results. Name, portrait, email and social URLs use the owner's supplied information. Empty fields never create fabricated links or claims.
+CV, academic degree/major, internship technologies, verified deployment status and measured portfolio project results. Name, portrait, education, internship dates/contributions, certifications, email and social URLs use the owner's supplied information. Empty fields never create fabricated links or claims.
