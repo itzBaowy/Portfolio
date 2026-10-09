@@ -11,7 +11,7 @@ import {
 import type { Project } from "@/types/content";
 import { copy } from "@/data/site-copy";
 
-// These are decorative concept illustrations, never represented as shipped UI.
+// Prefer real screenshots; fallback illustrations remain explicitly labeled concepts.
 export function ProjectCover({
   project,
   compact = false,
@@ -21,10 +21,10 @@ export function ProjectCover({
 }) {
   if (project.cover)
     return (
-      <div className="project-cover">
+      <div className="project-cover project-cover-real">
         <Image
           src={project.cover}
-          alt={`${project.name} project cover`}
+          alt={project.coverAlt ?? `${project.name} project cover`}
           fill
           sizes={compact ? "(max-width: 700px) 100vw, 50vw" : "(max-width: 850px) 100vw, 70vw"}
           className="cover-image"

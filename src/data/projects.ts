@@ -1,4 +1,5 @@
 import type { Project } from "@/types/content";
+import { dineflowScreenshots } from "./dineflow";
 
 export const projects: Project[] = [
   {
@@ -8,10 +9,10 @@ export const projects: Project[] = [
     category: "Restaurant operations",
     description:
       "A more connected dining experience. From the first QR scan to the kitchen’s last order.",
-    status: "planned",
+    status: "in-progress",
     role: null,
     year: null,
-    technologies: ["Next.js", "NestJS", "PostgreSQL", "Redis", "WebSocket", "Docker"],
+    technologies: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "Socket.IO", "Docker", "MinIO"],
     features: [
       "QR ordering",
       "Restaurant POS",
@@ -19,20 +20,34 @@ export const projects: Project[] = [
       "Kitchen Display System",
       "Table management",
       "Payment management",
+      "Multi-restaurant workspaces",
+      "Revenue reports & staff roles",
     ],
-    cover: null,
-    liveUrl: null,
-    plannedUrl: "https://dineflow.khuugiabao.com",
+    cover: "/images/projects/dineflow/dashboard.webp",
+    coverAlt: "DineFlow restaurant dashboard with service overview and restaurant configuration",
+    screenshots: dineflowScreenshots,
+    liveUrl: "https://dineflow.khuugiabao.com",
+    plannedUrl: null,
     repositoryUrl: null,
     overview:
-      "A planned restaurant QR ordering and management system that connects guests, service staff and the kitchen in a shared workflow.",
+      "A restaurant QR ordering and management application that connects guests, service staff, the kitchen and cashiers. Restaurant owners can manage menus, tables, staff and reports in tenant-scoped workspaces.",
     problem:
       "Restaurant workflows can become fragmented when ordering, table management and kitchen tickets live in separate tools. This project explores a coordinated approach to those interactions.",
     solution:
-      "The proposed product brings guest QR ordering, a restaurant POS and a kitchen display into one system, with realtime order updates and table and payment management.",
-    architecture: [],
-    challenges: [],
-    result: null,
+      "Guests order from a table QR code; staff confirm orders before the kitchen prepares them. Realtime updates connect preparation, service and billing, while owners configure the restaurant and review completed revenue.",
+    architecture: [
+      "Next.js browser frontend for guests and role-based staff workspaces.",
+      "NestJS modular API with tenant scoping, authenticated sessions and Socket.IO events.",
+      "PostgreSQL with Prisma for transactional restaurant data and immutable order/payment snapshots.",
+      "S3-compatible MinIO storage for images; Resend for account verification and recovery email.",
+    ],
+    challenges: [
+      "Scoping restaurant data to authenticated memberships and handling restaurant switches across browser tabs.",
+      "Protecting order creation and payment recording with transactions, revision checks and idempotency keys.",
+      "Keeping realtime views consistent by refetching after reconnects instead of automatically replaying mutations.",
+    ],
+    result:
+      "Implemented QR ordering, kitchen and staff workflows, billing, reports and multi-restaurant account management. These previews show the application with development demo data; production usage metrics have not been measured.",
   },
   {
     slug: "flowsync",

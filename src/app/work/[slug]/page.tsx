@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, FileClock, Layers } from "lucide-react";
 import { ProjectCover } from "@/components/projects/project-cover";
+import { ProjectGallery } from "@/components/projects/project-gallery";
+import { DineFlowArchitecture } from "@/components/projects/dineflow-architecture";
 import { Reveal } from "@/components/motion/reveal";
 import { projects, projectStatusLabels } from "@/data/projects";
 import { copy } from "@/data/site-copy";
@@ -52,6 +54,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   const index = projects.findIndex((p) => p.slug === slug);
   if (index < 0) notFound();
   const project = projects[index];
+  const implemented = project.status === "in-progress" || project.status === "live";
   const next = projects[(index + 1) % projects.length];
   return (
     <main id="main" className="container case-study">
@@ -71,7 +74,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         </div>
         <h1>{project.name}</h1>
         <p className="case-intro">{project.description}</p>
-        <p className="brief-note mono">{copy.caseStudy.briefNote}</p>
+        <p className="brief-note mono">
+          {implemented ? copy.caseStudy.implementationNote : copy.caseStudy.briefNote}
+        </p>
       </Reveal>
       <dl className="case-metadata">
         <div>
@@ -83,10 +88,29 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <dd>{project.year ?? "To be confirmed"}</dd>
         </div>
         <div>
-          <dt>Planned stack</dt>
+          <dt>{implemented ? "Tech stack" : "Planned stack"}</dt>
           <dd>{project.technologies.join(" · ") || "To be documented"}</dd>
         </div>
       </dl>
+      {project.liveUrl && (
+        <div className="case-actions">
+          <a
+            className="button button-primary"
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open live demo
+            <ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+          {project.cover && (
+            <a className="text-link" href={project.cover} target="_blank" rel="noopener noreferrer">
+              View full dashboard screenshot
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </a>
+          )}
+        </div>
+      )}
       <Reveal className="case-cover">
         <ProjectCover project={project} />
       </Reveal>
@@ -109,9 +133,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <p>{project.solution}</p>
         </section>
       </div>
+      {!!project.screenshots?.length && (
+        <section className="case-section" aria-labelledby="previews">
+          <p className="eyebrow">PRODUCT IN ACTION</p>
+          <h2 id="previews">{copy.caseStudy.screenshots}</h2>
+          <p>{copy.caseStudy.screenshotNote}</p>
+          <ProjectGallery screenshots={project.screenshots} />
+        </section>
+      )}
       <section className="case-section" aria-labelledby="features">
         <p className="eyebrow">04 / THE SCOPE</p>
-        <h2 id="features">{copy.caseStudy.features}</h2>
+        <h2 id="features">
+          {implemented ? copy.caseStudy.implementedFeatures : copy.caseStudy.features}
+        </h2>
         {project.features.length ? (
           <ul className="feature-grid">
             {project.features.map((feature) => (
@@ -128,7 +162,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       <section className="case-section" aria-labelledby="architecture">
         <p className="eyebrow">05 / THE SYSTEM</p>
         <h2 id="architecture">{copy.caseStudy.architecture}</h2>
-        {project.architecture.length ? (
+        {project.slug === "dineflow" && project.architecture.length ? (
+          <DineFlowArchitecture />
+        ) : project.architecture.length ? (
           <ol className="architecture-diagram">
             {project.architecture.map((node) => (
               <li key={node}>

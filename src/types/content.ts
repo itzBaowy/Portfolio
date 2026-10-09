@@ -1,5 +1,14 @@
 export type ProjectStatus = "planned" | "in-progress" | "live" | "reserved";
 
+export interface ProjectScreenshot {
+  src: string;
+  title: string;
+  description: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
 export interface Project {
   slug: string;
   number: string;
@@ -12,6 +21,8 @@ export interface Project {
   technologies: string[];
   features: string[];
   cover: string | null;
+  coverAlt?: string;
+  screenshots?: ProjectScreenshot[];
   liveUrl: string | null;
   plannedUrl: string | null;
   repositoryUrl: string | null;

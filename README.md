@@ -49,9 +49,11 @@ Four project slots and routes are ready:
 - `/work/project-03/`
 - `/work/project-04/`
 
-DineFlow and FlowSync retain the requirement’s **planned** status. Their covers are explicitly labeled concept illustrations. `plannedUrl` is stored for future deployment and is never rendered as a live link. Populate `liveUrl` and `repositoryUrl` only after verifying them. Add actual roles, dates, architecture, engineering challenges and results before presenting them as completed case studies. Reserved slots are `noindex` and excluded from the sitemap.
+DineFlow now has an implementation overview, actual development screenshots and a responsive system diagram based on its code and architecture/deployment documentation. Its owner-supplied live-demo link is `https://dineflow.khuugiabao.com`. The web domain did not resolve during the 2026-10-10 check; the separate API readiness endpoint returned HTTP 200 with the database up. DineFlow remains **in development**, with no invented role/year or production usage results. See `docs/project-assets.md` for screenshot provenance and architecture scope. FlowSync retains its **planned** status and labeled concept cover. Reserved slots are `noindex` and excluded from the sitemap.
 
 Selected work uses one compact bordered card grid for all four slots: two columns above 700px, one below. Each card includes an index/status, a wide preview, category, title, short description, technology tags and a corner arrow. The whole card opens its project brief and supports keyboard focus; verified external links remain separate. Empty roles/dates stay on the detail pages rather than cluttering cards. Concept covers remain labeled, and reserved slots show “Preview coming soon.” Detailed project pages keep their larger cover layout.
+
+Real screenshots use optimized local WebP assets, descriptive alternatives and links to the complete captures. Edit the DineFlow gallery and diagram content in `src/data/dineflow.ts`; the diagram is native HTML/CSS and does not load a graph-rendering library.
 
 ## Design and motion
 
