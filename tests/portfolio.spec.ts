@@ -54,5 +54,38 @@ test("homepage has no serious accessibility violations", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   const result = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
-  expect(result.violations).toEqual([]);
+  expect(result.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) }))).toEqual([]);
+});
+
+for (const slug of ["dineflow", "flowsync", "project-03", "project-04"]) {
+  test(`${slug} brief renders on desktop and mobile with its own metadata`, async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", error => errors.push(error.message));
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    for (const width of [1440, 375]) {
+      await page.setViewportSize({ width, height: 950 });
+      const response = await page.goto(`/work/${slug}/`);
+      expect(response?.status()).toBe(200);
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "Overview", exact: true })).toBeVisible();
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", `https://khuugiabao.com/work/${slug}/`);
+      await expect(page).toHaveTitle(/Project Brief/);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+      const a11y = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
+      expect(a11y.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) }))).toEqual([]);
+      await page.screenshot({ path: `test-results/${slug}-${width}.png`, fullPage: true });
+    }
+    expect(errors).toEqual([]);
+  });
+}
+
+test("project cards and back navigation work", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/#work");
+  await page.locator('a.project-link[href="/work/dineflow/"]').click();
+  await expect(page).toHaveURL(/\/work\/dineflow\/$/);
+  await expect(page.getByRole("heading", { name: "DineFlow", exact: true })).toBeVisible();
+  await page.getByRole("link", { name: "Back to selected work" }).click();
+  await expect(page).toHaveURL(/\/#work$/);
+  await expect(page.locator("#work")).toBeInViewport();
 });

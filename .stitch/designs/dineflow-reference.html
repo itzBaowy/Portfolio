@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DineFlow — Project Brief Specification | Digital Atelier</title>
+<!-- Typography: Space Grotesk & Geist -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline-variant": "#434653",
+            "inverse-on-surface": "#2f3035",
+            "on-background": "#e3e2e8",
+            "tertiary": "#ffb874",
+            "outline": "#8d909f",
+            "on-tertiary-container": "#412200",
+            "primary": "#b2c5ff",
+            "tertiary-fixed": "#ffdcbf",
+            "primary-fixed": "#dae2ff",
+            "on-surface": "#e3e2e8",
+            "primary-container": "#5b8cff",
+            "on-tertiary-fixed": "#2d1600",
+            "error-container": "#93000a",
+            "on-primary-fixed": "#001847",
+            "on-secondary-fixed-variant": "#5516be",
+            "on-secondary": "#3c0091",
+            "on-primary-fixed-variant": "#0040a0",
+            "surface-dim": "#121317",
+            "inverse-surface": "#e3e2e8",
+            "background": "#121317",
+            "secondary-fixed": "#e9ddff",
+            "secondary": "#d0bcff",
+            "surface-container-lowest": "#0d0e12",
+            "surface-container": "#1e1f24",
+            "on-primary-container": "#002665",
+            "on-primary": "#002c72",
+            "tertiary-container": "#d47b00",
+            "surface-container-high": "#292a2e",
+            "on-surface-variant": "#c3c6d6",
+            "surface-tint": "#b2c5ff",
+            "surface-bright": "#38393e",
+            "tertiary-fixed-dim": "#ffb874",
+            "on-error-container": "#ffdad6",
+            "on-tertiary-fixed-variant": "#6a3b00",
+            "error": "#ffb4ab",
+            "secondary-container": "#571bc1",
+            "on-error": "#690005",
+            "surface": "#121317",
+            "inverse-primary": "#1857c8",
+            "primary-fixed-dim": "#b2c5ff",
+            "on-secondary-container": "#c4abff",
+            "on-secondary-fixed": "#23005c",
+            "surface-variant": "#343439",
+            "secondary-fixed-dim": "#d0bcff",
+            "on-tertiary": "#4b2800",
+            "surface-container-low": "#1a1b20",
+            "surface-container-highest": "#343439"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Space Grotesk", "sans-serif"],
+            "display": ["Space Grotesk", "sans-serif"],
+            "body": ["Geist", "sans-serif"],
+            "label": ["Geist", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 20;
+    }
+    ::selection {
+      background-color: #5b8cff;
+      color: #002665;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface font-body antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col justify-between">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background/80 dark:bg-background/80 backdrop-blur-md border-b border-outline-variant/30">
+<div class="flex justify-between items-center w-full px-6 md:px-12 py-4 max-w-7xl mx-auto">
+<!-- Brand & Project Breadcrumb Indicator -->
+<div class="flex items-center gap-4">
+<a class="font-headline text-lg font-bold tracking-tighter text-on-surface dark:text-on-surface border border-outline-variant px-2.5 py-0.5 rounded transition-all duration-200 ease-out active:scale-95 hover:border-primary" href="#home">
+          KG
+        </a>
+<div class="hidden sm:flex items-center gap-2 text-xs font-label text-on-surface-variant">
+<span class="text-outline-variant">/</span>
+<span class="tracking-wide">Digital Atelier</span>
+<span class="text-outline-variant">/</span>
+<span class="text-primary font-medium tracking-wider uppercase">Project Brief</span>
+</div>
+</div>
+<!-- Navigation Links (Active state semantically linked to Work) -->
+<nav class="hidden md:flex items-center gap-7 font-headline text-sm uppercase tracking-widest">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 hover:text-primary" href="#home">Home</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 hover:text-primary" href="#about">About</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 hover:text-primary" href="#experience">Experience</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 hover:text-primary" href="#education">Education</a>
+<a class="text-primary dark:text-primary border-b-2 border-primary pb-1" href="#work">Work</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 hover:text-primary" href="#skills">Skills</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-200 hover:text-primary" href="#contact">Contact</a>
+</nav>
+<!-- Trailing Action & Status Badge -->
+<div class="flex items-center gap-3">
+<span class="hidden lg:inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-label bg-surface-container border border-outline-variant/40 text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+          Status: Concept Stage
+        </span>
+<a class="font-headline text-xs uppercase tracking-wider px-4 py-2 rounded bg-surface-container hover:bg-surface-container-high text-primary border border-outline-variant/60 transition-all duration-200 ease-out active:scale-95" href="#contact">
+          Get in Touch
+        </a>
+</div>
+</div>
+</header>
+<!-- Main Canvas Container -->
+<main class="w-full max-w-7xl mx-auto px-6 md:px-12 pt-28 pb-20 space-y-20">
+<!-- Back Link Anchor -->
+<div class="pt-2">
+<a class="inline-flex items-center gap-2 text-xs font-label uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-150 group" href="#work">
+<span class="transition-transform duration-150 group-hover:-translate-x-1">←</span>
+<span>Back to Selected Work</span>
+</a>
+</div>
+<!-- Hero / Project Brief Header -->
+<section class="space-y-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-outline-variant/30 pb-6">
+<div class="font-label text-xs uppercase tracking-widest text-outline">
+          ARCHIVE // 01 · SELECTED WORK / BRIEF SPECIFICATION
+        </div>
+<div class="flex flex-wrap items-center gap-3 font-label text-xs">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container border border-tertiary-container/40 text-tertiary">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            [ Planned Project ]
+          </span>
+<span class="text-on-surface-variant/80 tracking-tight">Project brief · scope subject to change</span>
+</div>
+</div>
+<div class="space-y-4">
+<h1 class="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-on-surface">
+          DineFlow
+        </h1>
+<p class="font-headline text-lg sm:text-xl md:text-2xl text-on-surface-variant font-normal max-w-3xl">
+          Restaurant QR Ordering &amp; Management System
+        </p>
+</div>
+<!-- Project Metadata Grid (4-column technical spec row) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6 border-t border-outline-variant/30">
+<div class="space-y-1">
+<div class="font-label text-xs uppercase tracking-wider text-outline">Role Focus</div>
+<div class="font-body text-sm font-medium text-on-surface">To be confirmed (Fullstack System Lead)</div>
+</div>
+<div class="space-y-1">
+<div class="font-label text-xs uppercase tracking-wider text-outline">Project Timeline</div>
+<div class="font-body text-sm font-medium text-on-surface">To be confirmed · Planned Q3</div>
+</div>
+<div class="space-y-1">
+<div class="font-label text-xs uppercase tracking-wider text-outline">Deployment Status</div>
+<div class="font-body text-sm font-medium text-primary">Planning &amp; Scoping Stage</div>
+</div>
+<div class="space-y-1">
+<div class="font-label text-xs uppercase tracking-wider text-outline">Intended Target</div>
+<div class="font-body text-sm font-medium text-on-surface">High-throughput hospitality &amp; dining spaces</div>
+</div>
+</div>
+</section>
+<!-- Wide Abstract Product Concept Cover -->
+<section class="space-y-3">
+<div class="relative w-full rounded-lg overflow-hidden border border-outline-variant/40 bg-surface-container-low group">
+<!-- Technical Overlay: Top Bar -->
+<div class="w-full flex items-center justify-between px-4 py-2.5 bg-surface-container-lowest/80 backdrop-blur-md border-b border-outline-variant/30 z-10 font-label text-[11px] text-on-surface-variant">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary/70"></span>
+            FIG. 01 — CONCEPT PREVIEW // SYSTEM TOPOLOGY BLUEPRINT
+          </span>
+<span class="hidden sm:inline text-outline uppercase tracking-wider">SCHEMATIC REF: DF-SPEC-V1</span>
+</div>
+<!-- Hero Graphic Frame -->
+<div class="relative w-full h-[340px] sm:h-[480px] md:h-[580px] bg-surface-container-lowest flex items-center justify-center overflow-hidden">
+<img alt="DineFlow Hospitality Flow Orchestration Blueprint" class="w-full h-full object-cover object-center filter saturate-90 contrast-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIr43oizvi4-ValL7j0Ku9p46fQd1ZNQDrHREnE_EGGQJ3wWYjn15fKrAa50vu6wK6f5Un4mj4nW7Pney8Qtg-kCkqzkrg768EmeAqKps0BoaMyE-O1Af4mn60iV8sztoS1tt04XNOK2B5Egz0YFyCqB1vZzXPuCgNASBkxjY7dVVZ6z9rMw1wGztBzVvOkDe8d-p6mm2YvCGRhII91mK2LnVOXst_tFBGGnNpnJuWrBmrw-KowDLaivgCKi5aX9IqaRfF53pj1YE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-60 pointer-events-none"></div>
+</div>
+<!-- Technical Overlay: Bottom Bar -->
+<div class="w-full px-4 py-2 bg-surface-container-lowest/90 border-t border-outline-variant/30 flex items-center justify-between font-label text-[11px] text-outline">
+<span>Conceptual visualization of hospitality flow orchestration. Not a screenshot of a shipped product.</span>
+<span class="hidden md:inline font-mono">NODE_GRAPH: DISTRIBUTED</span>
+</div>
+</div>
+</section>
+<!-- Executive Overview -->
+<section class="space-y-8">
+<div class="font-label text-xs uppercase tracking-widest text-primary flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+        01 // INTENT &amp; SCOPE
+      </div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-8 space-y-6">
+<blockquote class="font-headline text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight text-on-surface leading-snug">
+            “Connecting guest QR ordering, synchronized staff POS, and realtime kitchen display into a single zero-latency event mesh.”
+          </blockquote>
+<p class="font-body text-base text-on-surface-variant leading-relaxed">
+            DineFlow is conceived to replace fragile, multi-vendor restaurant hospitality stacks with a consolidated, local-first operational core. By anchoring digital menu presentation, table-side payment tokens, and multi-station ticket fulfillment into unified transactional queues, the system is scoped to eliminate the sync dropouts, ticket ghosting, and latency spikes endemic during peak service rushes.
+          </p>
+</div>
+<div class="lg:col-span-4 p-6 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-4">
+<div class="font-label text-xs uppercase tracking-wider text-outline">Scope Parameters</div>
+<ul class="space-y-2 text-xs font-label text-on-surface-variant divide-y divide-outline-variant/20">
+<li class="pt-2 flex justify-between">
+<span>Execution State:</span>
+<span class="text-tertiary">Architectural Scoping</span>
+</li>
+<li class="pt-2 flex justify-between">
+<span>Primary Client:</span>
+<span class="text-on-surface">Ephemeral Mobile Web</span>
+</li>
+<li class="pt-2 flex justify-between">
+<span>Terminal Engine:</span>
+<span class="text-on-surface">Cross-platform Tablet PWA</span>
+</li>
+<li class="pt-2 flex justify-between">
+<span>Latency Target:</span>
+<span class="text-primary">&lt; 100ms In-venue</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Problem Space vs Proposed Solution (Editorial 2-Column Grid) -->
+<section class="space-y-8">
+<div class="font-label text-xs uppercase tracking-widest text-primary flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+        02 // PROBLEM &amp; HYPOTHESIS
+      </div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Problem -->
+<div class="p-8 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-6 relative overflow-hidden">
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-4">
+<span class="font-label text-xs uppercase tracking-wider text-error">The Problem Space</span>
+<span class="font-label text-xs text-outline">CHALLENGE VECTOR</span>
+</div>
+<h3 class="font-headline text-2xl font-bold tracking-tight text-on-surface">
+            Fragile order chains and disparate terminal silos
+          </h3>
+<ul class="space-y-4 text-sm font-body text-on-surface-variant leading-relaxed">
+<li class="flex items-start gap-3">
+<span class="text-error mt-0.5 text-xs font-mono">01.</span>
+<span><strong>Desynchronized Terminals:</strong> Independent point-of-sale hardware and online portals maintain divergent table states, causing order drops and miscommunicated order cancellations.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="text-error mt-0.5 text-xs font-mono">02.</span>
+<span><strong>Jitter Vulnerability:</strong> Cloud-only POS platforms drop customer transactions when local broadband experiences peak congestion or micro-outages.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="text-error mt-0.5 text-xs font-mono">03.</span>
+<span><strong>Aggregator Tax:</strong> Proprietary hardware vendors enforce closed APIs and compounding per-ticket fees without offering modular back-of-house customizability.</span>
+</li>
+</ul>
+</div>
+<!-- Proposed Solution -->
+<div class="p-8 rounded-lg bg-surface-container-low border border-primary/20 space-y-6 relative overflow-hidden">
+<div class="flex items-center justify-between border-b border-outline-variant/20 pb-4">
+<span class="font-label text-xs uppercase tracking-wider text-primary">The Proposed Solution</span>
+<span class="font-label text-xs text-outline">HYPOTHESIS VECTOR</span>
+</div>
+<h3 class="font-headline text-2xl font-bold tracking-tight text-on-surface">
+            Unified local-first event queue and ephemeral web client
+          </h3>
+<ul class="space-y-4 text-sm font-body text-on-surface-variant leading-relaxed">
+<li class="flex items-start gap-3">
+<span class="text-primary mt-0.5 text-xs font-mono">01.</span>
+<span><strong>Instant Zero-Install Access:</strong> Seamless QR scanning launches an ephemeral browser app with sub-second menu render and zero friction barrier.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="text-primary mt-0.5 text-xs font-mono">02.</span>
+<span><strong>Sub-100ms KDS Dispatch:</strong> Bi-directional WebSocket channels coordinated through Redis pub/sub push tickets directly to station screens without polling.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="text-primary mt-0.5 text-xs font-mono">03.</span>
+<span><strong>Idempotent State Machine:</strong> Transactional order sequence guards prevent duplicated billing and guarantee kitchen chit integrity even during reconnect bursts.</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Six Planned Features Grid -->
+<section class="space-y-8">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="font-label text-xs uppercase tracking-widest text-primary flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+          03 // PLANNED CAPABILITIES
+        </div>
+<span class="font-label text-xs text-outline">MODULAR ARCHITECTURE SPECIFICATION</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="p-6 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-4 hover:border-outline-variant/70 transition-colors duration-200">
+<div class="flex items-center justify-between">
+<span class="font-label text-xs text-primary font-mono">[ MOD_01 ]</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-label bg-surface-container border border-outline-variant/40 text-on-surface-variant">Client Flow</span>
+</div>
+<h4 class="font-headline text-xl font-bold text-on-surface">QR Ordering</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            Fast guest digital menu browsing, nested item modifiers, allergen filtering, and frictionless web ordering without account registration or app store installation.
+          </p>
+</div>
+<!-- Card 2 -->
+<div class="p-6 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-4 hover:border-outline-variant/70 transition-colors duration-200">
+<div class="flex items-center justify-between">
+<span class="font-label text-xs text-primary font-mono">[ MOD_02 ]</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-label bg-surface-container border border-outline-variant/40 text-on-surface-variant">Front of House</span>
+</div>
+<h4 class="font-headline text-xl font-bold text-on-surface">Restaurant POS</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            Lightweight cashier &amp; waitstaff tablet interface optimized for rapid floor operations, course holding, manual overrides, and split bill adjustments.
+          </p>
+</div>
+<!-- Card 3 -->
+<div class="p-6 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-4 hover:border-outline-variant/70 transition-colors duration-200">
+<div class="flex items-center justify-between">
+<span class="font-label text-xs text-primary font-mono">[ MOD_03 ]</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-label bg-surface-container border border-outline-variant/40 text-on-surface-variant">Messaging Core</span>
+</div>
+<h4 class="font-headline text-xl font-bold text-on-surface">Realtime Orders</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            Bi-directional order pipeline streaming live ticket updates between dining patrons, POS tablets, and prep lines in under 100 milliseconds via socket channels.
+          </p>
+</div>
+<!-- Card 4 -->
+<div class="p-6 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-4 hover:border-outline-variant/70 transition-colors duration-200">
+<div class="flex items-center justify-between">
+<span class="font-label text-xs text-primary font-mono">[ MOD_04 ]</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-label bg-surface-container border border-outline-variant/40 text-on-surface-variant">Back of House</span>
+</div>
+<h4 class="font-headline text-xl font-bold text-on-surface">Kitchen Display System (KDS)</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            Station-routed digital order bump-bar views with prioritized ticket timers, ingredient aggregation counters, and color-coded SLA countdown alerts.
+          </p>
+</div>
+<!-- Card 5 -->
+<div class="p-6 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-4 hover:border-outline-variant/70 transition-colors duration-200">
+<div class="flex items-center justify-between">
+<span class="font-label text-xs text-primary font-mono">[ MOD_05 ]</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-label bg-surface-container border border-outline-variant/40 text-on-surface-variant">Space Layout</span>
+</div>
+<h4 class="font-headline text-xl font-bold text-on-surface">Table Management</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            Dynamic floor map visualization, real-time table occupancy status, section assignment balancing, and cryptographic QR code rotation for table security.
+          </p>
+</div>
+<!-- Card 6 -->
+<div class="p-6 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-4 hover:border-outline-variant/70 transition-colors duration-200">
+<div class="flex items-center justify-between">
+<span class="font-label text-xs text-primary font-mono">[ MOD_06 ]</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-label bg-surface-container border border-outline-variant/40 text-on-surface-variant">Transactions</span>
+</div>
+<h4 class="font-headline text-xl font-bold text-on-surface">Payment Management</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            Embedded checkout flow supporting custom item splits, Apple Pay / Google Pay web wallets, automated tipping distributions, and transactional ledger sync.
+          </p>
+</div>
+</div>
+</section>
+<!-- Planned Stack Chips -->
+<section class="space-y-8">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="font-label text-xs uppercase tracking-widest text-primary flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+          04 // PLANNED STACK &amp; INFRASTRUCTURE
+        </div>
+<span class="font-label text-xs text-outline">EVALUATED RUNTIMES</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+<!-- Next.js -->
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2 text-center sm:text-left">
+<div class="font-label text-[10px] uppercase tracking-wider text-outline">Frontend</div>
+<div class="font-headline text-lg font-bold text-on-surface">Next.js</div>
+<div class="font-label text-[11px] text-on-surface-variant">App Router &amp; RSC</div>
+</div>
+<!-- NestJS -->
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2 text-center sm:text-left">
+<div class="font-label text-[10px] uppercase tracking-wider text-outline">Backend</div>
+<div class="font-headline text-lg font-bold text-on-surface">NestJS</div>
+<div class="font-label text-[11px] text-on-surface-variant">Modular TypeScript</div>
+</div>
+<!-- PostgreSQL -->
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2 text-center sm:text-left">
+<div class="font-label text-[10px] uppercase tracking-wider text-outline">Database</div>
+<div class="font-headline text-lg font-bold text-on-surface">PostgreSQL</div>
+<div class="font-label text-[11px] text-on-surface-variant">ACID Transactions</div>
+</div>
+<!-- Redis -->
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2 text-center sm:text-left">
+<div class="font-label text-[10px] uppercase tracking-wider text-outline">Cache &amp; Bus</div>
+<div class="font-headline text-lg font-bold text-on-surface">Redis</div>
+<div class="font-label text-[11px] text-on-surface-variant">Pub/Sub Event Bus</div>
+</div>
+<!-- WebSocket -->
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2 text-center sm:text-left">
+<div class="font-label text-[10px] uppercase tracking-wider text-outline">Protocol</div>
+<div class="font-headline text-lg font-bold text-on-surface">WebSocket</div>
+<div class="font-label text-[11px] text-on-surface-variant">Bi-directional Sync</div>
+</div>
+<!-- Docker -->
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-2 text-center sm:text-left">
+<div class="font-label text-[10px] uppercase tracking-wider text-outline">Containerization</div>
+<div class="font-headline text-lg font-bold text-on-surface">Docker</div>
+<div class="font-label text-[11px] text-on-surface-variant">Isolated Services</div>
+</div>
+</div>
+</section>
+<!-- Honest "Documentation Pending" Milestone Cards -->
+<section class="space-y-8">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="font-label text-xs uppercase tracking-widest text-primary flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+          05 // ENGINEERING SPECIFICATIONS &amp; BENCHMARKS
+        </div>
+<span class="font-label text-xs text-outline">TRANSPARENCY COMMITMENT</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Milestone 1 -->
+<div class="p-6 rounded-lg bg-surface-container-lowest border border-dashed border-outline-variant/50 space-y-4 relative">
+<div class="flex items-center justify-between">
+<span class="font-label text-xs text-outline">PHASE_01</span>
+<span class="font-label text-xs text-tertiary">[ Documentation Pending ]</span>
+</div>
+<h4 class="font-headline text-lg font-semibold text-on-surface">Architecture Blueprint</h4>
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">
+            Formal sequence diagrams, domain boundary mapping, and database schemas are currently under peer review prior to implementation.
+          </p>
+<div class="pt-2 border-t border-outline-variant/20 font-label text-[11px] text-outline">
+            Deliverable: RFC &amp; Schema Spec
+          </div>
+</div>
+<!-- Milestone 2 -->
+<div class="p-6 rounded-lg bg-surface-container-lowest border border-dashed border-outline-variant/50 space-y-4 relative">
+<div class="flex items-center justify-between">
+<span class="font-label text-xs text-outline">PHASE_02</span>
+<span class="font-label text-xs text-tertiary">[ Benchmarks Pending ]</span>
+</div>
+<h4 class="font-headline text-lg font-semibold text-on-surface">Engineering Challenges &amp; Benchmarks</h4>
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">
+            Stress-testing metrics, WebSocket concurrency ceiling, and p99 latency figures will be published upon test harness execution.
+          </p>
+<div class="pt-2 border-t border-outline-variant/20 font-label text-[11px] text-outline">
+            Deliverable: Concurrency Harness
+          </div>
+</div>
+<!-- Milestone 3 -->
+<div class="p-6 rounded-lg bg-surface-container-lowest border border-dashed border-outline-variant/50 space-y-4 relative">
+<div class="flex items-center justify-between">
+<span class="font-label text-xs text-outline">PHASE_03</span>
+<span class="font-label text-xs text-tertiary">[ Pre-Production Stage ]</span>
+</div>
+<h4 class="font-headline text-lg font-semibold text-on-surface">Deployment &amp; Production Results</h4>
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">
+            Real-world operational telemetry, audit logs, and uptime statistics will be documented upon initial staging verification.
+          </p>
+<div class="pt-2 border-t border-outline-variant/20 font-label text-[11px] text-outline">
+            Deliverable: Telemetry Dossier
+          </div>
+</div>
+</div>
+</section>
+<!-- External Verification & Codebase Access -->
+<section class="space-y-8">
+<div class="font-label text-xs uppercase tracking-widest text-primary flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+        06 // ACCESS &amp; VERIFICATION
+      </div>
+<div class="p-6 sm:p-8 rounded-lg bg-surface-container-low border border-outline-variant/30 space-y-6">
+<div class="flex items-start sm:items-center gap-4">
+<span class="material-symbols-outlined text-outline-variant text-2xl mt-0.5 sm:mt-0">lock</span>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+            Notice: Live demo instances and repository source links will appear here once code review and initial staging deployment are verified.
+          </p>
+</div>
+<div class="flex flex-wrap items-center gap-4 pt-2 border-t border-outline-variant/20">
+<div class="px-4 py-2 rounded bg-surface-container border border-outline-variant/40 text-outline font-label text-xs cursor-not-allowed select-none flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+            [ Repository: Private / Scoping ]
+          </div>
+<div class="px-4 py-2 rounded bg-surface-container border border-outline-variant/40 text-outline font-label text-xs cursor-not-allowed select-none flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+            [ Live Staging: Pending Setup ]
+          </div>
+</div>
+</div>
+</section>
+<!-- Next Project Transition Section -->
+<section class="pt-8 border-t border-outline-variant/30">
+<a class="block p-8 rounded-lg bg-surface-container-low border border-outline-variant/30 hover:border-primary/50 transition-all duration-200 group" href="#flowsync">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="space-y-2">
+<div class="font-label text-xs uppercase tracking-widest text-primary">NEXT SELECTED WORK // 02</div>
+<h3 class="font-headline text-2xl sm:text-3xl font-bold text-on-surface group-hover:text-primary transition-colors duration-150">
+              FlowSync — Realtime Infinite Canvas &amp; Collaborative Diagramming Engine
+            </h3>
+</div>
+<div class="font-headline text-sm uppercase tracking-wider text-on-surface group-hover:text-primary transition-colors duration-150 flex items-center gap-2 shrink-0">
+<span>View Project Brief</span>
+<span class="transition-transform duration-150 group-hover:translate-x-1">→</span>
+</div>
+</div>
+</a>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 w-full px-6 md:px-12 py-8 max-w-7xl mx-auto font-body text-xs text-on-surface-variant dark:text-on-surface-variant">
+<!-- Monogram and identity -->
+<div class="flex items-center gap-3">
+<span class="font-headline text-sm font-semibold tracking-wider text-on-surface dark:text-on-surface">KG</span>
+<span class="text-outline-variant">/</span>
+<span>Fullstack Developer &amp; Systems Architect</span>
+</div>
+<!-- Copyright text from JSON -->
+<div class="text-center md:text-left">
+        © 2024 Digital Atelier. All rights reserved. Built with editorial precision.
+      </div>
+<!-- Footer Navigation Links -->
+<div class="flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 hover:text-primary" href="#top">Back to Top</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 hover:text-primary" href="#colophon">Colophon</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors duration-150 hover:text-primary" href="#privacy">Privacy</a>
+</div>
+</div>
+</footer>
+</body></html>
