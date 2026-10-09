@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = projects.find(p => p.slug === slug);
   if (!project) return {};
-  return { title: `${project.name} — Project Brief`, description: project.overview, alternates: { canonical: `/work/${slug}/` }, openGraph: { title: `${project.name} — Digital Atelier`, description: project.overview, url: `/work/${slug}/`, images: [{ url: "/og.png", width: 1200, height: 630, alt: `${project.name} — Digital Atelier project brief` }] }, twitter: { title: `${project.name} — Project Brief`, description: project.overview, card: "summary_large_image", images: ["/og.png"] } };
+  return { title: `${project.name} — Project Brief`, description: project.overview, robots: project.status === "reserved" ? { index: false, follow: true } : undefined, alternates: { canonical: `/work/${slug}/` }, openGraph: { title: `${project.name} — Digital Atelier`, description: project.overview, url: `/work/${slug}/`, images: [{ url: "/og.png", width: 1200, height: 630, alt: `${project.name} — Digital Atelier project brief` }] }, twitter: { title: `${project.name} — Project Brief`, description: project.overview, card: "summary_large_image", images: ["/og.png"] } };
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {

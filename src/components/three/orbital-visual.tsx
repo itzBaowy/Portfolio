@@ -24,9 +24,11 @@ export function OrbitalVisual() {
   useEffect(() => {
     if (!desktop || reduced) return;
     const timer = window.setTimeout(() => {
-      const canvas = document.createElement("canvas");
-      const context = canvas.getContext("webgl2");
-      if (context) { context.getExtension("WEBGL_lose_context")?.loseContext(); setReady(true); }
+      try {
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("webgl2");
+        if (context) { context.getExtension("WEBGL_lose_context")?.loseContext(); setReady(true); }
+      } catch { /* Keep the static visual when the browser blocks WebGL. */ }
     }, 1000);
     return () => window.clearTimeout(timer);
   }, [desktop, reduced]);

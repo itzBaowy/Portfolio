@@ -89,3 +89,57 @@ test("project cards and back navigation work", async ({ page }) => {
   await expect(page).toHaveURL(/\/#work$/);
   await expect(page.locator("#work")).toBeInViewport();
 });
+
+test("all 27 technologies are available and category filtering is keyboard accessible", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/#skills");
+  await expect(page.locator(".technology-list li")).toHaveCount(27);
+  const filters = page.getByRole("group", { name: "Filter technologies by category" });
+  const backend = filters.getByRole("button", { name: "Backend", exact: true });
+  await backend.focus();
+  await page.keyboard.press("Enter");
+  await expect(backend).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator(".skill-card")).toHaveCount(1);
+  await expect(page.locator(".technology-list li")).toHaveText(["NestJS", "Express", "WebSocket"]);
+  await filters.getByRole("button", { name: "All technologies" }).click();
+  await expect(page.locator(".technology-list li")).toHaveCount(27);
+});
+
+test("SEO assets exist and reserved projects are excluded from sitemap", async ({ request }) => {
+  const sitemap = await request.get("/sitemap.xml");
+  expect(sitemap.status()).toBe(200);
+  expect(await sitemap.text()).toContain("https://khuugiabao.com/work/dineflow/");
+  expect(await sitemap.text()).not.toContain("project-03");
+  const robots = await request.get("/robots.txt");
+  expect(await robots.text()).toContain("Sitemap: https://khuugiabao.com/sitemap.xml");
+  const image = await request.get("/og.png");
+  expect(image.status()).toBe(200);
+  expect(image.headers()["content-type"]).toContain("image/png");
+});
+
+test("real contact channels and Person structured data use supplied information", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("link", { name: "Get In Touch" })).toHaveAttribute("href", "mailto:notbao.js@gmail.com");
+  await expect(page.locator('#contact a[href="https://github.com/itzBaowy"]')).toBeAttached();
+  await expect(page.locator('#contact a[href="https://www.linkedin.com/in/kgbao"]')).toBeAttached();
+  const schemas = await page.locator('script[type="application/ld+json"]').textContent();
+  expect(JSON.parse(schemas!)).toContainEqual(expect.objectContaining({ "@type": "Person", name: "Khuu Gia Bao" }));
+});
+
+test("blocked WebGL keeps the static visual without runtime errors", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 950 });
+  const errors: string[] = [];
+  page.on("pageerror", error => errors.push(error.message));
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    Object.defineProperty(HTMLCanvasElement.prototype, "getContext", { value: function (kind: string, ...args: unknown[]) {
+      if (kind === "webgl2") { document.body.dataset.webglAttempted = "true"; return null; }
+      return Reflect.apply(original, this, [kind, ...args]);
+    } });
+  });
+  await page.goto("/");
+  await expect(page.locator("body")).toHaveAttribute("data-webgl-attempted", "true");
+  await expect(page.locator(".orbital-visual")).toHaveAttribute("data-renderer", "static");
+  await expect(page.locator(".orbital-fallback")).toBeVisible();
+  expect(errors).toEqual([]);
+});

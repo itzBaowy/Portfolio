@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import { Navigation } from "@/components/layout/navigation";
 import { Footer } from "@/components/layout/footer";
 import { profile } from "@/data/profile";
+import { socials } from "@/data/socials";
 import "@/styles/globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
@@ -11,7 +12,7 @@ const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display", 
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
-  title: { default: "Fullstack Developer — Digital Atelier", template: "%s — Digital Atelier" },
+  title: { default: `${profile.name ?? "Digital Atelier"} — Fullstack Developer`, template: "%s — Digital Atelier" },
   description: profile.description,
   alternates: { canonical: "/" },
   openGraph: { title: "Digital Atelier — Fullstack Developer", description: profile.description, url: profile.siteUrl, siteName: "Digital Atelier", type: "website", locale: "en_US", images: [{ url: "/og.png", width: 1200, height: 630, alt: "Digital Atelier — Building digital experiences that matter" }] },
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const schemas = [
     { "@context": "https://schema.org", "@type": "WebSite", name: "Digital Atelier", url: profile.siteUrl },
-    ...(profile.name ? [{ "@context": "https://schema.org", "@type": "Person", name: profile.name, jobTitle: profile.title, url: profile.siteUrl }] : []),
+    ...(profile.name ? [{ "@context": "https://schema.org", "@type": "Person", name: profile.name, jobTitle: profile.title, url: profile.siteUrl, sameAs: socials.flatMap(s => s.url ? [s.url] : []) }] : []),
   ];
   return <html lang="en"><body className={`${geist.variable} ${mono.variable} ${display.variable}`}>
     <div id="top" /><a href="#main" className="skip-link">Skip to content</a>

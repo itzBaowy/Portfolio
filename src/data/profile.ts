@@ -1,6 +1,6 @@
 // Replace null values with verified personal information before publishing.
 export const profile = {
-  name: null as string | null,
+  name: "Khuu Gia Bao" as string | null,
   namePlaceholder: "Your name",
   initials: "KG",
   title: "Fullstack Developer",
@@ -8,7 +8,7 @@ export const profile = {
   description: "I design and develop scalable, modern and thoughtful digital products — from intuitive interfaces to robust backend systems.",
   avatar: null as string | null,
   avatarAlt: "Personal portrait",
-  email: null as string | null,
+  email: "notbao.js@gmail.com" as string | null,
   location: null as string | null,
   resumeUrl: null as string | null,
   siteUrl: "https://khuugiabao.com",
