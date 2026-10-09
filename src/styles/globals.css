@@ -692,6 +692,18 @@ svg {
   filter: grayscale(1);
   transition: transform 0.7s;
 }
+.portrait.portrait-with-image:not(.portrait-compact) {
+  aspect-ratio: 4 / 5;
+  min-height: 0;
+}
+.portrait-with-image figcaption {
+  bottom: 0;
+  padding: 45px 24px 22px;
+  background: linear-gradient(transparent, #08090dcc);
+  color: var(--foreground);
+  text-align: left;
+  font-size: 10px;
+}
 .portrait:hover .portrait-image {
   transform: scale(1.025);
 }

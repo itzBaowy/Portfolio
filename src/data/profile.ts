@@ -7,8 +7,8 @@ export const profile = {
   tagline: "Building digital experiences that matter.",
   description:
     "I design and develop scalable, modern and thoughtful digital products — from intuitive interfaces to robust backend systems.",
-  avatar: null as string | null,
-  avatarAlt: "Personal portrait",
+  avatar: "/images/portrait.webp" as string | null,
+  avatarAlt: "Portrait",
   email: "notbao.js@gmail.com" as string | null,
   location: null as string | null,
   resumeUrl: null as string | null,

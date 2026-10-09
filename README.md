@@ -34,7 +34,7 @@ Personal content is separated from presentation. Add a Vietnamese copy dictionar
 
 ### Portrait
 
-Place your actual photo in `public/images/portrait.webp`, set `profile.avatar` to `/images/portrait.webp` and update `avatarAlt`. Use a portrait crop around 800 × 1000. Hero and About share the same configurable image. Until supplied, both show a labeled placeholder. No stock or AI portrait is used.
+The supplied `public/images/baodeptrai.png` is displayed in Hero and About through an optimized `public/images/portrait.webp` (800 × 1000, about 50 KB). The original PNG is preserved. Both placements use `profile.avatar` and `avatarAlt`; About keeps the portrait's 4:5 framing. To replace it, update the WebP or configure a new path in `src/data/profile.ts`. Setting `avatar` to `null` restores the labeled placeholder. No stock or generated portrait is used.
 
 ### CV
 
@@ -117,7 +117,7 @@ Open `http://localhost:8080`. The multistage image serves static files using unp
 
 ## Remaining owner input
 
-- Actual portrait and PDF CV.
+- PDF CV.
 - Work experience, education and certificates, if applicable.
 - Verified project progress, screenshots, roles, dates, repository/demo links and results.
 - Hosting account configuration and domain/DNS access for public deployment.

@@ -9,11 +9,13 @@ Date: 2026-10-09 (Asia/Bangkok).
 - Axe WCAG checks reported no violations on the tested homepage and four project pages. This does not replace manual screen-reader testing.
 - Desktop/mobile screenshots were inspected. The Hero adapts to a stacked composition and static sculpture on mobile; no horizontal overflow was found.
 - The new background was visually inspected at 1440px and 375px and after scrolling to Contact. The fixed grid, light trails and glows remain behind content without intercepting clicks. The desktop canvas is transparent; reduced motion retains only the static background. Reference: https://www.vulebaolong.com/.
+- The owner-supplied `baodeptrai.png` is now configured in Hero and About. A WebP derivative preserves the original framing at 800 × 1000 and 51,468 bytes, compared with the 2,030,744-byte PNG. The original is preserved. Real portraits display the owner's name instead of pending-photo copy.
+- After adding the portrait, typecheck, lint, build and all 20 browser tests passed again. Both image placements decoded successfully at desktop 1440px and mobile 375px; screenshots were inspected, placeholder copy was absent, and no horizontal overflow was found.
 - Docker image built successfully. Nginx configuration passed; runtime UID is 101. Home, DineFlow, FlowSync, robots, sitemap and OG image returned HTTP 200; an unknown route returned HTTP 404. Security headers were present.
 
 ## Lighthouse mobile lab measurements
 
-Production static export served locally, Chromium, Lighthouse default mobile throttling. Latest run after adding the animated background:
+Production static export served locally, Chromium, Lighthouse default mobile throttling. Latest run after adding the animated background, before adding the supplied portrait:
 
 | Page     | Performance | Accessibility | Best practices | SEO |   LCP | CLS |   TBT |
 | -------- | ----------: | ------------: | -------------: | --: | ----: | --: | ----: |
@@ -31,7 +33,7 @@ LCP remains above the requested 2.5 s target in this lab run. INP and production
 
 ## Pending verification and input
 
-- Actual portrait and valid PDF CV have not been provided. Placeholders remain; the production CV link is omitted.
+- A valid PDF CV has not been provided; the production CV link is omitted.
 - Experience, education, certificates and verified project implementation details remain unprovided. No claims, results or live links were fabricated.
 - Hosting credentials and domain/DNS access have not been configured; no public deployment or HTTPS/domain verification was performed.
 - The previous GitHub Actions CI run at `e20206a` was verified successful: https://github.com/itzBaowy/Portfolio/actions/runs/37926296383. New pushes trigger fresh CI; the manual Cloudflare deployment workflow has not been executed.

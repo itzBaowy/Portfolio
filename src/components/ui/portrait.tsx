@@ -6,7 +6,13 @@ import { cn } from "@/lib/utils";
 
 export function Portrait({ compact = false }: { compact?: boolean }) {
   return (
-    <figure className={cn("portrait", compact && "portrait-compact")}>
+    <figure
+      className={cn(
+        "portrait",
+        compact && "portrait-compact",
+        profile.avatar && "portrait-with-image",
+      )}
+    >
       {profile.avatar ? (
         <Image
           src={profile.avatar}
@@ -22,7 +28,7 @@ export function Portrait({ compact = false }: { compact?: boolean }) {
           {!compact && <p>{copy.portrait.detail}</p>}
         </div>
       )}
-      {!compact && <figcaption>{copy.portrait.note}</figcaption>}
+      {!compact && <figcaption>{profile.avatar ? displayName : copy.portrait.note}</figcaption>}
     </figure>
   );
 }

@@ -33,4 +33,4 @@ The full-site background uses a fixed 72px grid with blue, violet and restrained
 
 ## Pending owner content
 
-Portrait, CV, experience, education, dates, roles, verified deployment status and measured project results. Name, email and social URLs use the owner's supplied information. Empty fields never create fabricated links or claims.
+CV, experience, education, dates, roles, verified deployment status and measured project results. Name, portrait, email and social URLs use the owner's supplied information. Empty fields never create fabricated links or claims.
