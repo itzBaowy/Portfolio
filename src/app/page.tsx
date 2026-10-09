@@ -1,3 +1,5 @@
+import { Hero } from "@/components/sections/hero";
+
 export default function Home() {
-  return <main id="main" className="container foundation-page"><p className="eyebrow">DIGITAL ATELIER / FOUNDATION</p><h1>Building digital experiences that matter.</h1><p>The portfolio foundation is ready. Hero and project sections are being built next.</p></main>;
+  return <main id="main"><Hero /><section id="about" className="container section"><p className="eyebrow">ABOUT / CONTENT COMING NEXT</p><h2>Beyond the code.</h2></section><section id="work" className="container section"><p className="eyebrow">SELECTED WORK / PROJECT BRIEFS COMING NEXT</p><h2>Ideas into interfaces.</h2></section></main>;
 }
