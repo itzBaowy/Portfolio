@@ -689,7 +689,6 @@ svg {
 }
 .portrait-image {
   object-fit: cover;
-  filter: grayscale(1);
   transition: transform 0.7s;
 }
 .portrait.portrait-with-image:not(.portrait-compact) {
