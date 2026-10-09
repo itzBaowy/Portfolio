@@ -43,6 +43,9 @@ export const copy = {
     emptyTitle: "The foundations matter.",
     emptyDescription:
       "Education and verified certifications will be shared here. Academic details have not been provided yet.",
+    certifications: "Certifications",
+    credential: "View credential",
+    issued: "Issued",
   },
   work: {
     eyebrow: "04 / SELECTED WORK",

@@ -1,4 +1,4 @@
-import { ArrowUpRight, BookOpen, BriefcaseBusiness, GraduationCap } from "lucide-react";
+import { ArrowUpRight, Award, BookOpen, BriefcaseBusiness, GraduationCap } from "lucide-react";
 import { Reveal } from "@/components/motion/reveal";
 import { Timeline } from "@/components/motion/timeline";
 import { SectionHeading } from "./section-heading";
@@ -19,25 +19,31 @@ export function Journey() {
               {experience.map((item, index) => (
                 <li key={`${item.company}-${item.startDate}`}>
                   <Reveal delay={index * 0.06}>
-                    <p className="eyebrow">
-                      {item.startDate} — {item.endDate ?? "Present"}
-                    </p>
+                    {item.startDate && (
+                      <p className="eyebrow">
+                        {item.startDate} — {item.endDate ?? "Present"}
+                      </p>
+                    )}
                     <h3>{item.position}</h3>
                     <p className="timeline-company">
                       {item.company}
                       {item.location && ` · ${item.location}`}
                     </p>
                     <p>{item.description}</p>
-                    <ul className="responsibilities">
-                      {item.responsibilities.map((r) => (
-                        <li key={r}>{r}</li>
-                      ))}
-                    </ul>
-                    <div className="tags">
-                      {item.technologies.map((t) => (
-                        <span key={t}>{t}</span>
-                      ))}
-                    </div>
+                    {item.responsibilities.length > 0 && (
+                      <ul className="responsibilities">
+                        {item.responsibilities.map((r) => (
+                          <li key={r}>{r}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {item.technologies.length > 0 && (
+                      <div className="tags">
+                        {item.technologies.map((t) => (
+                          <span key={t}>{t}</span>
+                        ))}
+                      </div>
+                    )}
                   </Reveal>
                 </li>
               ))}
@@ -69,14 +75,21 @@ export function Journey() {
                       {item.startDate} — {item.endDate ?? "Present"}
                     </p>
                     <h3>{item.school}</h3>
-                    <p className="timeline-company">
-                      {item.degree} · {item.major}
-                    </p>
-                    <ul className="responsibilities">
-                      {item.achievements.map((a) => (
-                        <li key={a}>{a}</li>
-                      ))}
-                    </ul>
+                    {(item.degree || item.major) && (
+                      <p className="timeline-company">
+                        {[item.degree, item.major].filter(Boolean).join(" · ")}
+                      </p>
+                    )}
+                    {item.achievements.length > 0 && (
+                      <ul className="academic-achievements">
+                        {item.achievements.map((a) => (
+                          <li key={a}>
+                            <GraduationCap size={16} aria-hidden="true" />
+                            {a}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </Reveal>
                 </li>
               ))}
@@ -93,31 +106,50 @@ export function Journey() {
             </div>
           )}
         </Timeline>
-        {certifications.length > 0 && (
-          <div className="certifications">
-            <h3>Certifications</h3>
-            {certifications.map((c) => (
-              <article key={c.name}>
-                <h4>{c.name}</h4>
-                <p>
-                  {c.issuer} · {c.issuedDate}
-                </p>
-                {c.credentialUrl && (
-                  <a
-                    className="text-link"
-                    href={c.credentialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View credential
-                    <ArrowUpRight size={15} aria-hidden="true" />
-                  </a>
-                )}
-              </article>
+      </section>
+      {certifications.length > 0 && (
+        <section className="certifications" aria-labelledby="certifications-heading">
+          <Reveal className="certifications-heading">
+            <div>
+              <p className="eyebrow">CONTINUOUS LEARNING</p>
+              <h2 id="certifications-heading">{copy.education.certifications}</h2>
+            </div>
+            <span className="certificate-total mono">
+              {String(certifications.length).padStart(2, "0")}
+            </span>
+          </Reveal>
+          <div className="certificate-grid">
+            {certifications.map((c, index) => (
+              <Reveal key={c.name} delay={index * 0.04}>
+                <article className="certificate-card">
+                  <div className="certificate-meta">
+                    <span className="certificate-icon">
+                      <Award size={21} strokeWidth={1.5} aria-hidden="true" />
+                    </span>
+                    <span className="mono">
+                      {copy.education.issued} {c.issuedDate}
+                    </span>
+                  </div>
+                  <h3>{c.name}</h3>
+                  <p>{c.issuer}</p>
+                  {c.credentialUrl && (
+                    <a
+                      className="text-link"
+                      href={c.credentialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${copy.education.credential}: ${c.name} (opens in a new tab)`}
+                    >
+                      {copy.education.credential}
+                      <ArrowUpRight size={15} aria-hidden="true" />
+                    </a>
+                  )}
+                </article>
+              </Reveal>
             ))}
           </div>
-        )}
-      </section>
+        </section>
+      )}
     </div>
   );
 }

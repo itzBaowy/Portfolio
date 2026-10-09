@@ -26,7 +26,7 @@ export interface Project {
 export interface Experience {
   position: string;
   company: string;
-  startDate: string;
+  startDate: string | null;
   endDate: string | null;
   location: string | null;
   description: string;
@@ -36,10 +36,10 @@ export interface Experience {
 
 export interface Education {
   school: string;
-  major: string;
+  major: string | null;
   startDate: string;
   endDate: string | null;
-  degree: string;
+  degree: string | null;
   achievements: string[];
 }
 
