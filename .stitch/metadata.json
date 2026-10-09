@@ -1,0 +1,23 @@
+{
+  "projectId": "6719361198083233267",
+  "title": "Digital Atelier",
+  "designSystem": {
+    "id": "assets/14630722654306192070",
+    "name": "Digital Atelier"
+  },
+  "screens": [
+    {
+      "id": "57e0938e4c5b4305b4708297d56b364a",
+      "title": "An abstract 3D futuristic orbital sculpture floating in dark space. Sleek dark metallic chrome and glowing translucent glass rings intersecting with fine luminous blue and neon wireframe trajectories. Minimalist luxury geometric composition, cinematic studio lighting, dark charcoal background #08090D with subtle blue volumetric rim light, hyper-clean contemporary digital art aesthetic, octane render, 8k.",
+      "deviceType": "DESKTOP",
+      "screenshot": "https://lh3.googleusercontent.com/aida/AEtjO1WWHd5UBcAmfniTfnItXVhj_UjK9uVuGISS0XfXGhqyyGG-lwfGnozcoWeATB5CCWJ0_85Ch6zLGHj3W7tNjIRz861B7-kNObMCtmw4cPj-s9Ztsu7qq472DSLSU6KleL1XCqG4hx1ktHg0osRZ_RaKrXzYVQvES8ElJL1YT_RYZaeCUcYXzRsvpuW2tyylGGnnVYXsEI0lLQB0fxSeyj1uQuOSQwVq_lqDUegEUV2yOa95XKgmOc4S0Zw"
+    },
+    {
+      "id": "266aa4d84ab6406dae2dc95ecb9da2df",
+      "title": "Digital Atelier — Fullstack Developer Portfolio",
+      "deviceType": "DESKTOP",
+      "screenshot": "https://lh3.googleusercontent.com/aida/AEtjO1U7TXMxlNjPBWnD9e1zTrD3rjp45QsiXXG9p2YPeXo_QA4YYenTNWwhQB_XavzF-xEYcO9v0JQFgPJ8mwxkOwVg6pB7vjBXCaKexcIMeAynAE0SDjbMauXrq_rlyjpbBewto1McCDRFdDMmi6rRXANVNWHoY5znvuq4LfJjqHthH6aG_fVrOY3-aQVKm5_ggX-3poRqGv1c4L6dYmH6zejqf5H-3cDN8Hildty5xZkIfRHQ4TAF7kHJrqA",
+      "html": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzFlYTZmN2RhZjFjNjQyYjM5YTFhZDQ3MjhkYWJiNjY1EgsSBxCKzZzNxRUYAZIBIwoKcHJvamVjdF9pZBIVQhM2NzE5MzYxMTk4MDgzMjMzMjY3&filename=&opi=96797242"
+    }
+  ]
+}

@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+
+<html class="dark scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Digital Atelier — Fullstack Developer Portfolio</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-background": "#e3e2e8",
+            "surface-tint": "#b2c5ff",
+            "on-tertiary-container": "#412200",
+            "on-tertiary": "#4b2800",
+            "tertiary": "#ffb874",
+            "surface-variant": "#343439",
+            "surface-container-lowest": "#0d0e12",
+            "on-tertiary-fixed-variant": "#6a3b00",
+            "surface-container-low": "#1a1b20",
+            "primary-container": "#5b8cff",
+            "secondary-container": "#571bc1",
+            "error-container": "#93000a",
+            "background": "#121317",
+            "surface-dim": "#121317",
+            "on-primary-container": "#002665",
+            "secondary-fixed": "#e9ddff",
+            "on-primary-fixed-variant": "#0040a0",
+            "surface-container-high": "#292a2e",
+            "primary-fixed": "#dae2ff",
+            "tertiary-fixed": "#ffdcbf",
+            "primary": "#b2c5ff",
+            "inverse-primary": "#1857c8",
+            "inverse-on-surface": "#2f3035",
+            "on-surface": "#e3e2e8",
+            "outline": "#8d909f",
+            "on-primary-fixed": "#001847",
+            "on-secondary": "#3c0091",
+            "outline-variant": "#434653",
+            "surface": "#121317",
+            "tertiary-fixed-dim": "#ffb874",
+            "on-secondary-fixed": "#23005c",
+            "secondary-fixed-dim": "#d0bcff",
+            "on-error-container": "#ffdad6",
+            "on-error": "#690005",
+            "surface-container": "#1e1f24",
+            "on-secondary-fixed-variant": "#5516be",
+            "error": "#ffb4ab",
+            "surface-container-highest": "#343439",
+            "surface-bright": "#38393e",
+            "primary-fixed-dim": "#b2c5ff",
+            "on-secondary-container": "#c4abff",
+            "secondary": "#d0bcff",
+            "on-primary": "#002c72",
+            "on-surface-variant": "#c3c6d6",
+            "tertiary-container": "#d47b00",
+            "on-tertiary-fixed": "#2d1600",
+            "inverse-surface": "#e3e2e8"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Space Grotesk", "sans-serif"],
+            "display": ["Space Grotesk", "sans-serif"],
+            "body": ["Geist", "sans-serif"],
+            "label": ["Geist", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary selection:text-on-primary min-h-screen antialiased relative overflow-x-hidden">
+<!-- Ambient Backdrop Glow -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<div class="absolute top-[-10%] right-[-5%] w-[650px] h-[650px] rounded-full bg-primary-container/10 blur-[140px]"></div>
+<div class="absolute top-[40%] left-[-10%] w-[500px] h-[500px] rounded-full bg-secondary-container/15 blur-[160px]"></div>
+<div class="absolute bottom-[10%] right-[10%] w-[550px] h-[550px] rounded-full bg-primary/10 blur-[150px]"></div>
+</div>
+<!-- Shared Component: TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background/80 dark:bg-background/80 backdrop-blur-md border-b border-outline-variant dark:border-outline-variant flat no shadows transition-all duration-200 ease-out">
+<div class="flex justify-between items-center w-full px-6 md:px-12 py-4 max-w-7xl mx-auto">
+<!-- Brand Anchor -->
+<a class="flex items-center gap-3 group" href="#hero">
+<span class="font-headline text-lg font-bold tracking-tighter text-on-surface dark:text-on-surface border border-outline-variant px-2 py-1 rounded group-hover:border-primary transition-colors">KG</span>
+<div class="flex flex-col">
+<span class="font-headline text-xs tracking-wider text-on-surface font-semibold">Digital Atelier</span>
+<span class="text-[10px] tracking-widest uppercase text-on-surface-variant font-mono">Portfolio</span>
+</div>
+</a>
+<!-- Desktop Nav Cluster -->
+<nav class="hidden md:flex items-center space-x-8 font-headline text-sm uppercase tracking-widest">
+<!-- Active link: Home -->
+<a class="text-primary dark:text-primary border-b-2 border-primary pb-1 transition-all duration-200 ease-out active:scale-95" href="#hero">Home</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95" href="#about">About</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95" href="#experience">Experience</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95" href="#education">Education</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95" href="#work">Work</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95" href="#skills">Skills</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors duration-200 hover:text-primary dark:hover:text-primary transition-colors duration-150 active:scale-95" href="#contact">Contact</a>
+</nav>
+<!-- Trailing Action -->
+<div class="flex items-center gap-4">
+<a class="hidden sm:inline-flex items-center gap-2 bg-primary-container text-on-primary-container hover:bg-primary font-headline text-xs font-semibold uppercase tracking-wider px-4 py-2 rounded transition-all duration-200 ease-out active:scale-95 shadow-sm" href="#contact">
+<span>Get in Touch</span>
+<span class="material-symbols-outlined text-sm font-bold">arrow_outward</span>
+</a>
+<!-- Mobile Menu Trigger -->
+<button aria-label="Toggle Navigation" class="md:hidden flex items-center justify-center p-2 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" id="mobile-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Drawer Dropdown -->
+<div class="hidden md:hidden px-6 py-4 bg-surface-container-lowest border-b border-outline-variant font-headline text-xs uppercase tracking-widest flex flex-col space-y-3" id="mobile-menu">
+<a class="text-primary py-1" href="#hero">Home</a>
+<a class="text-on-surface-variant hover:text-on-surface py-1" href="#about">About</a>
+<a class="text-on-surface-variant hover:text-on-surface py-1" href="#experience">Experience</a>
+<a class="text-on-surface-variant hover:text-on-surface py-1" href="#education">Education</a>
+<a class="text-on-surface-variant hover:text-on-surface py-1" href="#work">Work</a>
+<a class="text-on-surface-variant hover:text-on-surface py-1" href="#skills">Skills</a>
+<a class="text-on-surface-variant hover:text-on-surface py-1" href="#contact">Contact</a>
+<a class="mt-2 inline-flex items-center justify-center py-2 bg-primary-container text-on-primary-container rounded font-bold" href="#contact">Get in Touch</a>
+</div>
+</header>
+<main class="relative z-10 pt-24 md:pt-28">
+<!-- 01 // HERO SECTION -->
+<section class="max-w-7xl mx-auto px-6 md:px-12 pt-8 pb-20 md:pb-28" id="hero">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Left Editorial Hero Column (7 cols) -->
+<div class="lg:col-span-7 flex flex-col space-y-8">
+<!-- Eyebrow & Editable Banner -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+</span>
+<span class="text-xs font-headline uppercase tracking-[0.25em] text-primary font-semibold">FULLSTACK DEVELOPER</span>
+<span class="text-xs text-outline font-mono">/ AVAILABLE FOR HIRE</span>
+</div>
+<!-- Editable Name Tag -->
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded bg-surface-container-low border border-outline-variant/60 w-fit text-xs text-on-surface-variant font-mono">
+<span class="text-secondary font-bold">var</span>
+<span>engineer =</span>
+<span class="text-primary font-medium tracking-tight bg-surface-container px-2 py-0.5 rounded border border-outline-variant/40">[ Your Name ] · Creative Fullstack Engineer</span>
+</div>
+</div>
+<!-- Oversized Editorial 3-line Headline -->
+<h1 class="font-headline font-bold text-4xl sm:text-6xl xl:text-7xl tracking-tight text-on-surface leading-[1.08]">
+            Building digital<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-surface-tint to-secondary">experiences</span><br/>
+            that matter.
+          </h1>
+<!-- Subtext -->
+<p class="font-body text-base sm:text-lg text-on-surface-variant max-w-xl leading-relaxed">
+            I design and develop scalable, modern and thoughtful digital products — from intuitive interfaces to robust backend systems.
+          </p>
+<!-- CTA Cluster -->
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<!-- Primary Action -->
+<a class="inline-flex items-center gap-3 px-6 py-3.5 rounded bg-primary text-on-primary font-headline text-xs uppercase tracking-widest font-semibold hover:bg-surface-tint hover:shadow-lg hover:shadow-primary/20 transition-all duration-200 active:scale-95" href="#work">
+<span>Explore My Work</span>
+<span class="material-symbols-outlined text-base">south</span>
+</a>
+<!-- Secondary Pending State Action -->
+<div class="relative group cursor-not-allowed">
+<button class="inline-flex items-center gap-2.5 px-5 py-3.5 rounded bg-surface-container-low border border-outline-variant/60 text-outline font-headline text-xs uppercase tracking-wider font-medium opacity-80 transition-all" disabled="">
+<span class="material-symbols-outlined text-sm">lock</span>
+<span>Download My CV</span>
+<span class="bg-surface-container-high text-[10px] text-tertiary px-1.5 py-0.5 rounded font-mono uppercase tracking-normal ml-1">PDF Pending</span>
+</button>
+<div class="absolute -bottom-8 left-0 hidden group-hover:block whitespace-nowrap bg-surface-container-highest text-on-surface text-[11px] font-mono px-2 py-1 rounded shadow border border-outline-variant z-20">
+                Unavailable in Preview · Resume record updating
+              </div>
+</div>
+</div>
+<!-- Tech Footprint Quick Line -->
+<div class="pt-6 border-t border-outline-variant/40 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-on-surface-variant font-mono">
+<span class="text-outline uppercase tracking-wider">Stack Focus:</span>
+<span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span>TypeScript / React</span>
+<span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Go / Node</span>
+<span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>PostgreSQL / Redis</span>
+</div>
+</div>
+<!-- Right Visual Showcase Column (5 cols) -->
+<div class="lg:col-span-5 flex flex-col space-y-6">
+<!-- Signature Orbital Sculpture Card with Image Injection -->
+<div class="relative rounded-xl bg-surface-container-lowest border border-outline-variant/60 p-3 overflow-hidden group shadow-2xl">
+<!-- Top bar indicator -->
+<div class="flex items-center justify-between px-3 py-2 border-b border-outline-variant/30 mb-3">
+<span class="font-mono text-[10px] uppercase text-outline tracking-wider flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+                Orbital Signature Sculpture
+              </span>
+<span class="font-mono text-[10px] text-primary tracking-widest">FIG. 01 — 3D RUNTIME</span>
+</div>
+<!-- Orbital Sculpture Display Area -->
+<div class="relative aspect-square w-full rounded-lg overflow-hidden bg-surface-container-lowest flex items-center justify-center">
+<img alt="Orbital Sculpture in Blue and Chrome" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdDDxK5kqinzP516a8VFs8XVoZEw6WTYvFaO6V8k2hgPuZvAwyAIjjqZwJbm18qUMmyLak6Ds7xnZnpKFbRWuebtzhxTVgPBl4TgSdO3F8HcR0I98iw-2_0DuuDfs2VE83uUIhxNr3k0nMkza-LYKoOKlFNVkgGlev6frtHbmKeNLAXwbAwsvpWD-XPlutn8FdVwYJH0CU6VdwwhvwnHFi03OKp_LI6dlLRqheHWWiq58ZhwJN34I8D6ZY88q-CJXHL27FblT1eks"/>
+<!-- Ambient glass vignette border -->
+<div class="absolute inset-0 pointer-events-none rounded-lg border border-primary/20 shadow-inner"></div>
+</div>
+<!-- Sculpture metadata footer -->
+<div class="mt-3 px-2 flex justify-between items-center text-[11px] font-mono text-on-surface-variant">
+<span>Rendering: WebGL / Metal</span>
+<span class="text-secondary font-medium">Kinetic Equilibrium</span>
+</div>
+</div>
+<!-- Minimalist Portrait Placeholder (Explicitly Labeled, No Stock Person) -->
+<div class="p-4 rounded-xl bg-surface-container-low border border-dashed border-outline-variant/70 flex items-center gap-4">
+<div class="w-14 h-14 rounded-lg bg-surface-container border border-outline-variant flex items-center justify-center text-outline flex-shrink-0">
+<span class="material-symbols-outlined text-2xl">account_circle</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline text-xs font-semibold text-on-surface tracking-wide uppercase">[ Portrait Placeholder: Upload Your Photo ]</span>
+<span class="text-[11px] text-on-surface-variant leading-relaxed">Reserved authentic developer asset slot. Unsplash / stock portraits strictly omitted to maintain factual integrity.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Hero Bottom Strip -->
+<div class="mt-16 pt-8 border-t border-outline-variant/50 grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-xs font-mono">
+<div class="text-outline uppercase tracking-wider">
+<span class="text-primary font-bold">01 //</span> OVERVIEW &amp; ARCHITECTURE
+        </div>
+<div class="text-on-surface-variant text-center md:text-left font-body">
+          “Thoughtful interfaces. Reliable systems.”
+        </div>
+<div class="flex items-center justify-end gap-2 text-outline">
+<span class="animate-bounce material-symbols-outlined text-sm text-primary">arrow_downward</span>
+<span class="tracking-widest uppercase">Scroll to inspect</span>
+</div>
+</div>
+</section>
+<!-- 02 // PHILOSOPHY & ABOUT SECTION -->
+<section class="py-24 border-t border-outline-variant/40 bg-surface-container-lowest" id="about">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<!-- Section Header -->
+<div class="mb-14">
+<div class="flex items-center gap-2 text-xs font-headline font-semibold text-primary uppercase tracking-[0.2em] mb-2">
+<span>02 // PHILOSOPHY</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-5xl font-bold tracking-tight text-on-surface">
+            Beyond the code.
+          </h2>
+<p class="text-on-surface-variant text-sm font-mono mt-2">Engineering disciplines, human interfaces, and system resilience.</p>
+</div>
+<!-- 2-Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left: Technical Spec Avatar Spec Frame -->
+<div class="lg:col-span-5 bg-surface-container-low border border-outline-variant rounded-xl p-6 relative">
+<div class="border-b border-outline-variant/40 pb-4 mb-6 flex justify-between items-center text-xs font-mono text-outline">
+<span>ARCHETYPE SPECIFICATION</span>
+<span class="text-primary">800 × 1000 PX</span>
+</div>
+<!-- Avatar Placeholder Box -->
+<div class="aspect-[4/5] w-full rounded-lg bg-surface-container border-2 border-dashed border-outline-variant/80 flex flex-col items-center justify-center p-6 text-center group hover:border-primary/60 transition-colors">
+<div class="w-16 h-16 rounded-full bg-surface-container-high border border-outline flex items-center justify-center text-primary mb-4">
+<span class="material-symbols-outlined text-3xl">badge</span>
+</div>
+<h3 class="font-headline text-xs font-bold uppercase tracking-wider text-on-surface mb-2">
+                [ High-res Developer Portrait Placeholder — 800x1000px ]
+              </h3>
+<p class="text-[11px] font-mono text-on-surface-variant max-w-xs leading-relaxed">
+                Slot dedicated for real studio headshot or mono engineering portrait. No generic AI renders or stock models permitted.
+              </p>
+<div class="mt-6 flex flex-wrap gap-2 justify-center font-mono text-[10px] text-outline">
+<span class="px-2 py-0.5 rounded bg-surface-container-high">FORMAT: WEBP/AVIF</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high">RATIO: 4:5</span>
+</div>
+</div>
+<div class="mt-6 space-y-2 text-xs font-mono text-on-surface-variant">
+<div class="flex justify-between py-1 border-b border-outline-variant/20">
+<span class="text-outline">Role Focus</span>
+<span class="text-on-surface">Staff / Senior Fullstack</span>
+</div>
+<div class="flex justify-between py-1 border-b border-outline-variant/20">
+<span class="text-outline">Location Baseline</span>
+<span class="text-on-surface">Remote / Hybrid Eligible</span>
+</div>
+<div class="flex justify-between py-1">
+<span class="text-outline">Core Paradigm</span>
+<span class="text-on-surface">Type-safe End-to-End</span>
+</div>
+</div>
+</div>
+<!-- Right: Editorial Narrative -->
+<div class="lg:col-span-7 space-y-8">
+<div class="space-y-4 text-base sm:text-lg text-on-surface-variant leading-relaxed font-body">
+<p class="text-on-surface font-headline font-normal text-xl sm:text-2xl leading-snug">
+                “Software is not merely an assembly of dependencies; it is an enduring contract between user experience and architectural rigor.”
+              </p>
+<p>
+                My work spans the entire lifecycle of software creation. On the client, I obsess over millisecond interactions, deterministic state machines, and accessible semantic markup that feels tactile and instantaneous.
+              </p>
+<p>
+                On the backend, my attention pivots toward idempotency, structured telemetry, event-driven pipelines, and database optimization. Good software thrives where complex internal machinery hides behind effortless simplicity.
+              </p>
+</div>
+<!-- Engineering Principles Bento Sub-grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+<div class="p-5 rounded-lg bg-surface-container border border-outline-variant/50">
+<div class="w-8 h-8 rounded bg-primary-container/20 text-primary flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-lg">schema</span>
+</div>
+<h4 class="font-headline text-sm font-semibold text-on-surface mb-1">Systems Over Scaffolding</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                  Building composable architectures that anticipate change rather than coupling tightly to volatile frameworks.
+                </p>
+</div>
+<div class="p-5 rounded-lg bg-surface-container border border-outline-variant/50">
+<div class="w-8 h-8 rounded bg-secondary-container/30 text-secondary flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-lg">speed</span>
+</div>
+<h4 class="font-headline text-sm font-semibold text-on-surface mb-1">Empirical Performance</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                  Sub-second Time-to-Interactive, lean bundle footprints, and sub-10ms query execution verified with production metrics.
+                </p>
+</div>
+</div>
+<!-- Engineering Interests Tags -->
+<div class="pt-2">
+<span class="text-xs font-mono uppercase tracking-widest text-outline block mb-3">Active Engineering Investigations:</span>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-full bg-surface-container-high border border-outline-variant/60 text-xs font-mono text-on-surface">Distributed Systems</span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container-high border border-outline-variant/60 text-xs font-mono text-on-surface">WebGL &amp; Shader Art</span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container-high border border-outline-variant/60 text-xs font-mono text-on-surface">Human-Computer Interaction</span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container-high border border-outline-variant/60 text-xs font-mono text-on-surface">Reactive Architecture</span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container-high border border-outline-variant/60 text-xs font-mono text-on-surface">CRDTs &amp; Local-first</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 03 & 04 // EXPERIENCE & EDUCATION (HONEST EMPTY STATES) -->
+<section class="py-24 border-t border-outline-variant/40 max-w-7xl mx-auto px-6 md:px-12" id="experience">
+<!-- Section Header -->
+<div class="mb-14">
+<div class="flex items-center gap-2 text-xs font-headline font-semibold text-primary uppercase tracking-[0.2em] mb-2">
+<span>03 &amp; 04 // BACKGROUND</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-5xl font-bold tracking-tight text-on-surface">
+          Trajectory &amp; Foundations.
+        </h2>
+<p class="text-on-surface-variant text-sm font-mono mt-2">Verified professional history and academic achievements.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+<!-- Experience Column -->
+<div class="space-y-6">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">work_outline</span>
+<h3 class="font-headline text-lg font-bold uppercase tracking-wider text-on-surface">Experience Timeline</h3>
+</div>
+<span class="text-xs font-mono text-outline">ROLE ARCHIVES</span>
+</div>
+<!-- Honest Empty State Card 01 -->
+<div class="p-6 rounded-xl bg-surface-container-low border border-dashed border-outline-variant hover:border-primary/50 transition-colors">
+<div class="flex items-center justify-between mb-4">
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-primary font-medium">Entry 01 — Coming Soon</span>
+<span class="text-xs font-mono text-outline">STATUS: AUDITING</span>
+</div>
+<h4 class="font-headline text-base font-bold text-on-surface mb-2">
+              [ Verified Employment Record In Queue ]
+            </h4>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">
+              To uphold strict factual honesty, past employers, titles, and metrics are currently undergoing redaction verification before public release. No placeholder companies (e.g. "Acme Corp") will ever be presented.
+            </p>
+<div class="flex items-center gap-2 text-[11px] font-mono text-outline">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span>Engineering Lead &amp; Senior IC Roles Pending Sync</span>
+</div>
+</div>
+<!-- Honest Empty State Card 02 -->
+<div class="p-6 rounded-xl bg-surface-container-low border border-dashed border-outline-variant/60">
+<div class="flex items-center justify-between mb-4">
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-outline">Entry 02 — Coming Soon</span>
+<span class="text-xs font-mono text-outline">INDEX: 02</span>
+</div>
+<h4 class="font-headline text-base font-semibold text-on-surface-variant mb-2">
+              [ Previous Technical Experience ]
+            </h4>
+<p class="text-xs text-outline leading-relaxed">
+              Fullstack systems development, architecture migrations, and cross-functional team initiatives will be cataloged upon portfolio deployment.
+            </p>
+</div>
+</div>
+<!-- Education Column -->
+<div class="space-y-6" id="education">
+<div class="flex items-center justify-between pb-3 border-b border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-xl">school</span>
+<h3 class="font-headline text-lg font-bold uppercase tracking-wider text-on-surface">Education &amp; Degrees</h3>
+</div>
+<span class="text-xs font-mono text-outline">ACADEMIC FOUNDATIONS</span>
+</div>
+<!-- Honest Empty State Card 01 -->
+<div class="p-6 rounded-xl bg-surface-container-low border border-dashed border-outline-variant hover:border-secondary/50 transition-colors">
+<div class="flex items-center justify-between mb-4">
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-secondary font-medium">Education Record Pending</span>
+<span class="text-xs font-mono text-outline">ACCREDITATION</span>
+</div>
+<h4 class="font-headline text-base font-bold text-on-surface mb-2">
+              [ Formal Degree / Computer Science Credentials ]
+            </h4>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">
+              Academic credentials, university degree titles, and honors will be reflected here upon candidate profile authorization. Fabricated institutions or fake graduation years are strictly prohibited.
+            </p>
+<div class="flex items-center gap-2 text-[11px] font-mono text-outline">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span>Computer Science / Software Engineering Curricula</span>
+</div>
+</div>
+<!-- Honest Empty State Card 02 (Certifications) -->
+<div class="p-6 rounded-xl bg-surface-container-low border border-dashed border-outline-variant/60">
+<div class="flex items-center justify-between mb-4">
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-outline">Continuous Learning &amp; Certs</span>
+<span class="text-xs font-mono text-outline">VERIFICATION</span>
+</div>
+<h4 class="font-headline text-base font-semibold text-on-surface-variant mb-2">
+              [ Professional Certifications &amp; Specializations ]
+            </h4>
+<p class="text-xs text-outline leading-relaxed">
+              Cloud architecture certifications (AWS / GCP / CNCF) and distributed computing milestones will populate directly.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 05 // SELECTED WORK SECTION -->
+<section class="py-24 border-t border-outline-variant/40 bg-surface-container-lowest" id="work">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+<div>
+<div class="flex items-center gap-2 text-xs font-headline font-semibold text-primary uppercase tracking-[0.2em] mb-2">
+<span>05 // SELECTED WORK</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-5xl font-bold tracking-tight text-on-surface">
+              Engineering Archives.
+            </h2>
+<p class="text-on-surface-variant text-sm font-mono mt-2">Planned projects, production concepts, and technical blueprints.</p>
+</div>
+<div class="text-xs font-mono text-outline">
+            CATALOG COUNT: 04 ENTRIES
+          </div>
+</div>
+<!-- Bento Grid Projects Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Project 01: DineFlow -->
+<article class="p-8 rounded-xl bg-surface-container-low border border-outline-variant flex flex-col justify-between group hover:border-primary transition-all duration-300">
+<div>
+<!-- Header Badges -->
+<div class="flex items-center justify-between gap-4 mb-6">
+<span class="font-mono text-xs text-outline">PROJ_01 // FULLSTACK</span>
+<span class="px-3 py-1 rounded-full text-xs font-mono font-medium bg-tertiary-container/30 text-tertiary border border-tertiary/40">
+                  Planned project
+                </span>
+</div>
+<!-- Title & Tagline -->
+<h3 class="font-headline text-2xl font-bold text-on-surface group-hover:text-primary transition-colors mb-3">
+                DineFlow
+              </h3>
+<p class="text-xs font-mono text-primary mb-4 tracking-wide">
+                Restaurant QR Ordering &amp; Realtime Kitchen Display System
+              </p>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 font-body">
+                High-throughput ordering solution architected for busy hospitality venues. Eliminates waiter latency with guest-device checkout while synchronizing live order statuses across kitchen prep monitors in sub-100ms.
+              </p>
+<!-- Architectural Highlights -->
+<div class="p-4 rounded-lg bg-surface-container border border-outline-variant/60 mb-6 space-y-2">
+<div class="text-[11px] font-mono uppercase tracking-wider text-outline mb-2">Architectural Highlights</div>
+<div class="flex items-start gap-2 text-xs text-on-surface">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">bolt</span>
+<span><strong>Realtime WebSockets:</strong> Bi-directional order routing with heartbeat reconnection.</span>
+</div>
+<div class="flex items-start gap-2 text-xs text-on-surface">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">account_tree</span>
+<span><strong>Distributed Queue:</strong> Redis-backed order priority buffer prevents race conditions.</span>
+</div>
+<div class="flex items-start gap-2 text-xs text-on-surface">
+<span class="material-symbols-outlined text-primary text-sm mt-0.5">contactless</span>
+<span><strong>Zero-latency Checkout:</strong> Edge-rendered PWA with Apple Pay &amp; Google Pay tokens.</span>
+</div>
+</div>
+<!-- Tech Badges -->
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-on-surface-variant">Next.js 14</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-on-surface-variant">Node.js</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-on-surface-variant">Socket.io</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-on-surface-variant">PostgreSQL</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-on-surface-variant">Tailwind CSS</span>
+</div>
+</div>
+<!-- Trigger Action -->
+<button class="w-full py-3 px-4 rounded bg-surface-container border border-outline-variant hover:bg-primary-container hover:text-on-primary-container text-on-surface font-headline text-xs uppercase tracking-wider font-semibold transition-all duration-200 flex items-center justify-center gap-2">
+<span>View project brief</span>
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</article>
+<!-- Project 02: FlowSync -->
+<article class="p-8 rounded-xl bg-surface-container-low border border-outline-variant flex flex-col justify-between group hover:border-secondary transition-all duration-300">
+<div>
+<!-- Header Badges -->
+<div class="flex items-center justify-between gap-4 mb-6">
+<span class="font-mono text-xs text-outline">PROJ_02 // SYSTEM &amp; GRAPHICS</span>
+<span class="px-3 py-1 rounded-full text-xs font-mono font-medium bg-secondary-container/40 text-secondary border border-secondary/50">
+                  Concept preview
+                </span>
+</div>
+<!-- Title & Tagline -->
+<h3 class="font-headline text-2xl font-bold text-on-surface group-hover:text-secondary transition-colors mb-3">
+                FlowSync
+              </h3>
+<p class="text-xs font-mono text-secondary mb-4 tracking-wide">
+                Realtime Infinite Canvas &amp; Collaborative Diagramming Engine
+              </p>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6 font-body">
+                Local-first visual workspace enabling multi-user whiteboard diagramming. Engineered for zero data loss during network interruptions, using conflict-free replicated data types and hardware-accelerated 2D rendering.
+              </p>
+<!-- Architectural Highlights -->
+<div class="p-4 rounded-lg bg-surface-container border border-outline-variant/60 mb-6 space-y-2">
+<div class="text-[11px] font-mono uppercase tracking-wider text-outline mb-2">Architectural Highlights</div>
+<div class="flex items-start gap-2 text-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">sync</span>
+<span><strong>CRDT State Engine:</strong> Yjs integration allowing deterministic branch convergence.</span>
+</div>
+<div class="flex items-start gap-2 text-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">memory</span>
+<span><strong>Wasm Acceleration:</strong> Rust/WebAssembly module for computing spatial quadtrees.</span>
+</div>
+<div class="flex items-start gap-2 text-xs text-on-surface">
+<span class="material-symbols-outlined text-secondary text-sm mt-0.5">offline_bolt</span>
+<span><strong>Optimistic Offline:</strong> IndexedDB mirror with background delta synchronization.</span>
+</div>
+</div>
+<!-- Tech Badges -->
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-on-surface-variant">TypeScript</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-on-surface-variant">Rust / Wasm</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-on-surface-variant">Canvas API</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-on-surface-variant">Yjs CRDT</span>
+<span class="px-2.5 py-1 rounded bg-surface-container-high text-xs font-mono text-on-surface-variant">WebRTC</span>
+</div>
+</div>
+<!-- Trigger Action -->
+<button class="w-full py-3 px-4 rounded bg-surface-container border border-outline-variant hover:bg-secondary hover:text-on-secondary text-on-surface font-headline text-xs uppercase tracking-wider font-semibold transition-all duration-200 flex items-center justify-center gap-2">
+<span>View project brief</span>
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</article>
+<!-- Project 03: Blueprint Placeholder -->
+<article class="p-8 rounded-xl bg-surface-container-low/60 border border-dashed border-outline-variant/70 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-mono text-xs text-outline">03 // ARCHIVE SLOT</span>
+<span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-surface-container-high text-outline">Content pending</span>
+</div>
+<h3 class="font-headline text-xl font-semibold text-on-surface-variant mb-2">
+                Project Brief Pending
+              </h3>
+<p class="text-xs text-outline leading-relaxed mb-6 font-mono">
+                Structural blueprint reserved for enterprise cloud microservice or distributed data engineering case study. Currently in scoping.
+              </p>
+<!-- Wireframe Visual Blueprint lines -->
+<div class="border border-outline-variant/40 rounded p-4 space-y-2 mb-6">
+<div class="h-2 w-3/4 bg-surface-container rounded"></div>
+<div class="h-2 w-1/2 bg-surface-container rounded"></div>
+<div class="h-2 w-5/6 bg-surface-container rounded"></div>
+</div>
+</div>
+<div class="text-[11px] font-mono text-outline flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">pending</span>
+<span>Case study outline currently drafting</span>
+</div>
+</article>
+<!-- Project 04: Blueprint Placeholder -->
+<article class="p-8 rounded-xl bg-surface-container-low/60 border border-dashed border-outline-variant/70 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-mono text-xs text-outline">04 // ARCHIVE SLOT</span>
+<span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-surface-container-high text-outline">Content pending</span>
+</div>
+<h3 class="font-headline text-xl font-semibold text-on-surface-variant mb-2">
+                Project Brief Pending
+              </h3>
+<p class="text-xs text-outline leading-relaxed mb-6 font-mono">
+                Architectural slot reserved for open-source developer tooling or high-performance CLI utility. Codebase under initial development.
+              </p>
+<!-- Wireframe Visual Blueprint lines -->
+<div class="border border-outline-variant/40 rounded p-4 space-y-2 mb-6">
+<div class="h-2 w-2/3 bg-surface-container rounded"></div>
+<div class="h-2 w-4/5 bg-surface-container rounded"></div>
+<div class="h-2 w-1/3 bg-surface-container rounded"></div>
+</div>
+</div>
+<div class="text-[11px] font-mono text-outline flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">pending</span>
+<span>Repository setup &amp; architecture in progress</span>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- 06 // CAPABILITIES & SKILLS SECTION (6-CATEGORY BENTO) -->
+<section class="py-24 border-t border-outline-variant/40 max-w-7xl mx-auto px-6 md:px-12" id="skills">
+<!-- Section Header -->
+<div class="mb-14">
+<div class="flex items-center gap-2 text-xs font-headline font-semibold text-primary uppercase tracking-[0.2em] mb-2">
+<span>06 // CAPABILITIES</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-5xl font-bold tracking-tight text-on-surface">
+          Technical Arsenal.
+        </h2>
+<p class="text-on-surface-variant text-sm font-mono mt-2">Proficiencies, ecosystems, and operational tooling.</p>
+</div>
+<!-- 6-Category Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Category 1: Languages -->
+<div class="p-6 rounded-xl bg-surface-container-low border border-outline-variant hover:border-primary/60 transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-mono text-xs text-primary font-semibold uppercase">01 // LANGUAGES</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-primary-container/20 text-primary">Core Fluency</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-on-surface mb-3">Syntax &amp; Runtimes</h3>
+<p class="text-xs text-on-surface-variant mb-6 font-body leading-relaxed">
+              Deep fluency in strictly typed ecosystems, concurrent backends, and low-overhead script layers.
+            </p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">TypeScript</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Go</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Python</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Rust</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">SQL</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">HTML5 / Modern CSS</span>
+</div>
+</div>
+<!-- Category 2: Frontend -->
+<div class="p-6 rounded-xl bg-surface-container-low border border-outline-variant hover:border-primary/60 transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-mono text-xs text-primary font-semibold uppercase">02 // FRONTEND</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-primary-container/20 text-primary">UI Architecture</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-on-surface mb-3">Interface Systems</h3>
+<p class="text-xs text-on-surface-variant mb-6 font-body leading-relaxed">
+              Component design systems, responsive layout engines, deterministic rendering, and rich graphic canvases.
+            </p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">React</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Next.js</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Vue</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Tailwind CSS</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">WebGL</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Micro-frontends</span>
+</div>
+</div>
+<!-- Category 3: Backend -->
+<div class="p-6 rounded-xl bg-surface-container-low border border-outline-variant hover:border-secondary/60 transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-mono text-xs text-secondary font-semibold uppercase">03 // BACKEND</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-secondary-container/30 text-secondary">Services</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-on-surface mb-3">Server &amp; API Layer</h3>
+<p class="text-xs text-on-surface-variant mb-6 font-body leading-relaxed">
+              Resilient web services, contract-first communication protocols, streaming endpoints, and auth mechanics.
+            </p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Node.js</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Express</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">FastAPI</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">GraphQL</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">REST APIs</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">gRPC</span>
+</div>
+</div>
+<!-- Category 4: Data -->
+<div class="p-6 rounded-xl bg-surface-container-low border border-outline-variant hover:border-tertiary/60 transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-mono text-xs text-tertiary font-semibold uppercase">04 // DATA</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-tertiary-container/30 text-tertiary">Persistence</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-on-surface mb-3">Storage &amp; Caching</h3>
+<p class="text-xs text-on-surface-variant mb-6 font-body leading-relaxed">
+              Relational schemas, memory-speed caching layers, document data structures, and high-volume analytical stores.
+            </p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">PostgreSQL</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Redis</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">MongoDB</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Prisma ORM</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">ClickHouse</span>
+</div>
+</div>
+<!-- Category 5: Production & DevOps -->
+<div class="p-6 rounded-xl bg-surface-container-low border border-outline-variant hover:border-primary/60 transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-mono text-xs text-primary font-semibold uppercase">05 // DEVOPS</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-primary-container/20 text-primary">Infrastructure</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-on-surface mb-3">Deployment &amp; Cloud</h3>
+<p class="text-xs text-on-surface-variant mb-6 font-body leading-relaxed">
+              Containerization pipelines, repeatable infrastructure definitions, continuous delivery, and edge networks.
+            </p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Docker</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Kubernetes</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">AWS</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">CI/CD Pipelines</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Terraform</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Cloudflare</span>
+</div>
+</div>
+<!-- Category 6: AI & Tools -->
+<div class="p-6 rounded-xl bg-surface-container-low border border-outline-variant hover:border-secondary/60 transition-all flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-mono text-xs text-secondary font-semibold uppercase">06 // AI &amp; TOOLS</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-secondary-container/30 text-secondary">Productivity</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-on-surface mb-3">Tooling &amp; Automation</h3>
+<p class="text-xs text-on-surface-variant mb-6 font-body leading-relaxed">
+              Retrieval-augmented workflows, embedding search vectors, testing frameworks, and modern developer ergonomics.
+            </p>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">LLM Integration</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Vector Databases</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Git Workflows</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Vite</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Jest / Vitest</span>
+<span class="px-2.5 py-1 rounded bg-surface-container text-xs font-mono text-on-surface border border-outline-variant/40">Figma</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 07 // CONTACT & ENGAGEMENT SECTION -->
+<section class="py-24 border-t border-outline-variant/40 bg-surface-container-lowest" id="contact">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Contact Left: Editorial Copy & Honest Contact Detail Empty State -->
+<div class="lg:col-span-5 space-y-6">
+<div class="flex items-center gap-2 text-xs font-headline font-semibold text-primary uppercase tracking-[0.2em] mb-2">
+<span>07 // ENGAGEMENT</span>
+</div>
+<h2 class="font-headline text-3xl sm:text-5xl font-bold tracking-tight text-on-surface leading-tight">
+              Let’s build something great.
+            </h2>
+<p class="text-base text-on-surface-variant font-body leading-relaxed">
+              Open to conversations regarding principal/senior engineering roles, high-impact contract systems architecture, and transformative product launches.
+            </p>
+<!-- Honest Empty State for Direct Contact Info (No Fake Emails) -->
+<div class="p-5 rounded-xl bg-surface-container-low border border-dashed border-outline-variant space-y-3">
+<div class="flex items-center gap-2 text-xs font-mono text-tertiary">
+<span class="material-symbols-outlined text-base">info</span>
+<span class="font-semibold uppercase tracking-wider">Communication Channel Notice</span>
+</div>
+<p class="text-xs text-on-surface-variant font-mono leading-relaxed">
+                [ Direct Email Pending — Connect via LinkedIn or Form ]
+              </p>
+<p class="text-[11px] text-outline font-body leading-normal">
+                Direct email addresses are shielded against crawler harvesting. Inbound inquiries through the dispatch terminal below or via verified professional networks are received and evaluated promptly.
+              </p>
+<div class="pt-2 flex items-center gap-4 text-xs font-mono">
+<span class="text-on-surface hover:text-primary transition-colors cursor-pointer flex items-center gap-1">
+<span>LinkedIn Profile</span>
+<span class="material-symbols-outlined text-xs">arrow_outward</span>
+</span>
+<span class="text-outline">/</span>
+<span class="text-on-surface hover:text-primary transition-colors cursor-pointer flex items-center gap-1">
+<span>GitHub Repository</span>
+<span class="material-symbols-outlined text-xs">arrow_outward</span>
+</span>
+</div>
+</div>
+<!-- Response SLA badge -->
+<div class="flex items-center gap-3 text-xs font-mono text-outline">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span>Average response time: &lt; 24 business hours</span>
+</div>
+</div>
+<!-- Contact Right: Mock Message Dispatch Terminal -->
+<div class="lg:col-span-7 bg-surface-container-low border border-outline-variant rounded-xl p-8 shadow-xl">
+<div class="flex items-center justify-between border-b border-outline-variant/50 pb-4 mb-6">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-error/70 inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-tertiary/70 inline-block"></span>
+<span class="w-3 h-3 rounded-full bg-primary/70 inline-block"></span>
+<span class="font-mono text-xs text-outline ml-2">DISPATCH TERMINAL v2.4</span>
+</div>
+<span class="font-mono text-[10px] text-primary">ENCRYPTED PORT</span>
+</div>
+<form class="space-y-5" onsubmit="event.preventDefault(); alert('Dispatch protocol active. Thank you for reaching out!');">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block font-mono text-xs uppercase tracking-wider text-outline mb-2" for="name">Sender Name</label>
+<input class="w-full bg-surface-container border border-outline-variant rounded px-4 py-2.5 text-sm text-on-surface placeholder:text-outline/50 focus:outline-none focus:border-primary font-body transition-colors" id="name" placeholder="e.g. Elena Rostova" required="" type="text"/>
+</div>
+<div>
+<label class="block font-mono text-xs uppercase tracking-wider text-outline mb-2" for="email">Work Email</label>
+<input class="w-full bg-surface-container border border-outline-variant rounded px-4 py-2.5 text-sm text-on-surface placeholder:text-outline/50 focus:outline-none focus:border-primary font-body transition-colors" id="email" placeholder="elena@company.com" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block font-mono text-xs uppercase tracking-wider text-outline mb-2" for="scope">Project Scope / Role Type</label>
+<select class="w-full bg-surface-container border border-outline-variant rounded px-4 py-2.5 text-sm text-on-surface focus:outline-none focus:border-primary font-body transition-colors" id="scope">
+<option class="bg-surface-container-high">Full-time Engineering Role (Staff / Senior)</option>
+<option class="bg-surface-container-high">Contract Architecture Consultation</option>
+<option class="bg-surface-container-high">MVP Product Build / Web App</option>
+<option class="bg-surface-container-high">Advisory / Technical Exploration</option>
+</select>
+</div>
+<div>
+<label class="block font-mono text-xs uppercase tracking-wider text-outline mb-2" for="message">Message Payload</label>
+<textarea class="w-full bg-surface-container border border-outline-variant rounded px-4 py-2.5 text-sm text-on-surface placeholder:text-outline/50 focus:outline-none focus:border-primary font-body transition-colors" id="message" placeholder="Share details about your roadmap, challenges, or schedule..." required="" rows="4"></textarea>
+</div>
+<button class="w-full py-3.5 px-6 rounded bg-primary-container text-on-primary-container hover:bg-primary font-headline text-xs uppercase tracking-widest font-semibold transition-all duration-200 active:scale-98 flex items-center justify-center gap-2 shadow-lg shadow-primary-container/20" type="submit">
+<span>Submit Dispatch</span>
+<span class="material-symbols-outlined text-sm font-bold">send</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="w-full bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline-variant flat no shadows font-body text-xs text-on-surface-variant dark:text-on-surface-variant transition-colors duration-200">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 w-full px-6 md:px-12 py-8 max-w-7xl mx-auto">
+<!-- Brand & Role Info -->
+<div class="flex items-center gap-4">
+<span class="font-headline text-sm font-semibold tracking-wider text-on-surface dark:text-on-surface">KG</span>
+<span class="text-outline">/</span>
+<span class="font-mono text-xs">Fullstack Developer &amp; Systems Architect</span>
+</div>
+<!-- Mandatory Copyright String -->
+<div class="text-center font-mono">
+        © 2024 Digital Atelier. All rights reserved. Built with editorial precision.
+      </div>
+<!-- Links Cluster with Back to Top -->
+<div class="flex items-center gap-6 font-mono text-xs">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface hover:text-primary dark:hover:text-primary transition-colors duration-150 flex items-center gap-1" href="#hero">
+<span>Back to Top</span>
+<span class="material-symbols-outlined text-xs">arrow_upward</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#about">Colophon</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#hero">Privacy</a>
+</div>
+</div>
+</footer>
+<!-- Lightweight Mobile Navigation Toggle Script -->
+<script>
+    const mobileBtn = document.getElementById('mobile-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Close mobile menu on link clicks
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+  </script>
+</body></html>
