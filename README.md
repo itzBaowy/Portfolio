@@ -64,6 +64,12 @@ See `DESIGN.md` for art direction and tokens. Stitch references and metadata are
 - Hero: supplied full-color portrait with a subtle entrance and hover; reduced motion disables these effects. The former orbital model, fallback illustration and Three.js dependencies have been removed.
 - Project cards use a small arrow and subtle cover/background hover with visible keyboard focus. Native cursor stays available; no floating cursor label is used.
 
+### Skills toolbox
+
+Skills use an original bento layout with six category cards, colored icon wells and 27 technology tiles. Languages/Backend have larger marks on desktop; mobile uses compact two-column tiles. Category filters retain keyboard support, pressed state and a concise screen-reader status. Counts come directly from `src/data/skills.ts`; no proficiency ratings are inferred.
+
+The app embeds only 21 selected SVG brand paths from [Simple Icons](https://github.com/simple-icons/simple-icons) and six semantic Lucide symbols (WebSocket, CI/CD, AWS Lightsail, OpenAI, Codex, Google Stitch). There are no icon CDN requests or full-catalog browser imports. Colors are tuned for the dark canvas. Metadata/source links are recorded in `docs/icon-sources.json`, and the package license is preserved under `docs/licenses/`. `simple-icons` is build tooling only. Run `npm run icons` after changing the selections in `scripts/build-tech-icons.mjs`; the generated `src/data/technology-visuals.ts` is checked against every configured technology name.
+
 Navigation, project routes, skill filters and content remain accessible with a keyboard. CV and contact actions use real assets/channels only. JavaScript-disabled visitors can still read server-rendered content and navigate anchors and project links.
 
 ## Validate

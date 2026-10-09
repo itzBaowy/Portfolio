@@ -1,0 +1,130 @@
+{
+  "package": "simple-icons@16.34.0",
+  "icons": [
+    {
+      "name": "TypeScript",
+      "slug": "typescript",
+      "source": "https://www.typescriptlang.org/branding",
+      "guidelines": "https://www.typescriptlang.org/branding"
+    },
+    {
+      "name": "JavaScript ES6+",
+      "slug": "javascript",
+      "source": "https://github.com/voodootikigod/logo.js/blob/1544bdeed6d618a6cfe4f0650d04ab8d9cfa76d9/js.svg",
+      "license": {
+        "type": "MIT",
+        "url": "https://spdx.org/licenses/MIT"
+      }
+    },
+    {
+      "name": "Next.js",
+      "slug": "nextdotjs",
+      "source": "https://vercel.com/design/brands#next-js",
+      "guidelines": "https://vercel.com/design/brands#next-js"
+    },
+    {
+      "name": "React",
+      "slug": "react",
+      "source": "https://github.com/facebook/create-react-app/blob/282c03f9525fdf8061ffa1ec50dce89296d916bd/test/fixtures/relative-paths/src/logo.svg"
+    },
+    {
+      "name": "Electron",
+      "slug": "electron",
+      "source": "https://www.electronjs.org"
+    },
+    {
+      "name": "Redux",
+      "slug": "redux",
+      "source": "https://github.com/reduxjs/redux/blob/abb5f892f7e46849e5ca9bc13e75cfbc944a71b6/logo/logo.svg"
+    },
+    {
+      "name": "Tailwind CSS",
+      "slug": "tailwindcss",
+      "source": "https://tailwindcss.com/brand",
+      "guidelines": "https://tailwindcss.com/brand"
+    },
+    {
+      "name": "NestJS",
+      "slug": "nestjs",
+      "source": "https://nestjs.com"
+    },
+    {
+      "name": "Express",
+      "slug": "express",
+      "source": "https://github.com/openjs-foundation/artwork/blob/3816245ebbf4707bdafde748350ac8476b6b5b62/projects/express/express-icon-black.svg"
+    },
+    {
+      "name": "PostgreSQL",
+      "slug": "postgresql",
+      "source": "https://wiki.postgresql.org/wiki/Logo",
+      "guidelines": "https://www.postgresql.org/about/policies/trademarks/"
+    },
+    {
+      "name": "MySQL",
+      "slug": "mysql",
+      "source": "https://www.mysql.com/about/legal/logos.html",
+      "guidelines": "https://www.mysql.com/about/legal/logos.html"
+    },
+    {
+      "name": "MongoDB",
+      "slug": "mongodb",
+      "source": "https://www.mongodb.com/pressroom"
+    },
+    {
+      "name": "Redis",
+      "slug": "redis",
+      "source": "https://redis.io/brand-guidelines",
+      "guidelines": "https://redis.io/brand-guidelines"
+    },
+    {
+      "name": "Elasticsearch",
+      "slug": "elasticsearch",
+      "source": "https://www.elastic.co/brand"
+    },
+    {
+      "name": "Docker",
+      "slug": "docker",
+      "source": "https://www.docker.com/company/newsroom/media-resources"
+    },
+    {
+      "name": "GitHub Actions",
+      "slug": "githubactions",
+      "source": "https://github.com/features/actions"
+    },
+    {
+      "name": "Jenkins",
+      "slug": "jenkins",
+      "source": "https://get.jenkins.io/art/",
+      "guidelines": "https://www.jenkins.io/press/",
+      "license": {
+        "type": "CC-BY-SA-3.0",
+        "url": "https://spdx.org/licenses/CC-BY-SA-3.0"
+      }
+    },
+    {
+      "name": "Claude",
+      "slug": "claude",
+      "source": "https://claude.ai"
+    },
+    {
+      "name": "Git",
+      "slug": "git",
+      "source": "https://git-scm.com/community/logos",
+      "license": {
+        "type": "CC-BY-3.0",
+        "url": "https://spdx.org/licenses/CC-BY-3.0"
+      }
+    },
+    {
+      "name": "Figma",
+      "slug": "figma",
+      "source": "https://www.figma.com/using-the-figma-brand/",
+      "guidelines": "https://www.figma.com/using-the-figma-brand/"
+    },
+    {
+      "name": "Cursor",
+      "slug": "cursor",
+      "source": "https://cursor.com/brand"
+    }
+  ]
+}

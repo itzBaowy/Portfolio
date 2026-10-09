@@ -11,7 +11,8 @@
     "test:e2e": "playwright test",
     "format": "prettier --write src tests scripts",
     "audit:perf": "node scripts/lighthouse.mjs",
-    "og": "node scripts/build-og.mjs"
+    "og": "node scripts/build-og.mjs",
+    "icons": "node scripts/build-tech-icons.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.2.0",
@@ -40,6 +41,7 @@
     "prettier": "^3.9.9",
     "serve": "^14.2.6",
     "sharp": "^0.35.5",
+    "simple-icons": "16.34.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3"
   },

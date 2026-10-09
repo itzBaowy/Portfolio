@@ -5,7 +5,8 @@ Date: 2026-10-09 (Asia/Bangkok).
 ## Checked
 
 - Strict TypeScript, ESLint and Next.js production static export passed.
-- The latest full suite, after the compact project-card redesign, passed all 20 Playwright tests: five homepage sizes (375, 430, 768, 1440, 1920px), mobile keyboard menu/focus restoration, same-document Work navigation, four project routes on desktop/mobile, category filters with all 27 technologies, ambient animation/hidden-tab pause/route continuity, mobile trail limits, reduced motion, full-color Hero portrait loading, supplied contact channels, structured data and SEO assets.
+- The latest full suite, after the Skills toolbox redesign, passed all 20 Playwright tests: five homepage sizes (375, 430, 768, 1440, 1920px), mobile keyboard menu/focus restoration, same-document Work navigation, four project routes on desktop/mobile, category filters with all 27 technologies, ambient animation/hidden-tab pause/route continuity, mobile trail limits, reduced motion, full-color Hero portrait loading, supplied contact channels, structured data and SEO assets.
+- Skills now use an original two-column bento composition with 27 inline SVG technology icons (21 selected brand paths and six semantic symbols). Screenshots were inspected at 1440px and 375px; all 27 SVGs rendered at 1440/1024/768/375px without horizontal overflow. All six category filters and All were exercised: visible tile/icon counts matched the button counts and Axe reported zero WCAG violations in every state. The filter-counter contrast issue found in the first run was corrected before the final passing suite. Icon data is committed and uses no CDN requests; the complete Simple Icons catalog is absent from app imports.
 - The four project slots now share a compact card grid. Browser geometry checks confirmed two equal-width columns at 1440px/768px and a single column at 375px; desktop cards are about 483px high, mobile cards about 401–432px. Final preview screenshots were inspected. Keyboard Enter opens the DineFlow brief, and all existing project links/back navigation passed. Concept/planned/coming-soon states remain explicit; detail-page cover sizing is preserved.
 - Axe WCAG checks reported no violations on the tested homepage and four project pages. This does not replace manual screen-reader testing.
 - The Hero now uses the owner's large 4:5 portrait in the desktop right column and beneath the text on mobile. The orbital components, SVG fallback and Three.js/R3F/Drei dependencies were removed.
@@ -18,13 +19,13 @@ Date: 2026-10-09 (Asia/Bangkok).
 
 ## Lighthouse mobile lab measurements
 
-Production static export served locally, Chromium, Lighthouse default mobile throttling. Latest run after replacing the orbital model with the prior Hero portrait, before the `baodeptrai1` image replacement and compact project-card redesign:
+Production static export served locally, Chromium, Lighthouse default mobile throttling. Latest run after the Skills toolbox redesign:
 
 | Page     | Performance | Accessibility | Best practices | SEO |   LCP | CLS |   TBT |
 | -------- | ----------: | ------------: | -------------: | --: | ----: | --: | ----: |
-| Home     |          93 |           100 |            100 | 100 | 3.2 s |   0 | 30 ms |
-| DineFlow |          95 |           100 |            100 | 100 | 3.0 s |   0 | 40 ms |
-| FlowSync |          95 |           100 |            100 | 100 | 3.0 s |   0 | 30 ms |
+| Home     |          91 |           100 |            100 | 100 | 3.5 s |   0 | 60 ms |
+| DineFlow |          97 |           100 |            100 | 100 | 2.6 s |   0 | 60 ms |
+| FlowSync |          95 |           100 |            100 | 100 | 3.0 s |   0 | 50 ms |
 
 These single-run lab scores vary with machine load.
 

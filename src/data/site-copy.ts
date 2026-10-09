@@ -60,6 +60,8 @@ export const copy = {
     title: "Technologies I work with.",
     description: "The right tools for each layer of the experience.",
     all: "All technologies",
+    technologies: "TECHNOLOGIES",
+    layers: "LAYERS",
   },
   contact: {
     eyebrow: "06 / START A CONVERSATION",

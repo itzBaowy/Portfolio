@@ -42,3 +42,5 @@ export const skills = [
     technologies: ["OpenAI", "Codex", "Claude", "Git", "Figma", "Google Stitch", "Cursor"],
   },
 ] as const;
+
+export type Technology = (typeof skills)[number]["technologies"][number];
