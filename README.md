@@ -1,6 +1,6 @@
 # Khuu Gia Bao — Digital Atelier
 
-A responsive Fullstack Developer portfolio for `https://khuugiabao.com`. Built with Next.js App Router, strict TypeScript, Tailwind CSS, shadcn-style owned UI primitives, Lucide, Motion and GSAP ScrollTrigger.
+A responsive Full-Stack Software Engineer portfolio for `https://khuugiabao.com`. Built with Next.js App Router, strict TypeScript, Tailwind CSS, shadcn-style owned UI primitives, Lucide, Motion and GSAP ScrollTrigger.
 
 ## Run locally
 

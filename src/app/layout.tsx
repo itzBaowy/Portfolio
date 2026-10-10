@@ -10,17 +10,18 @@ import "@/styles/globals.css";
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display", display: "swap" });
+const portfolioTitle = `${profile.name ?? "Digital Atelier"} — ${profile.title}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
   title: {
-    default: `${profile.name ?? "Digital Atelier"} — Fullstack Developer`,
+    default: portfolioTitle,
     template: "%s — Digital Atelier",
   },
   description: profile.description,
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Digital Atelier — Fullstack Developer",
+    title: portfolioTitle,
     description: profile.description,
     url: profile.siteUrl,
     siteName: "Digital Atelier",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digital Atelier — Fullstack Developer",
+    title: portfolioTitle,
     description: profile.description,
     images: ["/og.png"],
   },

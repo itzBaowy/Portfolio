@@ -3,7 +3,7 @@ export const profile = {
   name: "Khuu Gia Bao" as string | null,
   namePlaceholder: "Your name",
   initials: "KG",
-  title: "Fullstack Developer",
+  title: "Full-Stack Software Engineer",
   tagline: "Digitizing the entire process that matter.",
   description: "I design and develop scalable, modern and thoughtful digital products.",
   avatar: "/images/baodeptrai1.webp" as string | null,
@@ -14,7 +14,7 @@ export const profile = {
   resumePageUrl: "/cv/Khuu_Gia_Bao_CV.html" as string | null,
   siteUrl: "https://khuugiabao.com",
   about: [
-    "I’m a fullstack developer interested in the space where thoughtful design meets reliable engineering. I enjoy building products that are not only functional but also delightful to use.",
+    "I'm a full-stack software engineer interested in the space where thoughtful design meets reliable engineering. I enjoy building products that are not only functional but also delightful to use.",
     "My focus is on solving problems with clean architecture, maintainable code and careful attention to performance. I explore system design, deployment and AI-assisted development as part of that process.",
   ],
   principles: [

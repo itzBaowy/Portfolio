@@ -11,7 +11,7 @@ export const navigation = [
 
 export const copy = {
   hero: {
-    eyebrow: "FULLSTACK DEVELOPER",
+    eyebrow: "FULL-STACK SOFTWARE ENGINEER",
     lines: ["Building digital", "experiences", "that matter."],
     explore: "Explore My Work",
     cv: "Download My CV",
