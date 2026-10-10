@@ -28,6 +28,8 @@ Experience: a full-width timeline with two columns above 850px. The narrower lef
 
 CV: a standalone light document with navy text, restrained blue section rules and readable Arial typography. Keep the PDF to one A4 page with 12mm margins, selectable text and active contact/credential links. Career, skills, education and implemented projects use the portfolio's data; certifications use a compact two-column list that stacks on mobile. The HTML includes a native PDF download button, hidden during printing. The generator refuses multi-page exports. Hero provides both View CV and Download My CV.
 
+The CV header places a full-color circular portrait at the upper right. Four contact links use small blue SVG icons beside their text, arranged in two columns for print and desktop, then one column on mobile. Embed the portrait and icons so the HTML stays self-contained.
+
 ## Motion
 
 Motion handles reveal and page entry. GSAP ScrollTrigger handles timeline progress only. CSS handles portrait/card hover and native smooth scrolling, respecting reduced motion. No Lenis or scroll hijacking. The Hero uses the supplied portrait; no WebGL renderer or 3D library is loaded. Native cursor stays intact. Project links provide a visible focus outline and small corner-arrow feedback instead of a floating cursor label.

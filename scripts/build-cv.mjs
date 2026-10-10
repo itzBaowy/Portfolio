@@ -39,6 +39,12 @@ const { projects } = await loadData("projects");
 const { socials } = await loadData("socials");
 const { cv } = await loadData("cv");
 const css = await readFile("src/templates/cv.css", "utf8");
+const publicRoot = resolve("public");
+const portraitPath = resolve(publicRoot, profile.avatar.replace(/^\//, ""));
+if (!portraitPath.startsWith(publicRoot + sep)) {
+  throw new Error("CV portrait must stay inside public");
+}
+const portrait = `data:image/webp;base64,${(await readFile(portraitPath)).toString("base64")}`;
 const text = (value) =>
   String(value ?? "")
     .replace(/[\u2013\u2014]/g, "-")
@@ -78,12 +84,29 @@ const projectEntries = selected
 </article>`,
   )
   .join("");
+const contactIcons = {
+  email: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+  github:
+    '<path d="M9 19c-4.3 1.3-4.3-2.2-6-2.7m12 5v-3.4a3 3 0 0 0-.8-2.3c2.7-.3 5.5-1.3 5.5-6a4.7 4.7 0 0 0-1.3-3.3 4.3 4.3 0 0 0-.1-3.3s-1-.3-3.4 1.3a11.4 11.4 0 0 0-6.2 0C6.3 2.7 5.3 3 5.3 3a4.3 4.3 0 0 0-.1 3.3 4.7 4.7 0 0 0-1.3 3.3c0 4.7 2.8 5.7 5.5 6a3 3 0 0 0-.8 2.3v3.4"/>',
+  linkedin:
+    '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7m4-7v7m0-4a3 3 0 0 1 6 0v4"/><circle cx="7" cy="7" r=".6" fill="currentColor"/>',
+  portfolio:
+    '<circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/>',
+};
+const contactLink = (url, label, icon) =>
+  `<a href="${text(url)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${contactIcons[icon]}</svg><span>${text(label)}</span></a>`;
 const contacts = [
-  profile.email ? link(`mailto:${profile.email}`, profile.email) : "",
+  profile.email ? contactLink(`mailto:${profile.email}`, profile.email, "email") : "",
   ...socials
     .filter((social) => social.url)
-    .map((social) => link(social.url, social.url.replace(/^https?:\/\/(www\.)?/, ""))),
-  link(profile.siteUrl, profile.siteUrl.replace(/^https?:\/\//, "")),
+    .map((social) =>
+      contactLink(
+        social.url,
+        social.url.replace(/^https?:\/\/(www\.)?/, ""),
+        social.url.includes("github.com") ? "github" : "linkedin",
+      ),
+    ),
+  contactLink(profile.siteUrl, profile.siteUrl.replace(/^https?:\/\//, ""), "portfolio"),
 ]
   .filter(Boolean)
   .join("");
@@ -100,7 +123,7 @@ const html = `<!doctype html>
 <nav class="toolbar" aria-label="CV actions"><p>${text(displayName)} / CV</p><div class="toolbar-actions">${link(profile.siteUrl, "Portfolio")}
 <a class="download" href="./${basename}.pdf" download="${basename}.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 15v5h14v-5"/></svg>Download PDF</a></div></nav>
 <main class="cv-sheet">
-<header class="cv-header"><h1>${text(displayName)}</h1><p class="job-title">${text(profile.title)}</p><div class="contacts">${contacts}</div></header>
+<header class="cv-header"><div class="identity"><h1>${text(displayName)}</h1><p class="job-title">${text(profile.title)}</p><div class="contacts">${contacts}</div></div><img class="portrait" src="${portrait}" alt="${text(displayName)}" width="84" height="84"></header>
 <section class="summary" aria-labelledby="summary"><h2 id="summary">Profile</h2><p>${text(cv.summary)}</p></section>
 <section aria-labelledby="experience"><h2 id="experience">Experience</h2>${entries}</section>
 <section aria-labelledby="skills"><h2 id="skills">Technical skills</h2><dl class="skills">${skills.map((group) => `<div><dt>${text(group.name)}</dt><dd>${group.technologies.map(text).join(", ")}</dd></div>`).join("")}</dl></section>
@@ -118,6 +141,7 @@ try {
   const page = await browser.newPage();
   await page.goto(pathToFileURL(htmlPath).href);
   await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => Promise.all(Array.from(document.images, (image) => image.decode())));
   const pdf = await page.pdf({
     format: "A4",
     preferCSSPageSize: true,

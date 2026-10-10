@@ -75,8 +75,23 @@ a:focus-visible {
   line-height: 1.28;
 }
 .cv-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 84px;
+  align-items: start;
+  gap: 22px;
   border-bottom: 2px solid var(--accent);
   padding-bottom: 8px;
+}
+.portrait {
+  display: block;
+  width: 84px;
+  height: 84px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  padding: 3px;
+  background: #fff;
+  object-fit: cover;
+  object-position: center 30%;
 }
 h1 {
   margin: 0;
@@ -91,16 +106,26 @@ h1 {
   font-weight: 600;
 }
 .contacts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 15px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px 12px;
   font-size: 9pt;
 }
 .contacts a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
   text-decoration: none;
 }
+.contacts svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
 section {
-  margin-top: 11px;
+  margin-top: 8px;
 }
 h2 {
   margin: 0 0 6px;
@@ -245,9 +270,18 @@ h2 {
     font-size: 14px;
   }
   h1 {
-    font-size: 32px;
+    font-size: 29px;
+  }
+  .cv-header {
+    grid-template-columns: minmax(0, 1fr) 64px;
+    gap: 12px;
+  }
+  .portrait {
+    width: 64px;
+    height: 64px;
   }
   .contacts {
+    grid-template-columns: minmax(0, 1fr);
     font-size: 12px;
     overflow-wrap: anywhere;
   }
