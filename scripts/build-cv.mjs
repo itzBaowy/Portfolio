@@ -123,7 +123,7 @@ const html = `<!doctype html>
 <nav class="toolbar" aria-label="CV actions"><p>${text(displayName)} / CV</p><div class="toolbar-actions">${link(profile.siteUrl, "Portfolio")}
 <a class="download" href="./${basename}.pdf" download="${basename}.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 15v5h14v-5"/></svg>Download PDF</a></div></nav>
 <main class="cv-sheet">
-<header class="cv-header"><div class="identity"><h1>${text(displayName)}</h1><p class="job-title">${text(profile.title)}</p><div class="contacts">${contacts}</div></div><img class="portrait" src="${portrait}" alt="${text(displayName)}" width="84" height="84"></header>
+<header class="cv-header"><div class="identity"><h1>${text(displayName)}</h1><p class="job-title">${text(profile.title)}</p><div class="contacts">${contacts}</div></div><img class="portrait" src="${portrait}" alt="${text(displayName)}" width="96" height="96"></header>
 <section class="summary" aria-labelledby="summary"><h2 id="summary">Profile</h2><p>${text(cv.summary)}</p></section>
 <section aria-labelledby="experience"><h2 id="experience">Experience</h2>${entries}</section>
 <section aria-labelledby="skills"><h2 id="skills">Technical skills</h2><dl class="skills">${skills.map((group) => `<div><dt>${text(group.name)}</dt><dd>${group.technologies.map(text).join(", ")}</dd></div>`).join("")}</dl></section>

@@ -76,7 +76,7 @@ a:focus-visible {
 }
 .cv-header {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 84px;
+  grid-template-columns: minmax(0, 1fr) 96px;
   align-items: start;
   gap: 22px;
   border-bottom: 2px solid var(--accent);
@@ -84,8 +84,8 @@ a:focus-visible {
 }
 .portrait {
   display: block;
-  width: 84px;
-  height: 84px;
+  width: 96px;
+  height: 96px;
   border: 2px solid var(--accent);
   border-radius: 50%;
   padding: 3px;
@@ -273,12 +273,12 @@ h2 {
     font-size: 29px;
   }
   .cv-header {
-    grid-template-columns: minmax(0, 1fr) 64px;
+    grid-template-columns: minmax(0, 1fr) 72px;
     gap: 12px;
   }
   .portrait {
-    width: 64px;
-    height: 64px;
+    width: 72px;
+    height: 72px;
   }
   .contacts {
     grid-template-columns: minmax(0, 1fr);
