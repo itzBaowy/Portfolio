@@ -35,7 +35,7 @@ const { profile, displayName } = await loadData("profile");
 const { experience } = await loadData("experience");
 const { education, certifications } = await loadData("education");
 const { skills } = await loadData("skills");
-const { projects } = await loadData("projects");
+const { projects, projectStatusLabels } = await loadData("projects");
 const { socials } = await loadData("socials");
 const { cv } = await loadData("cv");
 const css = await readFile("src/templates/cv.css", "utf8");
@@ -74,11 +74,15 @@ const academics = education
 </article>`,
   )
   .join("");
-const selected = projects.filter((project) => ["in-progress", "live"].includes(project.status));
+const selected = cv.selectedProjectSlugs.map((slug) => {
+  const project = projects.find((item) => item.slug === slug && item.status !== "reserved");
+  if (!project) throw new Error(`CV project is missing or reserved: ${slug}`);
+  return project;
+});
 const projectEntries = selected
   .map(
     (project) => `<article class="entry">
-  <div class="entry-heading"><h3>${link(`${profile.siteUrl}/work/${project.slug}/`, project.name)} <span class="company">| ${text(project.category)}</span></h3><span class="dates">${project.status === "live" ? "Live" : "In development"}</span></div>
+  <div class="entry-heading"><h3>${link(`${profile.siteUrl}/work/${project.slug}/`, project.name)}</h3><span class="dates">${text(projectStatusLabels[project.status])}</span></div>
   <p>${text(cv.projectSummaries[project.slug] ?? project.overview)}</p>
   <p class="project-stack">${project.technologies.map(text).join(" | ")}</p>
 </article>`,
@@ -128,7 +132,7 @@ const html = `<!doctype html>
 <section aria-labelledby="skills"><h2 id="skills">Technical skills</h2><dl class="skills">${skills.map((group) => `<div><dt>${text(group.name)}</dt><dd>${group.technologies.map(text).join(", ")}</dd></div>`).join("")}</dl></section>
 <section aria-labelledby="education"><h2 id="education">Education</h2>${academics}</section>
 <section aria-labelledby="experience"><h2 id="experience">Experience</h2>${entries}</section>
-${selected.length ? `<section aria-labelledby="projects"><h2 id="projects">Selected projects</h2>${projectEntries}</section>` : ""}
+${selected.length ? `<section aria-labelledby="projects"><h2 id="projects">Selected projects</h2><div class="project-grid">${projectEntries}</div></section>` : ""}
 <section aria-labelledby="certifications"><h2 id="certifications">Certifications</h2><ul class="certificates">${certifications.map((item) => `<li>${item.credentialUrl ? link(item.credentialUrl, item.name) : text(item.name)}<span class="issuer">${text(item.issuer)} | ${text(item.issuedDate)}</span></li>`).join("")}</ul></section>
 </main></body></html>`;
 await mkdir(output, { recursive: true });

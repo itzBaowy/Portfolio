@@ -42,6 +42,8 @@ The owner's English CV is available as the standalone `public/cv/Khuu_Gia_Bao_CV
 
 The header includes the owner's full-color portrait in a circular frame at the upper right, with inline icons for email, GitHub, LinkedIn and portfolio links. The portrait is embedded in the HTML so it also loads offline and appears in the PDF.
 
+Selected projects are configured in `src/data/cv.ts`: DineFlow and FlowSync share a compact two-column layout that stacks on mobile. Their status labels come from the portfolio data, including FlowSync's planned status.
+
 Run `npm run cv` after editing portfolio data or `src/data/cv.ts` / `src/templates/cv.css`. This reads the same identity, career, education, skills, projects and credentials as the site, creates self-contained HTML, then exports it with Playwright Chromium. Install Chromium with `npx playwright install chromium` if needed. The generator refuses PDFs with more than one page; shorten content or adjust spacing before publishing, then visually inspect the PDF and run `npm run build`. Both generated files are committed so CI/deployment can use them without installing a browser at build time. The existing server-side PDF signature/path check still guards the download action.
 
 ### Projects

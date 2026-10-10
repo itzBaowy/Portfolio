@@ -136,10 +136,10 @@
         color: var(--accent);
       }
       section {
-        margin-top: 8px;
+        margin-top: 7px;
       }
       h2 {
-        margin: 0 0 6px;
+        margin: 0 0 5px;
         padding-bottom: 3px;
         border-bottom: 1px solid var(--rule);
         color: var(--accent);
@@ -209,6 +209,17 @@
       .project-stack {
         font-size: 9pt;
         color: var(--secondary);
+      }
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+      .project-grid .entry + .entry {
+        margin-top: 0;
+      }
+      .project-grid .entry-heading {
+        gap: 8px;
       }
       .certificates {
         display: grid;
@@ -317,6 +328,10 @@
         .certificates {
           grid-template-columns: minmax(0, 1fr);
           gap: 14px;
+        }
+        .project-grid {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 16px;
         }
         .certificates a {
           font-size: 13px;
@@ -510,23 +525,32 @@
       </section>
       <section aria-labelledby="projects">
         <h2 id="projects">Selected projects</h2>
-        <article class="entry">
-          <div class="entry-heading">
-            <h3>
-              <a href="https://khuugiabao.com/work/dineflow/">DineFlow</a>
-              <span class="company">| Restaurant operations</span>
-            </h3>
-            <span class="dates">In development</span>
-          </div>
-          <p>
-            Restaurant operations application connecting QR ordering, kitchen preparation, staff
-            service, billing and reporting. Includes tenant-scoped workspaces, transactional
-            order/payment records and realtime updates.
-          </p>
-          <p class="project-stack">
-            Next.js | NestJS | PostgreSQL | Prisma | Socket.IO | Docker | MinIO
-          </p>
-        </article>
+        <div class="project-grid">
+          <article class="entry">
+            <div class="entry-heading">
+              <h3><a href="https://khuugiabao.com/work/dineflow/">DineFlow</a></h3>
+              <span class="dates">In development</span>
+            </div>
+            <p>
+              QR ordering, kitchen workflows, billing and reports with tenant-scoped realtime
+              updates.
+            </p>
+            <p class="project-stack">
+              Next.js | NestJS | PostgreSQL | Prisma | Socket.IO | Docker | MinIO
+            </p>
+          </article>
+          <article class="entry">
+            <div class="entry-heading">
+              <h3><a href="https://khuugiabao.com/work/flowsync/">FlowSync</a></h3>
+              <span class="dates">Planned project</span>
+            </div>
+            <p>
+              Planned collaboration platform with Kanban boards, tasks, realtime updates and AI
+              support.
+            </p>
+            <p class="project-stack">Next.js | NestJS | PostgreSQL | Redis | BullMQ | WebSocket</p>
+          </article>
+        </div>
       </section>
       <section aria-labelledby="certifications">
         <h2 id="certifications">Certifications</h2>
