@@ -15,6 +15,7 @@ export const copy = {
     lines: ["Building digital", "experiences", "that matter."],
     explore: "Explore My Work",
     cv: "Download My CV",
+    viewCv: "View CV",
     cvPending: "CV not yet available",
     note: "Thoughtful interfaces. Reliable systems.",
     scroll: "Scroll to explore",

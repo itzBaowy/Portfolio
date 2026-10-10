@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Khuu Gia Bao - Fullstack Developer CV. Experience, education, projects and certifications."
+    />
+    <title>Khuu Gia Bao | Fullstack Developer CV</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #182337;
+        --secondary: #4c586c;
+        --accent: #244a88;
+        --rule: #dbe1e9;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #e9edf3;
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      a {
+        color: inherit;
+        text-underline-offset: 3px;
+      }
+      a:hover {
+        color: var(--accent);
+      }
+      a:focus-visible {
+        outline: 3px solid #668ee0;
+        outline-offset: 4px;
+      }
+      .toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        max-width: 210mm;
+        margin: 24px auto 16px;
+        padding: 0 4px;
+        font-size: 14px;
+      }
+      .toolbar p {
+        margin: 0;
+        font-weight: 600;
+      }
+      .toolbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .download {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 44px;
+        padding: 12px 18px;
+        border-radius: 8px;
+        background: #244a88;
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .download:hover {
+        background: #183869;
+        color: #fff;
+      }
+      .download svg {
+        width: 18px;
+        height: 18px;
+      }
+      .cv-sheet {
+        width: 100%;
+        max-width: 210mm;
+        margin: 0 auto 32px;
+        padding: 12mm;
+        background: #fff;
+        box-shadow: 0 8px 40px #26354b15;
+        font-size: 10pt;
+        line-height: 1.28;
+      }
+      .cv-header {
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 8px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 27pt;
+        line-height: 1.12;
+        letter-spacing: -1.2px;
+      }
+      .job-title {
+        margin: 5px 0 10px;
+        color: var(--accent);
+        font-size: 12pt;
+        font-weight: 600;
+      }
+      .contacts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 15px;
+        font-size: 9pt;
+      }
+      .contacts a {
+        text-decoration: none;
+      }
+      section {
+        margin-top: 11px;
+      }
+      h2 {
+        margin: 0 0 6px;
+        padding-bottom: 3px;
+        border-bottom: 1px solid var(--rule);
+        color: var(--accent);
+        font-size: 10pt;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+      }
+      h3 {
+        margin: 0;
+        font-size: 10.5pt;
+        font-weight: 700;
+      }
+      p {
+        margin: 4px 0 0;
+      }
+      .summary p {
+        margin: 0;
+      }
+      .entry + .entry {
+        margin-top: 8px;
+      }
+      .entry-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .entry-heading time,
+      .entry-heading .dates {
+        flex-shrink: 0;
+        color: var(--secondary);
+        font-size: 9pt;
+      }
+      .entry-heading .company {
+        font-weight: 400;
+      }
+      .product {
+        color: var(--secondary);
+        font-size: 9.5pt;
+      }
+      ul {
+        margin: 5px 0 0;
+        padding-left: 16px;
+      }
+      li {
+        padding-left: 2px;
+        margin-top: 2px;
+      }
+      .skills {
+        margin: 0;
+      }
+      .skills > div {
+        display: grid;
+        grid-template-columns: 105px minmax(0, 1fr);
+        gap: 12px;
+        margin-top: 2px;
+      }
+      .skills dt {
+        font-weight: 700;
+      }
+      .skills dd {
+        margin: 0;
+      }
+      .academic-detail {
+        color: var(--secondary);
+      }
+      .project-stack {
+        font-size: 9pt;
+        color: var(--secondary);
+      }
+      .certificates {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px 20px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .certificates li {
+        margin: 0;
+        padding: 0;
+        break-inside: avoid;
+      }
+      .certificates a {
+        font-size: 9.2pt;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .certificates .issuer {
+        display: block;
+        color: var(--secondary);
+        font-size: 8.8pt;
+        margin-top: 2px;
+      }
+      .entry,
+      .entry-heading,
+      .skills > div {
+        break-inside: avoid;
+      }
+      h2 {
+        break-after: avoid;
+      }
+      @page {
+        size: A4;
+        margin: 12mm;
+      }
+      @media print {
+        body {
+          background: #fff;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+        .toolbar {
+          display: none;
+        }
+        .cv-sheet {
+          margin: 0;
+          max-width: none;
+          padding: 0;
+          box-shadow: none;
+        }
+        a {
+          text-decoration: none;
+        }
+      }
+      @media screen and (max-width: 700px) {
+        .toolbar {
+          margin: 16px;
+          padding: 0;
+          flex-wrap: wrap;
+        }
+        .toolbar-actions {
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+        .cv-sheet {
+          padding: 26px 22px;
+          margin-bottom: 0;
+          font-size: 14px;
+        }
+        h1 {
+          font-size: 32px;
+        }
+        .contacts {
+          font-size: 12px;
+          overflow-wrap: anywhere;
+        }
+        section {
+          margin-top: 22px;
+        }
+        h2 {
+          font-size: 13px;
+        }
+        h3 {
+          font-size: 15px;
+        }
+        .entry-heading {
+          flex-direction: column;
+          gap: 4px;
+        }
+        .skills > div {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 3px;
+          margin-top: 9px;
+        }
+        .certificates {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 14px;
+        }
+        .certificates a {
+          font-size: 13px;
+        }
+        .certificates .issuer {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="toolbar" aria-label="CV actions">
+      <p>Khuu Gia Bao / CV</p>
+      <div class="toolbar-actions">
+        <a href="https://khuugiabao.com">Portfolio</a>
+        <a class="download" href="./Khuu_Gia_Bao_CV.pdf" download="Khuu_Gia_Bao_CV.pdf"
+          ><svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="M12 3v12m-5-5 5 5 5-5M5 15v5h14v-5" /></svg
+          >Download PDF</a
+        >
+      </div>
+    </nav>
+    <main class="cv-sheet">
+      <header class="cv-header">
+        <h1>Khuu Gia Bao</h1>
+        <p class="job-title">Fullstack Developer</p>
+        <div class="contacts">
+          <a href="mailto:notbao.js@gmail.com">notbao.js@gmail.com</a
+          ><a href="https://github.com/itzBaowy">github.com/itzBaowy</a
+          ><a href="https://www.linkedin.com/in/kgbao">linkedin.com/in/kgbao</a
+          ><a href="https://khuugiabao.com">khuugiabao.com</a>
+        </div>
+      </header>
+      <section class="summary" aria-labelledby="summary">
+        <h2 id="summary">Profile</h2>
+        <p>
+          Fullstack developer focused on thoughtful interfaces, maintainable backend systems and
+          realtime workflows. Experience spans enterprise software, AI integration and digital
+          product development.
+        </p>
+      </section>
+      <section aria-labelledby="experience">
+        <h2 id="experience">Experience</h2>
+        <article class="entry">
+          <div class="entry-heading">
+            <h3>Software Engineer <span class="company">| SPLabs</span></h3>
+            <span class="dates">May 2026 - Present</span>
+          </div>
+          <p class="product">Blockchain &amp; Crypto Products</p>
+          <p>
+            Building and owning full-stack products across Next.js, NestJS and real-time
+            infrastructure - from architecture and product delivery to production operations.
+          </p>
+          <ul>
+            <li>
+              Designed REST/gRPC services, event-driven workflows and data layers across PostgreSQL,
+              MySQL, MongoDB and Redis.
+            </li>
+            <li>
+              Shipped AI support systems with OpenAI, streaming responses, vector search and
+              Elasticsearch-powered RAG.
+            </li>
+            <li>
+              Delivered Docker environments, GitHub Actions pipelines, database migrations and
+              scalable production deployments.
+            </li>
+          </ul>
+        </article>
+        <article class="entry">
+          <div class="entry-heading">
+            <h3>Software Engineer Intern <span class="company">| FPT Software</span></h3>
+            <span class="dates">Jan 2026 - May 2026</span>
+          </div>
+          <p class="product">Oil Gas Management System</p>
+          <p>
+            An internal enterprise system for managing drilling rigs, tracking equipment faults and
+            monitoring oil production.
+          </p>
+          <ul>
+            <li>Developed APIs for the system&#39;s management and tracking workflows.</li>
+            <li>Connected the user interface to backend APIs.</li>
+            <li>Integrated an AI chatbot into the application.</li>
+          </ul>
+        </article>
+      </section>
+      <section aria-labelledby="skills">
+        <h2 id="skills">Technical skills</h2>
+        <dl class="skills">
+          <div>
+            <dt>Languages</dt>
+            <dd>TypeScript, JavaScript ES6+</dd>
+          </div>
+          <div>
+            <dt>Frontend</dt>
+            <dd>Next.js, React, Electron, Redux, Tailwind CSS</dd>
+          </div>
+          <div>
+            <dt>Backend</dt>
+            <dd>NestJS, Express, WebSocket</dd>
+          </div>
+          <div>
+            <dt>Data</dt>
+            <dd>PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch</dd>
+          </div>
+          <div>
+            <dt>Production</dt>
+            <dd>Docker, CI/CD, GitHub Actions, Jenkins, AWS Lightsail</dd>
+          </div>
+          <div>
+            <dt>AI &amp; Tools</dt>
+            <dd>OpenAI, Codex, Claude, Git, Figma, Google Stitch, Cursor</dd>
+          </div>
+        </dl>
+      </section>
+      <section aria-labelledby="education">
+        <h2 id="education">Education</h2>
+        <article class="entry">
+          <div class="entry-heading">
+            <h3>FPT University</h3>
+            <span class="dates">2023 - Present</span>
+          </div>
+          <p class="academic-detail">GPA: 8.5/10</p>
+        </article>
+      </section>
+      <section aria-labelledby="projects">
+        <h2 id="projects">Selected projects</h2>
+        <article class="entry">
+          <div class="entry-heading">
+            <h3>
+              <a href="https://khuugiabao.com/work/dineflow/">DineFlow</a>
+              <span class="company">| Restaurant operations</span>
+            </h3>
+            <span class="dates">In development</span>
+          </div>
+          <p>
+            Restaurant operations application connecting QR ordering, kitchen preparation, staff
+            service, billing and reporting. Includes tenant-scoped workspaces, transactional
+            order/payment records and realtime updates.
+          </p>
+          <p class="project-stack">
+            Next.js | NestJS | PostgreSQL | Prisma | Socket.IO | Docker | MinIO
+          </p>
+        </article>
+      </section>
+      <section aria-labelledby="certifications">
+        <h2 id="certifications">Certifications</h2>
+        <ul class="certificates">
+          <li>
+            <a href="https://www.coursera.org/account/accomplishments/specialization/H6OHOCJMXL3J"
+              >User Experience Research and Design Specialization</a
+            ><span class="issuer">University of Michigan | Oct 2025</span>
+          </li>
+          <li>
+            <a href="https://www.coursera.org/account/accomplishments/specialization/LEI22TQ3Y619"
+              >Web Applications for Everybody Specialization</a
+            ><span class="issuer">University of Michigan | Jul 2025</span>
+          </li>
+          <li>
+            <a href="https://www.coursera.org/account/accomplishments/specialization/PEUQIBF1J6XK"
+              >Software Development Lifecycle Specialization</a
+            ><span class="issuer">University of Minnesota | May 2025</span>
+          </li>
+          <li>
+            <a href="https://www.coursera.org/account/accomplishments/specialization/JGH9YKAIH3U2"
+              >Web Design for Everybody: Basics of Web Development &amp; Coding Specialization</a
+            ><span class="issuer">University of Michigan | Mar 2025</span>
+          </li>
+          <li>
+            <a href="https://www.coursera.org/account/accomplishments/specialization/BN9ROMQT5CNS"
+              >Core Java for Beginners Specialization</a
+            ><span class="issuer">LearnKartS | Feb 2025</span>
+          </li>
+          <li>
+            <a href="https://www.coursera.org/account/accomplishments/records/ZXS2B4GSAM6P"
+              >AI For Everyone</a
+            ><span class="issuer">DeepLearning.AI | Jun 2024</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

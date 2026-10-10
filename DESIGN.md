@@ -26,6 +26,8 @@ Skills: an original toolbox composition rather than the reference's horizontal b
 
 Experience: a full-width timeline with two columns above 850px. The narrower left column contains dates, product name and company; the right column contains the role, a prominent project description and concise contribution bullets. Use blue date/role labels, fine horizontal rules and the existing scroll-progress rail. Stack metadata before the role and description on mobile. Education follows in its own section, with the heading and academic record sharing the same desktop column proportions; certifications remain a separate responsive card grid.
 
+CV: a standalone light document with navy text, restrained blue section rules and readable Arial typography. Keep the PDF to one A4 page with 12mm margins, selectable text and active contact/credential links. Career, skills, education and implemented projects use the portfolio's data; certifications use a compact two-column list that stacks on mobile. The HTML includes a native PDF download button, hidden during printing. The generator refuses multi-page exports. Hero provides both View CV and Download My CV.
+
 ## Motion
 
 Motion handles reveal and page entry. GSAP ScrollTrigger handles timeline progress only. CSS handles portrait/card hover and native smooth scrolling, respecting reduced motion. No Lenis or scroll hijacking. The Hero uses the supplied portrait; no WebGL renderer or 3D library is loaded. Native cursor stays intact. Project links provide a visible focus outline and small corner-arrow feedback instead of a floating cursor label.
@@ -41,4 +43,4 @@ The full-site background uses a fixed 72px grid with blue, violet and restrained
 
 ## Pending owner content
 
-CV, academic degree/major, internship technologies, verified deployment status and measured portfolio project results. Name, portrait, education, internship dates/contributions, certifications, email and social URLs use the owner's supplied information. Empty fields never create fabricated links or claims.
+Academic degree/major, internship technologies, verified deployment status and measured portfolio project results. Name, portrait, education, career dates/contributions, certifications, email and social URLs use the owner's supplied information; the one-page CV is generated from these data. Empty fields never create fabricated links or claims.

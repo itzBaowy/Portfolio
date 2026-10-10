@@ -47,6 +47,14 @@ export function Hero() {
                 {copy.hero.cvPending}
               </span>
             ) : null}
+            {resumeUrl && profile.resumePageUrl && (
+              <Button asChild variant="ghost">
+                <a href={profile.resumePageUrl}>
+                  {copy.hero.viewCv}
+                  <ArrowUpRight aria-hidden="true" />
+                </a>
+              </Button>
+            )}
           </div>
           <div className="hero-person">
             <span className="person-line" />

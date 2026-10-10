@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { readFile } from "node:fs/promises";
 
 test("ambient background moves, stays fixed across navigation and pauses in a hidden tab", async ({
   page,
@@ -85,7 +86,7 @@ for (const width of [375, 430, 768, 1440, 1920]) {
   });
 }
 
-test("work CTA navigates in-page and production has no fake download", async ({ page }) => {
+test("work CTA navigates in-page and CV links to a real PDF", async ({ page }) => {
   await page.goto("/");
   await page.evaluate(() => {
     document.body.dataset.navigationMarker = "kept";
@@ -94,7 +95,39 @@ test("work CTA navigates in-page and production has no fake download", async ({ 
   await expect(page).toHaveURL(/#work$/);
   await expect(page.locator("#work")).toBeInViewport();
   expect(await page.locator("body").getAttribute("data-navigation-marker")).toBe("kept");
-  await expect(page.getByRole("link", { name: "Download My CV" })).toHaveCount(0);
+  const cv = page.getByRole("link", { name: "Download My CV" });
+  await expect(cv).toHaveAttribute("href", "/cv/Khuu_Gia_Bao_CV.pdf");
+  await expect(cv).toHaveAttribute("download", "");
+  const pdf = await page.request.get("/cv/Khuu_Gia_Bao_CV.pdf");
+  expect(pdf.status()).toBe(200);
+  expect(pdf.headers()["content-type"]).toContain("application/pdf");
+  expect((await pdf.body()).subarray(0, 5).toString()).toBe("%PDF-");
+});
+
+test("standalone HTML CV is responsive, accessible and downloads the actual PDF", async ({
+  page,
+}) => {
+  await page.goto("/cv/Khuu_Gia_Bao_CV.html");
+  for (const width of [1100, 375]) {
+    await page.setViewportSize({ width, height: 950 });
+    await expect(page.getByRole("heading", { level: 1, name: "Khuu Gia Bao" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Download PDF", exact: true })).toBeVisible();
+    await expect(page.locator(".certificates li")).toHaveCount(6);
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth),
+    ).toBe(true);
+    const accessibility = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+      .analyze();
+    expect(accessibility.violations.map((violation) => violation.id)).toEqual([]);
+  }
+  const downloadPromise = page.waitForEvent("download");
+  await page.getByRole("link", { name: "Download PDF", exact: true }).click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toBe("Khuu_Gia_Bao_CV.pdf");
+  expect(await download.failure()).toBeNull();
+  const response = await page.request.get("/cv/Khuu_Gia_Bao_CV.pdf");
+  expect(await readFile((await download.path())!)).toEqual(await response.body());
 });
 
 test("mobile navigation supports keyboard, closes and restores focus", async ({ page }) => {

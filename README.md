@@ -38,7 +38,9 @@ The latest supplied `public/images/baodeptrai1.png` is displayed in Hero and Abo
 
 ### CV
 
-Place your real PDF in `public/cv/Fullstack_Developer_CV.pdf` and set `profile.resumeUrl` to `/cv/Fullstack_Developer_CV.pdf`. The server build verifies that the local file exists, stays inside `public/` and starts with a PDF signature. Development displays an unavailable state; production omits the download link until a valid PDF is configured. Rebuild after adding or changing the file. No sample CV is generated.
+The owner's English CV is available as the standalone `public/cv/Khuu_Gia_Bao_CV.html` and its matching **one-page A4** PDF, `public/cv/Khuu_Gia_Bao_CV.pdf`. The HTML includes a native Download PDF button and works offline when kept beside the PDF. Portfolio Hero actions provide View CV and Download My CV. The PDF contains selectable text and working contact/project/credential links; print layout omits the web toolbar.
+
+Run `npm run cv` after editing portfolio data or `src/data/cv.ts` / `src/templates/cv.css`. This reads the same identity, career, education, skills, projects and credentials as the site, creates self-contained HTML, then exports it with Playwright Chromium. Install Chromium with `npx playwright install chromium` if needed. The generator refuses PDFs with more than one page; shorten content or adjust spacing before publishing, then visually inspect the PDF and run `npm run build`. Both generated files are committed so CI/deployment can use them without installing a browser at build time. The existing server-side PDF signature/path check still guards the download action.
 
 ### Projects
 
@@ -126,7 +128,7 @@ Open `http://localhost:8080`. The multistage image serves static files using unp
 
 ## Remaining owner input
 
-- PDF CV.
+- Optional CV tailoring for a specific position; the current one-page English HTML/PDF uses supplied portfolio information.
 - Internship technologies; academic degree and major, if desired. FPT University (2023–Present, GPA 8.5/10), the FPT Software internship (Jan–May 2026) with supplied contributions and six Coursera credentials are now included.
 - Verified project progress, screenshots, roles, dates, repository/demo links and results.
 - Hosting account configuration and domain/DNS access for public deployment.

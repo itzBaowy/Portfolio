@@ -12,7 +12,8 @@
     "format": "prettier --write src tests scripts",
     "audit:perf": "node scripts/lighthouse.mjs",
     "og": "node scripts/build-og.mjs",
-    "icons": "node scripts/build-tech-icons.mjs"
+    "icons": "node scripts/build-tech-icons.mjs",
+    "cv": "node scripts/build-cv.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.2.0",
