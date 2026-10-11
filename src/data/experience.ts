@@ -11,7 +11,7 @@ export const experience: Experience[] = [
     description:
       "An internal enterprise system for managing drilling rigs, tracking equipment faults and monitoring oil production.",
     responsibilities: [
-      "Developed APIs for the system's management and tracking workflows.",
+      "Proactively designed and developed equipment fault monitoring APIs, optimizing data handling to support stable operation under high data volumes.",
       "Connected the user interface to backend APIs.",
       "Integrated an AI chatbot into the application.",
     ],

@@ -6,7 +6,7 @@ Source: https://github.com/itzBaowy/DineFlow, main commit `c3b25f19be92973397d4b
 
 The sibling checkout was inspected read-only after fetching origin. Its two pending upstream commits change web analytics only; the backend, shared domain and test sources used below match the reviewed main branch. No DineFlow application files were changed and its test suite was not rerun for this content edit.
 
-The five bullets in `src/data/projects.ts` are rendered in the DineFlow brief. The CV uses condensed versions in `src/data/cv.ts`, plus an owner-supplied sixth bullet about writing technical documentation and securing team buy-in for multi-tenant architecture with NestJS RBAC. Repository code supports the technical mechanisms; the owner's personal communication contribution comes from their supplied CV update. The strengthened FPT Software API bullet and self-driven profile wording are also owner-supplied CV copy.
+The six bullets in `src/data/projects.ts` are shared by the DineFlow brief and CV. Five describe technical mechanisms; the sixth is an owner-supplied contribution about writing technical documentation and securing team buy-in for multi-tenant architecture with NestJS RBAC. Repository code supports the technical mechanisms; the owner's personal communication contribution comes from their supplied update. The strengthened FPT Software API bullet and self-driven profile wording are also owner-supplied copy, now shared by portfolio and CV through their data files.
 
 | Bullet focus | Repository evidence | Supported claim |
 | --- | --- | --- |

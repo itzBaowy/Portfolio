@@ -247,17 +247,34 @@ test("FlowSync is hidden and DineFlow engineering highlights appear in its brief
 }) => {
   await page.goto("/");
   await expect(page.locator('#work a[href="/work/flowsync/"]')).toHaveCount(0);
+  const aboutLead = (await page.locator(".about-lead").textContent())!.replace(/^I'm a /, "A ");
+  const experienceBullets = await page
+    .locator(".experience-detail .responsibilities li")
+    .allTextContents();
   await expect(page.locator("#work")).not.toContainText("FlowSync");
   expect((await page.request.get("/work/flowsync/")).status()).toBe(404);
   await page.goto("/work/dineflow/");
-  await expect(page.locator(".engineering-highlights li")).toHaveCount(5);
+  await expect(page.locator(".engineering-highlights li")).toHaveCount(6);
+  const projectBullets = await page.locator(".engineering-highlights li").allTextContents();
   await expect(page.getByRole("link", { name: "GitHub repository" })).toHaveAttribute(
     "href",
     "https://github.com/itzBaowy/DineFlow",
   );
   await page.goto("/cv/Khuu_Gia_Bao_CV.html");
   await expect(page.locator(".project-grid .entry")).toHaveCount(1);
+  const normalize = (text: string) => text.replace(/\s+/g, " ").trim();
+  expect(normalize((await page.locator(".summary p").textContent())!)).toBe(normalize(aboutLead));
+  expect(
+    (await page.locator('section[aria-labelledby="experience"] li').allTextContents()).map(
+      normalize,
+    ),
+  ).toEqual(experienceBullets.map(normalize));
   await expect(page.locator(".project-highlights li")).toHaveCount(6);
+  expect(
+    (await page.locator(".project-highlights li").allTextContents()).map((text) =>
+      text.replace(/\s+/g, " ").trim(),
+    ),
+  ).toEqual(projectBullets.map((text) => text.replace(/\s+/g, " ").trim()));
   await expect(page.locator(".cv-sheet")).not.toContainText("FlowSync");
 });
 

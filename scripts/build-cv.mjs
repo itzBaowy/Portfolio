@@ -62,7 +62,7 @@ const entries = experience
   <div class="entry-heading"><h3>${text(item.position)} <span class="company">| ${text(item.company)}</span></h3>${item.startDate ? `<span class="dates">${dates(item)}</span>` : ""}</div>
   <p class="product">${text(item.product)}</p>
   <p>${text(item.description)}</p>
-  ${item.responsibilities.length ? `<ul>${item.responsibilities.map((entry) => `<li>${text(cv.experienceBulletOverrides[entry] ?? entry)}</li>`).join("")}</ul>` : ""}
+  ${item.responsibilities.length ? `<ul>${item.responsibilities.map((entry) => `<li>${text(entry)}</li>`).join("")}</ul>` : ""}
 </article>`,
   )
   .join("");
@@ -84,7 +84,7 @@ const projectEntries = selected
     (project) => `<article class="entry">
   <div class="entry-heading"><h3>${link(`${profile.siteUrl}/work/${project.slug}/`, project.name)}</h3><span class="dates">${text(projectStatusLabels[project.status])}</span></div>
   <p>${text(cv.projectSummaries[project.slug] ?? project.overview)}</p>
-  ${(cv.projectHighlights[project.slug] ?? project.highlights)?.length ? `<ul class="project-highlights">${(cv.projectHighlights[project.slug] ?? project.highlights).map((bullet) => `<li>${text(bullet)}</li>`).join("")}</ul>` : ""}
+  ${project.highlights?.length ? `<ul class="project-highlights">${project.highlights.map((bullet) => `<li>${text(bullet)}</li>`).join("")}</ul>` : ""}
   <p class="project-stack">${project.technologies.map(text).join(" | ")}</p>
   ${project.liveUrl || project.repositoryUrl ? `<p class="project-links">${[project.liveUrl ? link(project.liveUrl, "Live demo") : "", project.repositoryUrl ? link(project.repositoryUrl, "GitHub repository") : ""].filter(Boolean).join(" | ")}</p>` : ""}
 </article>`,
