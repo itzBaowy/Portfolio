@@ -8,7 +8,6 @@ const brands = {
   "JavaScript ES6+": ["javascript", "#f7df1e"],
   "Next.js": ["nextdotjs", "#f5f5f7"],
   React: ["react", "#61dafb"],
-  Electron: ["electron", "#8fcbd6"],
   Redux: ["redux", "#b18be9"],
   "Tailwind CSS": ["tailwindcss", "#38c9e3"],
   NestJS: ["nestjs", "#fb5b7d"],

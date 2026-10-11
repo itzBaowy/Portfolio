@@ -11,7 +11,7 @@ export const skills = [
     name: "Frontend",
     icon: "layers",
     description: "Interfaces with intention",
-    technologies: ["Next.js", "React", "Electron", "Redux", "Tailwind CSS"],
+    technologies: ["Next.js", "React", "Redux", "Tailwind CSS"],
   },
   {
     id: "backend",

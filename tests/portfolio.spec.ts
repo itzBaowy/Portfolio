@@ -212,12 +212,12 @@ test("project cards and back navigation work", async ({ page }) => {
   await expect(page.locator("#work")).toBeInViewport();
 });
 
-test("all 27 technologies are available and category filtering is keyboard accessible", async ({
+test("all 26 technologies are available and category filtering is keyboard accessible", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/#skills");
-  await expect(page.locator(".technology-list li")).toHaveCount(27);
+  await expect(page.locator(".technology-list li")).toHaveCount(26);
   const filters = page.getByRole("group", { name: "Filter technologies by category" });
   const backend = filters.getByRole("button", { name: "Backend", exact: true });
   await backend.focus();
@@ -226,7 +226,7 @@ test("all 27 technologies are available and category filtering is keyboard acces
   await expect(page.locator(".skill-card")).toHaveCount(1);
   await expect(page.locator(".technology-list li")).toHaveText(["NestJS", "Express", "WebSocket"]);
   await filters.getByRole("button", { name: "All technologies" }).click();
-  await expect(page.locator(".technology-list li")).toHaveCount(27);
+  await expect(page.locator(".technology-list li")).toHaveCount(26);
 });
 
 test("SEO assets exist and reserved projects are excluded from sitemap", async ({ request }) => {
