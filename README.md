@@ -46,6 +46,8 @@ Selected projects are configured in `src/data/cv.ts`. DineFlow currently occupie
 
 Run `npm run cv` after editing portfolio data or `src/data/cv.ts` / `src/templates/cv.css`. This reads the same identity, career, education, skills, projects and credentials as the site, creates self-contained HTML, then exports it with Playwright Chromium. Install Chromium with `npx playwright install chromium` if needed. The generator refuses PDFs with more than one page; shorten content or adjust spacing before publishing, then visually inspect the PDF and run `npm run build`. Both generated files are committed so CI/deployment can use them without installing a browser at build time. The existing server-side PDF signature/path check still guards the download action.
 
+Career and project bullets quantify verified implementation scope: the oil/gas system's 5 fault categories, 3 severity levels and 12 chatbot tools; DineFlow's 6 order states, 5 staff roles and a concurrency test asserting 2 identical payment requests yield 1 payment. These are code-backed scope counts and a test assertion, not production performance measurements. FPT participation and attribution are documented in `docs/oilgas-engineering.md`; latency, throughput and business-impact figures require actual measurements.
+
 ### Projects
 
 Three project slots and routes are visible:

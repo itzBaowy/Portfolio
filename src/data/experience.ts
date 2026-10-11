@@ -9,12 +9,21 @@ export const experience: Experience[] = [
     endDate: "May 2026",
     location: null,
     description:
-      "An internal enterprise system for managing drilling rigs, tracking equipment faults and monitoring oil production.",
+      "Internal enterprise platform for drilling-rig oversight, equipment fault tracking and oil-production monitoring.",
     responsibilities: [
-      "Proactively designed and developed equipment fault monitoring APIs, optimizing data handling to support stable operation under high data volumes.",
-      "Connected the user interface to backend APIs.",
-      "Integrated an AI chatbot into the application.",
+      "Contributed to Express/Prisma incident APIs covering 5 fault categories and 3 severity levels, with MongoDB filtering and pagination for fault monitoring.",
+      "Integrated React monitoring screens with rig, equipment and production APIs using Axios/TanStack Query.",
+      "Integrated a Gemini/LangChain chatbot with 12 tools for operational data queries and management actions.",
     ],
-    technologies: [],
+    technologies: [
+      "React",
+      "Node.js",
+      "Express",
+      "Prisma",
+      "MongoDB",
+      "TanStack Query",
+      "LangChain",
+      "Gemini",
+    ],
   },
 ];

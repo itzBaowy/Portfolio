@@ -17,3 +17,13 @@ The six bullets in `src/data/projects.ts` are shared by the DineFlow brief and C
 | Verification of failure cases | `apps/api/test/billing.integration.test.ts`, `apps/api/test/tenancy.integration.test.ts`, `apps/api/test/ordering.integration.test.ts`, browser tests under `apps/web` | Repository test cases cover billing races, guest/tenant isolation and end-to-end restaurant workflows. No test-count, coverage percentage or fresh passing-run claim is added to the CV. |
 
 Redis is provisioned infrastructure but not an implemented cache/queue. No AI chatbot, Redis optimization, throughput gain or revenue metric is claimed for DineFlow.
+
+## Quantified scope update
+
+The local checkout at `76365f11332f98d61b8f02e97792c7927934e8a4` was inspected read-only for this revision. The CV and portfolio now quantify implemented scope and describe the concurrency assertion explicitly, rather than implying measured production performance:
+
+- **6 order states:** `packages/shared/src/ordering.ts` defines PENDING_CONFIRMATION, ACCEPTED, PREPARING, READY, SERVED and CANCELLED. These are workflow states, not 6 successful processing stages.
+- **5 staff roles:** `packages/shared/src/identity.ts` defines OWNER, MANAGER, CASHIER, WAITER and KITCHEN; `apps/api/src/auth/guards.ts` enforces backend role checks. Guests are separate from staff roles.
+- **2 identical concurrent payment requests / 1 payment:** the billing integration test named `concurrent identical cash requests commit one payment/close/audit and publish only after commit` submits two requests via `Promise.all`, checks equal receipts and asserts one payment row. The CV says a test was added with this assertion; it does not claim a fresh test run or a production duplicate-payment rate.
+
+No benchmark, measured latency improvement or production volume was available. FPT implementation scope is documented separately in `oilgas-engineering.md`; quantitative performance achievements remain pending measured figures and context.

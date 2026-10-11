@@ -506,16 +506,22 @@
           </div>
           <p class="product">Oil Gas Management System</p>
           <p>
-            An internal enterprise system for managing drilling rigs, tracking equipment faults and
-            monitoring oil production.
+            Internal enterprise platform for drilling-rig oversight, equipment fault tracking and
+            oil-production monitoring.
           </p>
           <ul>
             <li>
-              Proactively designed and developed equipment fault monitoring APIs, optimizing data
-              handling to support stable operation under high data volumes.
+              Contributed to Express/Prisma incident APIs covering 5 fault categories and 3 severity
+              levels, with MongoDB filtering and pagination for fault monitoring.
             </li>
-            <li>Connected the user interface to backend APIs.</li>
-            <li>Integrated an AI chatbot into the application.</li>
+            <li>
+              Integrated React monitoring screens with rig, equipment and production APIs using
+              Axios/TanStack Query.
+            </li>
+            <li>
+              Integrated a Gemini/LangChain chatbot with 12 tools for operational data queries and
+              management actions.
+            </li>
           </ul>
         </article>
       </section>
@@ -530,28 +536,28 @@
             <p>Full-stack restaurant platform for QR ordering, kitchen operations and billing.</p>
             <ul class="project-highlights">
               <li>
-                Unified QR ordering, kitchen and billing workflows with Next.js and NestJS, from
-                confirmation to settlement.
+                Built QR ordering-to-billing flows with Next.js/NestJS, covering 6 order states for
+                guests, kitchen and cashiers.
               </li>
               <li>
-                Synchronized guest, staff and kitchen views with Socket.IO and TanStack Query
-                refetching to recover order state after connection drops.
+                Kept guest, staff and kitchen order views consistent with Socket.IO and TanStack
+                Query refetching after connection drops.
               </li>
               <li>
-                Guarded against duplicate orders and payments with Prisma/PostgreSQL transactions,
-                row locks and idempotency keys; preserved price and receipt snapshots.
+                Guarded duplicate payments with PostgreSQL transactions, row locks and idempotency
+                keys; a concurrency test asserts 2 identical requests yield 1 payment.
               </li>
               <li>
-                Enforced restaurant isolation with tenant-scoped Prisma queries, composite foreign
-                keys and NestJS RBAC.
+                Enforced 5 staff roles with NestJS RBAC; isolated tenants via Prisma scoping and
+                composite foreign keys.
               </li>
               <li>
-                Tested billing races and tenant isolation with integration tests; verified checkout
+                Covered billing races and tenant isolation with integration tests, and checkout
                 flows with Playwright.
               </li>
               <li>
-                Authored detailed technical documentation and secured team buy-in for a multi-tenant
-                architecture with NestJS RBAC to strengthen data isolation and access control.
+                Documented the multi-tenant design and secured team buy-in for NestJS RBAC to
+                strengthen data isolation and access control.
               </li>
             </ul>
             <p class="project-stack">
