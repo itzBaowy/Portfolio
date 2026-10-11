@@ -1,18 +1,27 @@
 import type { Project } from "@/types/content";
 import { dineflowScreenshots } from "./dineflow";
 
-export const projects: Project[] = [
+const projectCatalog: Project[] = [
   {
     slug: "dineflow",
     number: "01",
     name: "DineFlow",
     category: "Restaurant operations",
     description:
-      "A more connected dining experience. From the first QR scan to the kitchen’s last order.",
+      "A full-stack restaurant platform connecting QR ordering, kitchen operations and billing, with realtime updates and isolated restaurant workspaces.",
     status: "in-progress",
     role: null,
     year: null,
-    technologies: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "Socket.IO", "Docker", "MinIO"],
+    technologies: [
+      "Next.js",
+      "NestJS",
+      "PostgreSQL",
+      "Prisma",
+      "Socket.IO",
+      "TanStack Query",
+      "Docker",
+      "MinIO",
+    ],
     features: [
       "QR ordering",
       "Restaurant POS",
@@ -23,12 +32,19 @@ export const projects: Project[] = [
       "Multi-restaurant workspaces",
       "Revenue reports & staff roles",
     ],
+    highlights: [
+      "Connected QR ordering, kitchen queues and cashier workflows using Next.js and NestJS, giving staff one system to manage orders from confirmation to settlement.",
+      "Kept guest, staff and kitchen views in sync with authenticated Socket.IO events and TanStack Query refetching, recovering current order state after connection drops.",
+      "Guarded against duplicate orders and payments with Prisma/PostgreSQL transactions, row locks and idempotency keys; preserved billing history with price and receipt snapshots.",
+      "Separated restaurant data and staff permissions through tenant-scoped Prisma queries, composite foreign keys and NestJS RBAC, supporting multiple restaurants under one account.",
+      "Covered billing races, tenant isolation and QR-to-payment workflows with database-backed integration tests and Playwright browser tests.",
+    ],
     cover: "/images/projects/dineflow/dashboard.webp",
     coverAlt: "DineFlow restaurant dashboard with service overview and restaurant configuration",
     screenshots: dineflowScreenshots,
     liveUrl: "https://dineflow.khuugiabao.com",
     plannedUrl: null,
-    repositoryUrl: null,
+    repositoryUrl: "https://github.com/itzBaowy/DineFlow",
     overview:
       "A restaurant QR ordering and management application that connects guests, service staff, the kitchen and cashiers. Restaurant owners can manage menus, tables, staff and reports in tenant-scoped workspaces.",
     problem:
@@ -107,6 +123,13 @@ export const projects: Project[] = [
     result: null,
   })),
 ];
+
+// Temporarily hidden from cards, generated routes, sitemap and the CV.
+// Remove the slug here to restore its existing project content.
+const hiddenProjectSlugs = new Set(["flowsync"]);
+export const projects: Project[] = projectCatalog
+  .filter((project) => !hiddenProjectSlugs.has(project.slug))
+  .map((project, index) => ({ ...project, number: String(index + 1).padStart(2, "0") }));
 
 export const projectStatusLabels = {
   planned: "Planned project",

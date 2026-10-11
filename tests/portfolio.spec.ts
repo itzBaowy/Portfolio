@@ -170,7 +170,7 @@ test("homepage has no serious accessibility violations", async ({ page }) => {
   );
 });
 
-for (const slug of ["dineflow", "flowsync", "project-03", "project-04"]) {
+for (const slug of ["dineflow", "project-03", "project-04"]) {
   test(`${slug} brief renders on desktop and mobile with its own metadata`, async ({ page }) => {
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
@@ -234,11 +234,31 @@ test("SEO assets exist and reserved projects are excluded from sitemap", async (
   expect(sitemap.status()).toBe(200);
   expect(await sitemap.text()).toContain("https://khuugiabao.com/work/dineflow/");
   expect(await sitemap.text()).not.toContain("project-03");
+  expect(await sitemap.text()).not.toContain("flowsync");
   const robots = await request.get("/robots.txt");
   expect(await robots.text()).toContain("Sitemap: https://khuugiabao.com/sitemap.xml");
   const image = await request.get("/og.png");
   expect(image.status()).toBe(200);
   expect(image.headers()["content-type"]).toContain("image/png");
+});
+
+test("FlowSync is hidden and DineFlow engineering highlights appear in its brief and CV", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator('#work a[href="/work/flowsync/"]')).toHaveCount(0);
+  await expect(page.locator("#work")).not.toContainText("FlowSync");
+  expect((await page.request.get("/work/flowsync/")).status()).toBe(404);
+  await page.goto("/work/dineflow/");
+  await expect(page.locator(".engineering-highlights li")).toHaveCount(5);
+  await expect(page.getByRole("link", { name: "GitHub repository" })).toHaveAttribute(
+    "href",
+    "https://github.com/itzBaowy/DineFlow",
+  );
+  await page.goto("/cv/Khuu_Gia_Bao_CV.html");
+  await expect(page.locator(".project-grid .entry")).toHaveCount(1);
+  await expect(page.locator(".project-highlights li")).toHaveCount(5);
+  await expect(page.locator(".cv-sheet")).not.toContainText("FlowSync");
 });
 
 test("real contact channels and Person structured data use supplied information", async ({

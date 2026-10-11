@@ -84,7 +84,9 @@ const projectEntries = selected
     (project) => `<article class="entry">
   <div class="entry-heading"><h3>${link(`${profile.siteUrl}/work/${project.slug}/`, project.name)}</h3><span class="dates">${text(projectStatusLabels[project.status])}</span></div>
   <p>${text(cv.projectSummaries[project.slug] ?? project.overview)}</p>
+  ${project.highlights?.length ? `<ul class="project-highlights">${project.highlights.map((bullet) => `<li>${text(bullet)}</li>`).join("")}</ul>` : ""}
   <p class="project-stack">${project.technologies.map(text).join(" | ")}</p>
+  ${project.liveUrl || project.repositoryUrl ? `<p class="project-links">${[project.liveUrl ? link(project.liveUrl, "Live demo") : "", project.repositoryUrl ? link(project.repositoryUrl, "GitHub repository") : ""].filter(Boolean).join(" | ")}</p>` : ""}
 </article>`,
   )
   .join("");

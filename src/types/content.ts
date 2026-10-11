@@ -20,6 +20,7 @@ export interface Project {
   year: string | null;
   technologies: string[];
   features: string[];
+  highlights?: string[];
   cover: string | null;
   coverAlt?: string;
   screenshots?: ProjectScreenshot[];

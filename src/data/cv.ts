@@ -3,11 +3,8 @@
 export const cv = {
   summary:
     "Full-stack software engineer focused on thoughtful interfaces, maintainable backend systems and realtime workflows. Experience spans enterprise software, AI integration and digital product development.",
-  selectedProjectSlugs: ["dineflow", "flowsync"],
+  selectedProjectSlugs: ["dineflow"],
   projectSummaries: {
-    dineflow:
-      "QR ordering, kitchen workflows, billing and reports with tenant-scoped realtime updates.",
-    flowsync:
-      "Planned collaboration platform with Kanban boards, tasks, realtime updates and AI support.",
+    dineflow: "Full-stack restaurant platform for QR ordering, kitchen operations and billing.",
   } as Record<string, string>,
 };

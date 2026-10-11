@@ -2153,6 +2153,27 @@ svg {
 .case-overview h2 {
   margin-top: 0;
 }
+.engineering-highlights {
+  margin-top: 28px;
+}
+.engineering-highlights h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+.engineering-highlights .responsibilities {
+  list-style: disc;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.engineering-highlights li {
+  padding-left: 6px;
+  margin-top: 12px;
+}
+.engineering-highlights li::marker {
+  color: var(--accent);
+}
 .case-split {
   display: grid;
   grid-template-columns: 1fr 1fr;

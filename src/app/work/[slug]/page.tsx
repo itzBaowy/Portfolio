@@ -119,6 +119,16 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <div>
           <h2 id="overview">{copy.caseStudy.overview}</h2>
           <p>{project.overview}</p>
+          {!!project.highlights?.length && (
+            <div className="engineering-highlights">
+              <h3>Engineering highlights</h3>
+              <ul className="responsibilities">
+                {project.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </section>
       <div className="case-split">

@@ -42,22 +42,21 @@ The owner's English CV is available as the standalone `public/cv/Khuu_Gia_Bao_CV
 
 The header includes the owner's full-color portrait in a circular frame at the upper right, with inline icons for email, GitHub, LinkedIn and portfolio links. The portrait is embedded in the HTML so it also loads offline and appears in the PDF.
 
-Selected projects are configured in `src/data/cv.ts`: DineFlow and FlowSync share a compact two-column layout that stacks on mobile. Their status labels come from the portfolio data, including FlowSync's planned status.
+Selected projects are configured in `src/data/cv.ts`. DineFlow currently occupies the full width, with five engineering bullets shared with its portfolio brief, plus demo and repository links. Each bullet connects a workflow or failure case to the technology and implementation used. Evidence is recorded in `docs/dineflow-engineering.md`.
 
 Run `npm run cv` after editing portfolio data or `src/data/cv.ts` / `src/templates/cv.css`. This reads the same identity, career, education, skills, projects and credentials as the site, creates self-contained HTML, then exports it with Playwright Chromium. Install Chromium with `npx playwright install chromium` if needed. The generator refuses PDFs with more than one page; shorten content or adjust spacing before publishing, then visually inspect the PDF and run `npm run build`. Both generated files are committed so CI/deployment can use them without installing a browser at build time. The existing server-side PDF signature/path check still guards the download action.
 
 ### Projects
 
-Four project slots and routes are ready:
+Three project slots and routes are visible:
 
 - `/work/dineflow/`
-- `/work/flowsync/`
 - `/work/project-03/`
 - `/work/project-04/`
 
-DineFlow now has an implementation overview, actual development screenshots and a responsive system diagram based on its code and architecture/deployment documentation. Its owner-supplied live-demo link is `https://dineflow.khuugiabao.com`. The web domain did not resolve during the 2026-10-10 check; the separate API readiness endpoint returned HTTP 200 with the database up. DineFlow remains **in development**, with no invented role/year or production usage results. See `docs/project-assets.md` for screenshot provenance and architecture scope. FlowSync retains its **planned** status and labeled concept cover. Reserved slots are `noindex` and excluded from the sitemap.
+DineFlow now has an implementation overview, engineering highlights, actual development screenshots and a responsive system diagram based on its code and architecture/deployment documentation. Its owner-supplied live-demo link is `https://dineflow.khuugiabao.com` and its repository is `https://github.com/itzBaowy/DineFlow`. The web domain did not resolve during the 2026-10-10 check; the separate API readiness endpoint returned HTTP 200 with the database up. DineFlow remains **in development**, with no invented role/year or production usage results. See `docs/project-assets.md` for screenshot provenance and architecture scope. FlowSync is temporarily hidden from cards, navigation, generated routes, sitemap and CV; its content is preserved in `src/data/projects.ts`. Remove its slug from `hiddenProjectSlugs` and add it back to the CV selection to restore it. Reserved slots are `noindex` and excluded from the sitemap.
 
-Selected work uses one compact bordered card grid for all four slots: two columns above 700px, one below. Each card includes an index/status, a wide preview, category, title, short description, technology tags and a corner arrow. The whole card opens its project brief and supports keyboard focus; verified external links remain separate. Empty roles/dates stay on the detail pages rather than cluttering cards. Concept covers remain labeled, and reserved slots show “Preview coming soon.” Detailed project pages keep their larger cover layout.
+Selected work uses one compact bordered card grid for all visible slots: two columns above 700px, one below. Each card includes an index/status, a wide preview, category, title, short description, technology tags and a corner arrow. The whole card opens its project brief and supports keyboard focus; verified external links remain separate. Empty roles/dates stay on the detail pages rather than cluttering cards. Concept covers remain labeled, and reserved slots show “Preview coming soon.” Detailed project pages keep their larger cover layout.
 
 Real screenshots use optimized local WebP assets, descriptive alternatives and links to the complete captures. Edit the DineFlow gallery and diagram content in `src/data/dineflow.ts`; the diagram is native HTML/CSS and does not load a graph-rendering library.
 
