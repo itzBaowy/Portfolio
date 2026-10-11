@@ -257,7 +257,7 @@ test("FlowSync is hidden and DineFlow engineering highlights appear in its brief
   );
   await page.goto("/cv/Khuu_Gia_Bao_CV.html");
   await expect(page.locator(".project-grid .entry")).toHaveCount(1);
-  await expect(page.locator(".project-highlights li")).toHaveCount(5);
+  await expect(page.locator(".project-highlights li")).toHaveCount(6);
   await expect(page.locator(".cv-sheet")).not.toContainText("FlowSync");
 });
 

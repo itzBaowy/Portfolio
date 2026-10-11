@@ -2,7 +2,9 @@
 
 Date: 2026-10-12 (Asia/Bangkok).
 
-Latest content update: Electron was removed from the skill data, generated SVG/icon metadata and HTML/PDF CV. Build, lint, formatting and five focused browser checks passed (375/1440px homepages, homepage accessibility, skill filtering/counts and CV accessibility/download). Exported pages and PDF text contain no Electron; the PDF remains one A4 page and was visually inspected.
+Latest CV update: the English Profile emphasizes independent research and problem solving, the FPT Software API bullet emphasizes proactive design and data handling, and a sixth DineFlow bullet describes technical documentation and team buy-in. Build, lint, formatting and two focused browser checks passed (standalone CV accessibility/download and DineFlow/hidden-project content). PyMuPDF confirmed all three revisions and one A4 page; the final page was visually inspected. Portrait size, section order, six credentials and excluded skills/projects are preserved.
+
+Earlier content update: Electron was removed from the skill data, generated SVG/icon metadata and HTML/PDF CV. Build, lint, formatting and five focused browser checks passed (375/1440px homepages, homepage accessibility, skill filtering/counts and CV accessibility/download). Exported pages and PDF text contain no Electron; the PDF remains one A4 page and was visually inspected.
 
 ## Checked
 
