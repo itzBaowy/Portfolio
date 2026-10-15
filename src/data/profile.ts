@@ -1,6 +1,6 @@
 // Replace null values with verified personal information before publishing.
-const engineeringFocus =
-  "self-driven full-stack software engineer focused on thoughtful interfaces and reliable backend systems, with a strong track record of independently researching and resolving complex system bottlenecks.";
+const professionalSummary =
+  "Software Engineering student with hands-on experience developing backend APIs and full-stack applications using Node.js, NestJS, Express, and PostgreSQL. Experienced in designing RESTful APIs, implementing role-based access control, and maintaining data consistency. Eager to deepen backend engineering expertise and contribute to production systems.";
 
 export const profile = {
   name: "Khuu Gia Bao" as string | null,
@@ -16,11 +16,8 @@ export const profile = {
   resumeUrl: "/cv/Khuu_Gia_Bao_CV.pdf" as string | null,
   resumePageUrl: "/cv/Khuu_Gia_Bao_CV.html" as string | null,
   siteUrl: "https://khuugiabao.com",
-  summary: `A ${engineeringFocus}`,
-  about: [
-    `I'm a ${engineeringFocus}`,
-    "My focus is on solving problems with clean architecture, maintainable code and careful attention to performance. I explore system design, deployment and AI-assisted development as part of that process.",
-  ],
+  summary: professionalSummary,
+  about: [professionalSummary],
   principles: [
     "User-centered thinking",
     "Clean architecture",

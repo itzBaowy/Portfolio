@@ -7,7 +7,7 @@ export const education: Education[] = [
     startDate: "2023",
     endDate: null,
     degree: null,
-    achievements: ["GPA: 8.5/10"],
+    achievements: ["GPA: 8.1/10"],
   },
 ];
 

@@ -134,7 +134,7 @@ Open `http://localhost:8080`. The multistage image serves static files using unp
 ## Remaining owner input
 
 - Optional CV tailoring for a specific position; the current one-page English HTML/PDF uses supplied portfolio information.
-- Internship technologies; academic degree and major, if desired. FPT University (2023–Present, GPA 8.5/10), the FPT Software internship (Jan–May 2026) with supplied contributions and six Coursera credentials are now included.
+- Internship technologies; academic degree and major, if desired. FPT University (2023–Present, GPA 8.1/10), the FPT Software internship (Jan–May 2026) with supplied contributions and six Coursera credentials are now included.
 - Verified project progress, screenshots, roles, dates, repository/demo links and results.
 - Hosting account configuration and domain/DNS access for public deployment.
 
